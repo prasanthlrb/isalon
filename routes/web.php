@@ -25,3 +25,15 @@ Route::get('/customer-list',function () {
 Route::get('/salon-list',function () {
     return view('admin.salon');
 });
+Route::get('/category',function () {
+    return view('admin.category');
+});
+Route::get('/service',function () {
+    return view('admin.service');
+});
+Route::get('/push-notification',function () {
+    return view('admin.push_notification');
+});
+Route::get('/review',function () {
+    return view('admin.review');
+});

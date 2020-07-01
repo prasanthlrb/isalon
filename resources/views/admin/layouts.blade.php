@@ -120,27 +120,27 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-                <li class="active nav-item"><a href="/html/ltr/vertical-menu-template-dark/index.html"><i class="menu-livicon" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+                <li class=" nav-item"><a href="/dashboard"><i class="menu-livicon" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
                   
                 </li>
                 <li class=" navigation-header"><span>Apps</span>
                 </li>
 
-                <li class=" nav-item"><a href="app-email.html"><i class="menu-livicon" data-icon="users"></i><span class="menu-title" data-i18n="Email">Customers</span></a>
+                <li class=" nav-item"><a href="/customer-list"><i class="menu-livicon" data-icon="users"></i><span class="menu-title" data-i18n="Email">Customers</span></a>
                 </li>
 
-                <li class=" nav-item"><a href="app-email.html"><i class="menu-livicon" data-icon="scissors"></i><span class="menu-title" data-i18n="Email">Salon</span></a>
+                <li class=" nav-item"><a href="/salon-list"><i class="menu-livicon" data-icon="scissors"></i><span class="menu-title" data-i18n="Email">Salon</span></a>
                 </li>
 
-                <li class=" nav-item"><a href="app-email.html"><i class="menu-livicon" data-icon="morph-folder"></i><span class="menu-title" data-i18n="Email">Categories</span></a>
+                <li class=" nav-item"><a href="/category"><i class="menu-livicon" data-icon="morph-folder"></i><span class="menu-title" data-i18n="Email">Categories</span></a>
                 </li>
-                <li class=" nav-item"><a href="app-email.html"><i class="menu-livicon" data-icon="shoppingcart"></i><span class="menu-title" data-i18n="Email">Services</span></a>
-                </li>
-
-                <li class=" nav-item"><a href="app-email.html"><i class="menu-livicon" data-icon="like"></i><span class="menu-title" data-i18n="Email">Review & Rating</span></a>
+                <li class=" nav-item"><a href="/service"><i class="menu-livicon" data-icon="shoppingcart"></i><span class="menu-title" data-i18n="Email">Services</span></a>
                 </li>
 
-                <li class=" nav-item"><a href="app-email.html"><i class="menu-livicon" data-icon="globe"></i><span class="menu-title" data-i18n="Email">Push Notification</span></a>
+                <li class=" nav-item"><a href="/review"><i class="menu-livicon" data-icon="like"></i><span class="menu-title" data-i18n="Email">Review & Rating</span></a>
+                </li>
+
+                <li class="active nav-item"><a href="/push-notification"><i class="menu-livicon" data-icon="globe"></i><span class="menu-title" data-i18n="Email">Push Notification</span></a>
                 </li>
 
                 </li>
