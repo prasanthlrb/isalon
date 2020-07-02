@@ -35,60 +35,62 @@
           <i class="bx bx-plus"></i>
           <span>New Salon</span>
         </button>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-body card-dashboard">
-                                        <!-- <p class="card-text">In this Table Show All type of Salon Information, Booking Details and Payment Details.</p> -->
-                                        
-                                        <div class="table-responsive">
-                                           
-                                            <table class="table zero-configuration">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Salon Name</th>
-                                                        <th>Owner / Person Name</th>
-                                                        <th>Phone Number</th>
-                                                        <th>Total Booking</th>
-                                                        <th>Current Status</th>
-                                                        <th>Membership Plan</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td> jojo Salon</td>
-                                                        <td>John jojo</td>
-                                                        <td>560009123</td>
-                                                        <td>200</td>
-    
-                                                        <td>Active</td>
-                                                        <td>Trial</td>
-                                                        <td><div class="dropdown">
-                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                </span>
-                <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; transform: translate3d(-125px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
-                  <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
-                  <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
-                  <a class="dropdown-item" href="#"><i class="bx bxs-chat mr-1"></i> Chat</a>
-                  <a class="dropdown-item" href="#"><i class="bx bx-lock-alt mr-1"></i> Block</a>
-                  <a class="dropdown-item" href="#"><i class="bx bx-show-alt mr-1"></i> See Profile</a>
-                </div>
-              </div></td>
-                                                    </tr>
-                                                 
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                      <th>Salon Name</th>
-                                                        <th>Owner / Person Name</th>
-                                                        <th>Phone Number</th>
-                                                        <th>Total Booking</th>
-                                                        <th>Current Status</th>
-                                                        <th>Membership Plan</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
+        </div>
+        <div class="card-content">
+            <div class="card-body card-dashboard">
+                <!-- <p class="card-text">In this Table Show All type of Salon Information, Booking Details and Payment Details.</p> -->
+                
+                <div class="table-responsive">
+                   
+                    <table class="table zero-configuration">
+                        <thead>
+                            <tr>
+                                <th>Salon Name</th>
+                                <th>Owner / Person Name</th>
+                                <th>Phone Number</th>
+                                <th>Total Booking</th>
+                                <th>Current Status</th>
+                                <th>Membership Plan</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($salon as $row)
+                            <tr>
+                                <td>{{$row->salon_name}}</td>
+                                <td>{{$row->owner_name}}</td>
+                                <td>{{$row->phone}}</td>
+                                <td>200</td>
+
+                                <td>Active</td>
+                                <td>Trial</td>
+                                <td><div class="dropdown">
+                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                    </span>
+                                    <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; transform: translate3d(-125px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                      <a onclick="Edit({{$row->id}})" class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
+                                      <a onclick="Delete({{$row->id}})" class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
+                                      <a class="dropdown-item" href="#"><i class="bx bxs-chat mr-1"></i> Chat</a>
+                                      <a class="dropdown-item" href="#"><i class="bx bx-lock-alt mr-1"></i> Block</a>
+                                      <a class="dropdown-item" href="#"><i class="bx bx-show-alt mr-1"></i> See Profile</a>
+                                    </div>
+                                  </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                              <th>Salon Name</th>
+                                <th>Owner / Person Name</th>
+                                <th>Phone Number</th>
+                                <th>Total Booking</th>
+                                <th>Current Status</th>
+                                <th>Membership Plan</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                    </table>
 
 
                                         </div>
@@ -155,27 +157,32 @@
                     </div>
 
                     <div class="form-group col-md-6">
+                        <label>Confirm Password</label>
+                        <input type="password" id="password_confirmation" name="password_confirmation" class="form-control">
+                    </div>
+                </div>
+                <div class="row salon-view">
+                    <div class="form-group col-md-6">
                         <label>Salon Name</label>
                         <input type="text" id="salon_name" name="salon_name" class="form-control">
                     </div>
-                </div>
-                <div class="row">
                     <div class="form-group col-md-6">
                         <label>Salon ID</label>
                         <input type="text" id="salon_id" name="salon_id" class="form-control">
                     </div>
-
+                </div>
+                <div class="row">
                     <div class="form-group col-md-6">
                         <label>Emirates ID</label>
                         <input type="text" id="emirates_id" name="emirates_id" class="form-control">
                     </div>
-                </div>
-                <div class="row">
                     <div class="form-group col-md-6">
                         <label>Passport Number</label>
                         <input type="text" id="passport_number" name="passport_number" class="form-control">
                     </div>
 
+                </div>
+                <div class="row">
                     <div class="form-group col-md-6">
                         <label>Member License</label>
                         <select id="member_license" name="member_license" class="form-control">
@@ -185,16 +192,16 @@
                             <option value="2">Plan 2</option>
                         </select>
                     </div>
-                </div>
-                <div class="row">
                     <div class="form-group col-md-6">
                         <label>Salon Comission (%)</label>
                         <input type="text" id="salon_commission" name="salon_commission" class="form-control">
                     </div>
-
-                    <div class="form-group col-md-6">
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
                         <label>Trade License Copy</label>
                         <input type="file" id="trade_license" name="trade_license" class="form-control">
+                        <input type="hidden" id="trade_license1" name="trade_license1">
                     </div>
                 </div>
                     <div class="form-group">
@@ -220,6 +227,8 @@
     <!-- END: Page Vendor JS-->
     <script src="/app-assets/js/scripts/datatables/datatable.js"></script>
 <script type="text/javascript">
+$('.salon').addClass('active');
+var action_type;
 $('#add_new').click(function(){
     $('#popup_modal').modal('show');
     $("#form")[0].reset();
@@ -227,5 +236,114 @@ $('#add_new').click(function(){
     $('#saveButton').text('Save');
     $('#modal-title').text('Add Salon');
 });
+
+$(".salon-view").hide();
+$('#busisness_type').change(function(){
+    var busisness_type = $('#busisness_type').val();
+    if(busisness_type == '1'){
+        $(".salon-view").hide();
+    }
+    else{
+        $(".salon-view").show();
+    }
+});
+
+function Save(){
+  var formData = new FormData($('#form')[0]);
+  if(action_type == 1){
+    $.ajax({
+        url : '/admin/save-salon',
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        dataType: "JSON",
+        success: function(data)
+        {                
+            $("#form")[0].reset();
+            $('#popup_modal').modal('hide');
+            $('.zero-configuration').load(location.href+' .zero-configuration');
+            toastr.success(data, 'Successfully Save');
+        },error: function (data) {
+            var errorData = data.responseJSON.errors;
+            $.each(errorData, function(i, obj) {
+            toastr.error(obj[0]);
+      });
+    }
+    });
+  }else{
+    $.ajax({
+      url : '/admin/update-salon',
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+      dataType: "JSON",
+      success: function(data)
+      {
+        console.log(data);
+          $("#form")[0].reset();
+           $('#popup_modal').modal('hide');
+           $('.zero-configuration').load(location.href+' .zero-configuration');
+           toastr.success(data, 'Successfully Update');
+      },error: function (data) {
+        var errorData = data.responseJSON.errors;
+        $.each(errorData, function(i, obj) {
+          toastr.error(obj[0]);
+        });
+      }
+    });
+  }
+}
+
+function Edit(id){
+  $.ajax({
+    url : '/admin/salon/'+id,
+    type: "GET",
+    dataType: "JSON",
+    success: function(data)
+    {
+      $('#modal-title').text('Update Salon');
+      $('#save').text('Save Change');
+      $('select[name=busisness_type]').val(data.busisness_type);
+    if(data.busisness_type == '1'){
+        $(".salon-view").hide();
+    }
+    else{
+        $(".salon-view").show();
+    }
+      $('input[name=owner_name]').val(data.owner_name);
+      $('input[name=phone]').val(data.phone);
+      $('input[name=email]').val(data.email);
+      $('input[name=salon_id]').val(data.salon_id);
+      $('input[name=salon_name]').val(data.salon_name);
+      $('input[name=emirates_id]').val(data.emirates_id);
+      $('input[name=passport_number]').val(data.passport_number);
+      $('select[name=member_license]').val(data.member_license);
+      $('input[name=salon_commission]').val(data.salon_commission);
+      $('input[name=trade_license1]').val(data.image);
+      $('input[name=id]').val(id);
+      $('#popup_modal').modal('show');
+      action_type = 2;
+    }
+  });
+}
+
+function Delete(id){
+    var r = confirm("Are you sure");
+    if (r == true) {
+      $.ajax({
+        url : '/admin/salon-delete/'+id,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data)
+        {
+          toastr.success(data, 'Successfully Delete');
+          $('.zero-configuration').load(location.href+' .zero-configuration');
+        }
+      });
+    } 
+}
+
 </script>
 @endsection

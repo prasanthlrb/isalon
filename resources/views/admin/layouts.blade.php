@@ -37,6 +37,8 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
     <!-- END: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('toastr/toastr.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('toastr/toastr.css')}}">
     @yield('css')
 </head>
 <!-- END: Head-->
@@ -92,9 +94,11 @@
                             </ul>
                         </li>
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                                <div class="user-nav d-sm-flex d-none"><span class="user-name">John Nijo</span><span class="user-status text-muted">Available</span></div><span><img class="round" src="/app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40"></span>
+                                <div class="user-nav d-sm-flex d-none"><span class="user-name">{{ Auth::guard('admin')->user()->name }}</span><span class="user-status text-muted">Available</span></div><span><img class="round" src="/app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40"></span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right pb-0"><a class="dropdown-item" href="page-user-profile.html"><i class="bx bx-user mr-50"></i> Edit Profile</a><a class="dropdown-item" href="app-chat.html"><i class="bx bx-message mr-50"></i> Chats</a>
+                            <div class="dropdown-menu dropdown-menu-right pb-0">
+                                <a class="dropdown-item" href="/admin/view-user/{{ Auth::guard('admin')->user()->id }}"><i class="bx bx-user mr-50"></i> Edit Profile</a>
+                                <a class="dropdown-item" href="app-chat.html"><i class="bx bx-message mr-50"></i> Chats</a>
                                 <div class="dropdown-divider mb-0"></div><a class="dropdown-item" href="auth-login.html"><i class="bx bx-power-off mr-50"></i> Logout</a>
                             </div>
                         </li>
@@ -120,27 +124,27 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-                <li class=" nav-item"><a href="/dashboard"><i class="menu-livicon" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+                <li class="dashboard nav-item"><a href="/admin/dashboard"><i class="menu-livicon" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
                   
                 </li>
                 <li class=" navigation-header"><span>Apps</span>
                 </li>
 
-                <li class=" nav-item"><a href="/customer-list"><i class="menu-livicon" data-icon="users"></i><span class="menu-title" data-i18n="Email">Customers</span></a>
+                <li class="customer nav-item"><a href="/admin/customer"><i class="menu-livicon" data-icon="users"></i><span class="menu-title" data-i18n="Email">Customers</span></a>
                 </li>
 
-                <li class=" nav-item"><a href="/salon-list"><i class="menu-livicon" data-icon="scissors"></i><span class="menu-title" data-i18n="Email">Salon</span></a>
+                <li class="salon nav-item"><a href="/admin/salon"><i class="menu-livicon" data-icon="scissors"></i><span class="menu-title" data-i18n="Email">Salon</span></a>
                 </li>
 
-                <li class=" nav-item"><a href="/category"><i class="menu-livicon" data-icon="morph-folder"></i><span class="menu-title" data-i18n="Email">Categories</span></a>
+                <li class="category nav-item"><a href="/admin/category"><i class="menu-livicon" data-icon="morph-folder"></i><span class="menu-title" data-i18n="Email">Categories</span></a>
                 </li>
-                <li class=" nav-item"><a href="/service"><i class="menu-livicon" data-icon="shoppingcart"></i><span class="menu-title" data-i18n="Email">Services</span></a>
-                </li>
-
-                <li class=" nav-item"><a href="/review"><i class="menu-livicon" data-icon="like"></i><span class="menu-title" data-i18n="Email">Review & Rating</span></a>
+                <li class="service nav-item"><a href="/admin/service"><i class="menu-livicon" data-icon="shoppingcart"></i><span class="menu-title" data-i18n="Email">Services</span></a>
                 </li>
 
-                <li class="active nav-item"><a href="/push-notification"><i class="menu-livicon" data-icon="globe"></i><span class="menu-title" data-i18n="Email">Push Notification</span></a>
+                <li class="review nav-item"><a href="/admin/review"><i class="menu-livicon" data-icon="like"></i><span class="menu-title" data-i18n="Email">Review & Rating</span></a>
+                </li>
+
+                <li class="push-notification nav-item"><a href="/admin/push-notification"><i class="menu-livicon" data-icon="globe"></i><span class="menu-title" data-i18n="Email">Push Notification</span></a>
                 </li>
 
                 </li>
@@ -150,7 +154,7 @@
                  <li class=" nav-item"><a href="app-email.html"><i class="menu-livicon" data-icon="calendar"></i><span class="menu-title" data-i18n="Email">Booking</span></a>
                 </li>
 
-                 <li class=" nav-item"><a href="app-email.html"><i class="menu-livicon" data-icon="map"></i><span class="menu-title" data-i18n="Email">Available Area</span></a>
+                 <li class="area nav-item"><a href="/admin/city"><i class="menu-livicon" data-icon="map"></i><span class="menu-title" data-i18n="Email">Available Area</span></a>
                 </li>
 
                 </li>
@@ -170,7 +174,7 @@
                         <li class=" navigation-header"><span>Master</span>
                 </li>
 
-                <li class=" nav-item"><a href="app-email.html"><i class="menu-livicon" data-icon="user"></i><span class="menu-title" data-i18n="Email">Users</span></a>
+                <li class="user nav-item"><a href="/admin/user"><i class="menu-livicon" data-icon="user"></i><span class="menu-title" data-i18n="Email">Users</span></a>
                 </li>
                 <li class=" nav-item"><a href="app-email.html"><i class="menu-livicon" data-icon="unlock"></i><span class="menu-title" data-i18n="Email">Roles</span></a>
                 </li>
@@ -572,6 +576,9 @@
 
     <!-- BEGIN: Page JS-->
     <script src="/app-assets/js/scripts/pages/dashboard-ecommerce.js"></script>
+
+    <script src="{{ asset('toastr/toastr.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('toastr/toastr.min.js')}}" type="text/javascript"></script>
     <!-- END: Page JS-->
     @yield('js')
 </body>

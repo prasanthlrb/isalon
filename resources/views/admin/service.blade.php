@@ -35,49 +35,52 @@
           <i class="bx bx-plus"></i>
           <span>New Service</span>
         </button>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-body card-dashboard">
-                                        <!-- <p class="card-text">In this Table Show All type of Salon Information, Booking Details and Payment Details.</p> -->
+        </div>
+        <div class="card-content">
+            <div class="card-body card-dashboard">
+                <!-- <p class="card-text">In this Table Show All type of Salon Information, Booking Details and Payment Details.</p> -->
                                         
-                                        <div class="table-responsive">
-                                           
-                                            <table class="table zero-configuration">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Service Name English</th>
-                                                        <th>Service Name Arabic</th>
-                                                        <th>Image</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td> Service Name (English)</td>
-                                                        <td>Service Name (Arabic)</td>
-                                                        <td>
-                                                        	<img style="width: 100px;height: 100px;" src="https://img.pngio.com/hair-salon-badge-with-scissors-svg-png-icon-free-download-62147-salon-scissors-png-980_789.png">
-                                                        </td>
-                                                        <td><div class="dropdown">
+            <div class="table-responsive">
+               
+                <table class="table zero-configuration">
+                    <thead>
+                        <tr>
+                            <th>Service Name English</th>
+                            <th>Service Name Arabic</th>
+                            <th>Image</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($service as $row)
+                        <tr>
+                            <td>{{$row->service_name_english}}</td>
+                            <td>{{$row->service_name_arabic}}</td>
+                            
+                            <td>
+                                <img style="width: 100px;height: 100px;" src="/upload_files/{{$row->image}}">
+                            </td>
+                <td><div class="dropdown">
                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                 </span>
                 <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; transform: translate3d(-125px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
-                  <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
-                  <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
+                  <a onclick="Edit({{$row->id}})" class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
+                  <a onclick="Delete({{$row->id}})" class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
                 </div>
               </div></td>
-                                                    </tr>
-                                                 
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                      <th>Service Name English</th>
-                                                        <th>Service Name Arabic</th>
-                                                        <th>Image</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
+                            </tr>
+
+                         @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Service Name English</th>
+                                <th>Service Name Arabic</th>
+                                <th>Image</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                    </table>
 
 
                                         </div>
@@ -121,17 +124,19 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Choose Category</label>
-                        <select id="category" name="category" class="form-control" >
-                        	<option value="">Select</option>
-                        	<option value="">Category 1</option>
-                        	<option value="">Category 2</option>
+                        <label>Category</label>
+                        <select id="category_id" name="category_id" class="form-control">
+                            <option value="">SELECT</option>
+                            @foreach($category as $row)
+                            <option value="{{$row->id}}">{{$row->category_name_english}}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Image</label>
                         <input type="file" id="image" name="image" class="form-control">
+                        <input type="hidden" id="image1" name="image1">
                     </div>
                     
                     <div class="form-group">
@@ -157,6 +162,9 @@
     <!-- END: Page Vendor JS-->
     <script src="/app-assets/js/scripts/datatables/datatable.js"></script>
 <script type="text/javascript">
+$('.service').addClass('active');
+
+var action_type;
 $('#add_new').click(function(){
     $('#popup_modal').modal('show');
     $("#form")[0].reset();
@@ -164,5 +172,89 @@ $('#add_new').click(function(){
     $('#saveButton').text('Save');
     $('#modal-title').text('Add Service');
 });
+
+function Save(){
+  var formData = new FormData($('#form')[0]);
+  if(action_type == 1){
+    $.ajax({
+        url : '/admin/save-service',
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        dataType: "JSON",
+        success: function(data)
+        {                
+            $("#form")[0].reset();
+            $('#popup_modal').modal('hide');
+            $('.zero-configuration').load(location.href+' .zero-configuration');
+            toastr.success(data, 'Successfully Save');
+        },error: function (data) {
+            var errorData = data.responseJSON.errors;
+            $.each(errorData, function(i, obj) {
+            toastr.error(obj[0]);
+      });
+    }
+    });
+  }else{
+    $.ajax({
+      url : '/admin/update-service',
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+      dataType: "JSON",
+      success: function(data)
+      {
+        console.log(data);
+          $("#form")[0].reset();
+           $('#popup_modal').modal('hide');
+           $('.zero-configuration').load(location.href+' .zero-configuration');
+           toastr.success(data, 'Successfully Update');
+      },error: function (data) {
+        var errorData = data.responseJSON.errors;
+        $.each(errorData, function(i, obj) {
+          toastr.error(obj[0]);
+        });
+      }
+    });
+  }
+}
+
+function Edit(id){
+  $.ajax({
+    url : '/admin/service/'+id,
+    type: "GET",
+    dataType: "JSON",
+    success: function(data)
+    {
+      $('#modal-title').text('Update Service');
+      $('#save').text('Save Change');
+      $('input[name=service_name_arabic]').val(data.service_name_arabic);
+      $('input[name=service_name_english]').val(data.service_name_english);
+      $('input[name=image1]').val(data.image);
+      $('select[name=category_id]').val(data.category_id);
+      $('input[name=id]').val(id);
+      $('#popup_modal').modal('show');
+      action_type = 2;
+    }
+  });
+}
+
+function Delete(id){
+    var r = confirm("Are you sure");
+    if (r == true) {
+      $.ajax({
+        url : '/admin/service-delete/'+id,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data)
+        {
+          toastr.success(data, 'Successfully Delete');
+          $('.zero-configuration').load(location.href+' .zero-configuration');
+        }
+      });
+    } 
+}
 </script>
 @endsection

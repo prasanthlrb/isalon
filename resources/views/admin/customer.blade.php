@@ -24,39 +24,40 @@
             </div>
             <div class="content-body">
            
-                <!-- Zero configuration table -->
-                <section id="basic-datatable">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Customer List</h4>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-body card-dashboard">
-                                        <p class="card-text">In this Table Show All type of Customer Personal Information, Booking Details and Payment Details.</p>
-                                        <div class="table-responsive">
-                                            <table class="table zero-configuration">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Phone Number</th>
-                                                        <th>E-mail</th>
-                                                        <th>Registered On</th>
-                                                        <th>Current Status</th>
-                                                        <th>Membership Plan</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>John jojo</td>
-                                                        <td>560009123</td>
-                                                        <td>Edinburgh@gmail.com</td>
-                                                        <td>01-07-20220</td>
-                                                        <td>Active</td>
-                                                        <td>Trial Plan</td>
-                                                        <td><div class="dropdown">
+<!-- Zero configuration table -->
+<section id="basic-datatable">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Customer List</h4>
+                </div>
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <p class="card-text">In this Table Show All type of Customer Personal Information, Booking Details and Payment Details.</p>
+                        <div class="table-responsive">
+                            <table class="table zero-configuration">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Phone Number</th>
+                                        <th>E-mail</th>
+                                        <th>Registered On</th>
+                                        <th>Current Status</th>
+                                        <th>Membership Plan</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($customer as $row)
+                                    <tr>
+                                        <td>{{$row->name}}</td>
+                                        <td>{{$row->phone}}</td>
+                                        <td>{{$row->email}}</td>
+                                        <td>{{$row->date}}</td>
+                                        <td>Active</td>
+                                        <td>Trial Plan</td>
+                                        <td><div class="dropdown">
                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                 </span>
                 <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; transform: translate3d(-125px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
@@ -66,28 +67,29 @@
                   <a class="dropdown-item" href="#"><i class="bx bx-lock-alt mr-1"></i> Block</a>
                 </div>
               </div></td>
-                                                    </tr>
-                                                 
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Phone Number</th>
-                                                        <th>E-mail</th>
-                                                        <th>Registered On</th>
-                                                        <th>Current Status</th>
-                                                        <th>Membership Plan</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Phone Number</th>
+                                        <th>E-mail</th>
+                                        <th>Registered On</th>
+                                        <th>Current Status</th>
+                                        <th>Membership Plan</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
-                </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
             </div>
         </div>
         
@@ -106,5 +108,10 @@
     <script src="../../../app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
     <!-- END: Page Vendor JS-->
 
-         <script src="/app-assets/js/scripts/datatables/datatable.js"></script>
-            @endsection
+<script src="/app-assets/js/scripts/datatables/datatable.js"></script>
+<script type="text/javascript">
+
+$('.customer').addClass('active');
+
+</script>
+@endsection

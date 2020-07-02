@@ -35,51 +35,58 @@
           <i class="bx bx-plus"></i>
           <span>New Push Notification</span>
         </button>
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-body card-dashboard">
-                                        <!-- <p class="card-text">In this Table Show All type of Salon Information, Booking Details and Payment Details.</p> -->
-                                        
-                                        <div class="table-responsive">
-                                           
-                                            <table class="table zero-configuration">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Title</th>
-                                                        <th>Description</th>
-                                                        <th>Send To</th>
-                                                        <th>Date and Time</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>jojo</td>
-                                                        <td>Send Test Notification</td>
-                                                        <td>Customer</td>
-                                                        <td>2020-06-10 12:00:45</td>
-                                                        <td><div class="dropdown">
+        </div>
+        <div class="card-content">
+            <div class="card-body card-dashboard">
+                <!-- <p class="card-text">In this Table Show All type of Salon Information, Booking Details and Payment Details.</p> -->
+                
+                <div class="table-responsive">
+                   
+                    <table class="table zero-configuration">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Send To</th>
+                                <th>Date and Time</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($push_notification as $row)
+                            <tr>
+                                <td>{{$row->title}}</td>
+                                <td>{{$row->description}}</td>
+                                <td>
+                                @if($row->send_to == 1)
+                                    Salon
+                                @else
+                                    Customer
+                                @endif
+                                </td>
+                                <td>{{$row->created_at}}</td>
+                <td><div class="dropdown">
                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                 </span>
                 <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; transform: translate3d(-125px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
-                  <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
-                  <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
+                  <a onclick="Edit({{$row->id}})" class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
+                  <a onclick="Delete({{$row->id}})" class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
                   <a class="dropdown-item" href="#"><i class="bx bx-chat mr-1"></i> Send</a>
                 </div>
               </div></td>
-                                                    </tr>
-                                                 
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>Title</th>
-                                                        <th>Description</th>
-                                                        <th>Send To</th>
-                                                        <th>Date and Time</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
+                    </tr>
+                 @endforeach
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Send To</th>
+                        <th>Date and Time</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+            </table>
 
 
                                         </div>
@@ -133,7 +140,7 @@
                     
                     <div class="form-group">
                         <button onclick="Save()" id="saveButton" class="btn btn-primary btn-block mr-10" type="button">Save</button>
-                        <button onclick="Save()" id="saveButton" class="btn btn-primary btn-block mr-10" type="button">Save & Send</button>
+                        <button onclick="Send()" id="sendButton" class="btn btn-primary btn-block mr-10" type="button">Save & Send</button>
                     </div>
                 </form>
             </div>
@@ -155,6 +162,9 @@
     <!-- END: Page Vendor JS-->
     <script src="/app-assets/js/scripts/datatables/datatable.js"></script>
 <script type="text/javascript">
+$('.push-notification').addClass('active');
+
+var action_type;
 $('#add_new').click(function(){
     $('#popup_modal').modal('show');
     $("#form")[0].reset();
@@ -162,5 +172,88 @@ $('#add_new').click(function(){
     $('#saveButton').text('Save');
     $('#modal-title').text('Add Push Notification');
 });
+
+function Save(){
+  var formData = new FormData($('#form')[0]);
+  if(action_type == 1){
+    $.ajax({
+        url : '/admin/save-notification',
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        dataType: "JSON",
+        success: function(data)
+        {                
+            $("#form")[0].reset();
+            $('#popup_modal').modal('hide');
+            $('.zero-configuration').load(location.href+' .zero-configuration');
+            toastr.success(data, 'Successfully Save');
+        },error: function (data) {
+            var errorData = data.responseJSON.errors;
+            $.each(errorData, function(i, obj) {
+            toastr.error(obj[0]);
+      });
+    }
+    });
+  }else{
+    $.ajax({
+      url : '/admin/update-notification',
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+      dataType: "JSON",
+      success: function(data)
+      {
+        console.log(data);
+          $("#form")[0].reset();
+           $('#popup_modal').modal('hide');
+           $('.zero-configuration').load(location.href+' .zero-configuration');
+           toastr.success(data, 'Successfully Update');
+      },error: function (data) {
+        var errorData = data.responseJSON.errors;
+        $.each(errorData, function(i, obj) {
+          toastr.error(obj[0]);
+        });
+      }
+    });
+  }
+}
+
+function Edit(id){
+  $.ajax({
+    url : '/admin/notification/'+id,
+    type: "GET",
+    dataType: "JSON",
+    success: function(data)
+    {
+      $('#modal-title').text('Update Notification');
+      $('#save').text('Save Change');
+      $('input[name=title]').val(data.title);
+      $('textarea[name=description]').val(data.description);
+      $('select[name=send_to]').val(data.send_to);
+      $('input[name=id]').val(id);
+      $('#popup_modal').modal('show');
+      action_type = 2;
+    }
+  });
+}
+
+function Delete(id){
+    var r = confirm("Are you sure");
+    if (r == true) {
+      $.ajax({
+        url : '/admin/notification-delete/'+id,
+        type: "GET",
+        dataType: "JSON",
+        success: function(data)
+        {
+          toastr.success(data, 'Successfully Delete');
+          $('.zero-configuration').load(location.href+' .zero-configuration');
+        }
+      });
+    } 
+}
 </script>
 @endsection
