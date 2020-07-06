@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\settlement_period;
 use App\admin;
 use Hash;
+use session;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -19,13 +22,50 @@ class AdminController extends Controller
 
     public function changePassword(Request $request){
         $request->validate([
+            'oldpassword' => 'required',
             'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'min:6'
         ]);
-        $user = admin::find($request->id);
-        $user->password = Hash::make ( $request->get ( 'password' ) );
-        $user->remember_token = $request->get ( '_token' );
-        $user->save();
+        
+        $hashedPassword = Auth::guard('admin')->user()->password;
+ 
+        if (\Hash::check($request->oldpassword , $hashedPassword )) {
+ 
+            if (!\Hash::check($request->password , $hashedPassword)) {
+ 
+                $admin = admin::find($request->id);
+                $admin->password = Hash::make($request->password);
+                $admin->save();
+ 
+              session()->flash('message','password updated successfully');
+              return redirect()->back();
+            }
+ 
+            else{
+                session()->flash('message','new password can not be the old password!');
+                  return redirect()->back();
+                }
+ 
+           }
+ 
+        else{
+            session()->flash('message','old password doesnt matched ');
+               return redirect()->back();
+        }
+ 
+    }
+
+
+    public function getSettlementPeriod(){
+        $data = settlement_period::first();
+        return view('admin.settlement_period',compact('data'));
+    }
+
+    public function updateSettlementPeriod(Request $request){
+        $settlement_period = settlement_period::find($request->id);
+        $settlement_period->settlement_period = $request->settlement_period;
+        $settlement_period->settlement_amount = $request->settlement_amount;
+        $settlement_period->save();
         return back(); 
     }
 

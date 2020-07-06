@@ -39,11 +39,9 @@ use Illuminate\Support\Facades\Route;
  });
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin-login.login');
 });
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-});
+
 
 
 
@@ -124,7 +122,19 @@ Route::group(['prefix' => 'admin'],function(){
 
 	Route::post('change-password', 'AdminController@changePassword');
 	Route::get('view-user/{id}', 'AdminController@viewUser');
+
+	Route::post('settlement-period', 'AdminController@updateSettlementPeriod');
+	Route::get('settlement-period', 'AdminController@getSettlementPeriod');
 });
+
+
+Route::group(['prefix' => 'vendor'],function(){
+
+	Route::get('/dashboard', function () {
+    	return view('vendor.dashboard');
+	});
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

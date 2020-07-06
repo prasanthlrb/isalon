@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\salon;
+use App\User;
 use Hash;
 
 class SalonController extends Controller
@@ -12,6 +12,7 @@ class SalonController extends Controller
 
     public function saveSalon(Request $request){
         $request->validate([
+            'email'=> 'required|unique:users',
             'owner_name'=>'required',
             'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'min:6'
@@ -25,7 +26,7 @@ class SalonController extends Controller
             $image->move(public_path('upload_files/'), $fileName);
         }
 
-        $salon = new salon;
+        $salon = new User;
         $salon->busisness_type = $request->busisness_type;
         $salon->owner_name = $request->owner_name;
         $salon->email = $request->email;
@@ -43,9 +44,10 @@ class SalonController extends Controller
     }
     public function updateSalon(Request $request){
         $request->validate([
+            'email'=>'required|unique:users,email,'.$request->id,
             'owner_name'=> 'required',
-            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'min:6'
+            'password' => 'nullable|min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'nullable|min:6'
         ]);
 
         if($request->trade_license!=""){
@@ -66,7 +68,7 @@ class SalonController extends Controller
             $fileName = $request->trade_license1;
         }
 
-        $salon = salon::find($request->id);
+        $salon = User::find($request->id);
         $salon->busisness_type = $request->busisness_type;
         $salon->owner_name = $request->owner_name;
         $salon->email = $request->email;
@@ -85,16 +87,16 @@ class SalonController extends Controller
         return response()->json('successfully update'); 
     }
     public function Salon(){
-        $salon = salon::all();
+        $salon = User::all();
         return view('admin.salon',compact('salon'));
     }
     public function editSalon($id){
-        $salon = salon::find($id);
+        $salon = User::find($id);
         return response()->json($salon); 
     }
     
     public function deleteSalon($id){
-        $salon = salon::find($id);
+        $salon = User::find($id);
         $old_image = "upload_files/".$salon->trade_license;
         if (file_exists($old_image)) {
             @unlink($old_image);

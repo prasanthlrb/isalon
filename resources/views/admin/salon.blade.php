@@ -150,7 +150,7 @@
                         <input autocomplete="off" type="text" id="phone" name="phone" class="form-control">
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="form-group col-md-6">
                         <label>Password</label>
                         <input type="password" id="password" name="password" class="form-control">
@@ -160,7 +160,7 @@
                         <label>Confirm Password</label>
                         <input type="password" id="password_confirmation" name="password_confirmation" class="form-control">
                     </div>
-                </div>
+                </div> -->
                 <div class="row salon-view">
                     <div class="form-group col-md-6">
                         <label>Salon Name</label>

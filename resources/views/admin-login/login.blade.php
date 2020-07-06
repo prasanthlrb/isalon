@@ -59,7 +59,7 @@
                                     <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
                                         <div class="card-header pb-1">
                                             <div class="card-title">
-                                                <h4 class="text-center mb-2" style="color: #f4a440">Welcome Back</h4>
+                                                <h4 class="text-center mb-2" style="color: #f4a440">Admin Login</h4>
                                             </div>
                                         </div>
                                         <div class="card-content">

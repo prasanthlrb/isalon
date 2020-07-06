@@ -99,7 +99,14 @@
                             <div class="dropdown-menu dropdown-menu-right pb-0">
                                 <a class="dropdown-item" href="/admin/view-user/{{ Auth::guard('admin')->user()->id }}"><i class="bx bx-user mr-50"></i> Edit Profile</a>
                                 <a class="dropdown-item" href="app-chat.html"><i class="bx bx-message mr-50"></i> Chats</a>
-                                <div class="dropdown-divider mb-0"></div><a class="dropdown-item" href="auth-login.html"><i class="bx bx-power-off mr-50"></i> Logout</a>
+                                <div class="dropdown-divider mb-0"></div>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">     
+                        <i class="bx bx-power-off mr-50"></i>Log out
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                             </div>
                         </li>
                     </ul>
@@ -176,11 +183,14 @@
 
                 <li class="user nav-item"><a href="/admin/user"><i class="menu-livicon" data-icon="user"></i><span class="menu-title" data-i18n="Email">Users</span></a>
                 </li>
+                
                 <li class=" nav-item"><a href="app-email.html"><i class="menu-livicon" data-icon="unlock"></i><span class="menu-title" data-i18n="Email">Roles</span></a>
                 </li>
+                
                 <li class=" nav-item"><a href="app-chat.html"><i class="menu-livicon" data-icon="wrench"></i><span class="menu-title" data-i18n="Chat">Application Setting</span></a>
                 </li>
-                  <li class=" nav-item"><a href="app-file-manager.html"><i class="menu-livicon" data-icon="save"></i><span class="menu-title" data-i18n="File Manager">File Manager</span></a>
+                
+                <li class="settlement-period nav-item"><a href="/admin/settlement-period"><i class="menu-livicon" data-icon="save"></i><span class="menu-title" data-i18n="File Manager">Settlement Period</span></a>
                 </li>
 {{-- 
                 <li class=" nav-item"><a href="app-todo.html"><i class="menu-livicon" data-icon="check-alt"></i><span class="menu-title" data-i18n="Todo">Todo</span></a>

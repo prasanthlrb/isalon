@@ -30,22 +30,30 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-        
+    @if (count($errors))
+      @foreach ($errors->all() as $error)
+        <p class="alert alert-danger">{{$error}}</p>
+      @endforeach
+    @endif
         				<form id="form" action="/admin/change-password" method="POST" enctype="multipart/form-data">
                     	{{ csrf_field() }}
                     	<input value="{{ Auth::guard('admin')->user()->id }}" type="hidden" name="id" id="id">
                         <div class="row">
                             <div class="col-md-12 form-group">
+                                <label>Old Password</label>
+                                <input class="form-control" type="password" name="oldpassword" id="oldpassword">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
                                 <label>New Password</label>
                                 <input class="form-control" type="password" name="password" id="password">
-                    			<label class="alert-danger"><?php echo $errors->first('password'); ?></label>
                             </div>
                         </div>
                         <div class="row">
                         	<div class="col-md-12 form-group">
                                 <label>Confirm Password</label>
                                 <input class="form-control" type="password" name="password_confirmation" id="password_confirmation">
-                				<label class="alert-danger"><?php echo $errors->first('password_confirmation'); ?></label>
                             </div>
                         </div>
                         
