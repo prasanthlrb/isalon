@@ -38,12 +38,10 @@ use Illuminate\Support\Facades\Route;
      return 'View cache cleared';
  });
 
-Route::get('/', function () {
-    return view('admin-login.login');
-});
 
-
-
+Route::get('/', 'PageController@SalonRegister');
+Route::get('/salon-register', 'PageController@SalonRegister');
+Route::POST('/save-salon-register', 'PageController@saveSalonRegister');
 
 Route::group(['prefix' => 'admin'],function(){
 
@@ -66,6 +64,8 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::get('/salon', 'SalonController@Salon');
 	Route::get('/salon-delete/{id}', 'SalonController@deleteSalon');
 
+	Route::get('/view-salon', 'SalonController@viewSalon');
+
 	//category
 	Route::POST('/save-category', 'CategoryController@saveCategory');
 	Route::POST('/update-category', 'CategoryController@updateCategory');
@@ -79,6 +79,20 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::get('/edit-sub-category/{id}', 'CategoryController@editSubCategory');
 	Route::get('/sub-category/{id}','CategoryController@SubCategory');
 	Route::get('/sub-category-delete/{id}', 'CategoryController@deleteSubCategory');
+
+	//package
+	Route::POST('/save-package', 'PackageController@savePackage');
+	Route::POST('/update-package', 'PackageController@updatePackage');
+	Route::get('/package/{id}', 'PackageController@editPackage');
+	Route::get('/package', 'PackageController@Package');
+	Route::get('/package-delete/{id}', 'PackageController@deletePackage');
+
+	//sub package
+	Route::POST('/save-sub-package', 'PackageController@saveSubPackage');
+	Route::POST('/update-sub-package', 'PackageController@updateSubPackage');
+	Route::get('/edit-sub-package/{id}', 'PackageController@editSubPackage');
+	Route::get('/sub-package/{id}','PackageController@SubPackage');
+	Route::get('/sub-package-delete/{id}', 'PackageController@deleteSubPackage');
 
 
 	//service

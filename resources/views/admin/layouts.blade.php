@@ -16,8 +16,8 @@
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/charts/apexcharts.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/extensions/swiper.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/charts/apexcharts.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/extensions/swiper.min.css"> -->
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -37,7 +37,6 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
     <!-- END: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('toastr/toastr.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('toastr/toastr.css')}}">
     @yield('css')
 </head>
@@ -131,8 +130,7 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-                <li class="dashboard nav-item"><a href="/admin/dashboard"><i class="menu-livicon" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
-                  
+                <li class="dashboard nav-item"><a href="/admin/dashboard"><i class="menu-livicon" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>            
                 </li>
                 <li class=" navigation-header"><span>Apps</span>
                 </li>
@@ -143,18 +141,16 @@
                 <li class="salon nav-item"><a href="/admin/salon"><i class="menu-livicon" data-icon="scissors"></i><span class="menu-title" data-i18n="Email">Salon</span></a>
                 </li>
 
-                <li class="category nav-item"><a href="/admin/category"><i class="menu-livicon" data-icon="morph-folder"></i><span class="menu-title" data-i18n="Email">Categories</span></a>
-                </li>
-                <li class="service nav-item"><a href="/admin/service"><i class="menu-livicon" data-icon="shoppingcart"></i><span class="menu-title" data-i18n="Email">Services</span></a>
-                </li>
+                <li class="category nav-item"><a href="/admin/category"><i class="menu-livicon" data-icon="morph-folder"></i><span class="menu-title" data-i18n="Email">Categories</span></a></li>
 
-                <li class="review nav-item"><a href="/admin/review"><i class="menu-livicon" data-icon="like"></i><span class="menu-title" data-i18n="Email">Review & Rating</span></a>
-                </li>
+                <li class="service nav-item"><a href="/admin/service"><i class="menu-livicon" data-icon="shoppingcart"></i><span class="menu-title" data-i18n="Email">Services</span></a></li>
 
-                <li class="push-notification nav-item"><a href="/admin/push-notification"><i class="menu-livicon" data-icon="globe"></i><span class="menu-title" data-i18n="Email">Push Notification</span></a>
-                </li>
+                <li class="package nav-item"><a href="/admin/package"><i class="menu-livicon" data-icon="morph-folder"></i><span class="menu-title" data-i18n="Email">Package</span></a></li>
 
-                </li>
+                <li class="review nav-item"><a href="/admin/review"><i class="menu-livicon" data-icon="like"></i><span class="menu-title" data-i18n="Email">Review & Rating</span></a></li>
+
+                <li class="push-notification nav-item"><a href="/admin/push-notification"><i class="menu-livicon" data-icon="globe"></i><span class="menu-title" data-i18n="Email">Push Notification</span></a></li>
+
                 <li class=" navigation-header"><span>Booking</span>
                 </li>
 
@@ -572,8 +568,8 @@
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="/app-assets/vendors/js/charts/apexcharts.min.js"></script>
-    <script src="/app-assets/vendors/js/extensions/swiper.min.js"></script>
+    <!-- <script src="/app-assets/vendors/js/charts/apexcharts.min.js"></script>
+    <script src="/app-assets/vendors/js/extensions/swiper.min.js"></script> -->
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
@@ -585,9 +581,8 @@
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="/app-assets/js/scripts/pages/dashboard-ecommerce.js"></script>
+    <!-- <script src="/app-assets/js/scripts/pages/dashboard-ecommerce.js"></script> -->
 
-    <script src="{{ asset('toastr/toastr.js')}}" type="text/javascript"></script>
     <script src="{{ asset('toastr/toastr.min.js')}}" type="text/javascript"></script>
     <!-- END: Page JS-->
     @yield('js')

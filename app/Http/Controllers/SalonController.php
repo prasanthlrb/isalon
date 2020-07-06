@@ -9,13 +9,17 @@ use Hash;
 class SalonController extends Controller
 {
 
+    public function viewSalon(){
+        $salon = User::all();
+        return view('admin.view_salon',compact('salon'));
+    }
 
     public function saveSalon(Request $request){
         $request->validate([
             'email'=> 'required|unique:users',
             'owner_name'=>'required',
-            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'min:6'
+            // 'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            // 'password_confirmation' => 'min:6'
         ]);
 
         //image upload
@@ -46,8 +50,8 @@ class SalonController extends Controller
         $request->validate([
             'email'=>'required|unique:users,email,'.$request->id,
             'owner_name'=> 'required',
-            'password' => 'nullable|min:6|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'nullable|min:6'
+            // 'password' => 'nullable|min:6|required_with:password_confirmation|same:password_confirmation',
+            // 'password_confirmation' => 'nullable|min:6'
         ]);
 
         if($request->trade_license!=""){
