@@ -33,6 +33,8 @@
 
                 <li class="push-notification nav-item"><a href="/admin/push-notification"><i class="menu-livicon" data-icon="globe"></i><span class="menu-title" data-i18n="Email">Push Notification</span></a></li>
 
+                <li class="coupon nav-item"><a href="/admin/coupon"><i class="menu-livicon" data-icon="globe"></i><span class="menu-title" data-i18n="Email">Coupon</span></a></li>
+
                 <li class=" navigation-header"><span>Booking</span>
                 </li>
 

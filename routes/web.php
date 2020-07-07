@@ -64,7 +64,15 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::get('/salon', 'SalonController@Salon');
 	Route::get('/salon-delete/{id}', 'SalonController@deleteSalon');
 
-	Route::get('/view-salon', 'SalonController@viewSalon');
+	Route::get('/view-salon/{id}', 'SalonController@viewSalon');
+
+	//addservice
+	Route::POST('/save-addservice', 'SalonController@saveAddService');
+	Route::POST('/update-addservice', 'SalonController@updateAddService');
+	Route::get('/addservice/{id}', 'SalonController@editAddService');
+	Route::get('/addservice-delete/{id}', 'SalonController@deleteAddService');
+
+	Route::POST('/update-time', 'SalonController@updateTime');
 
 	//category
 	Route::POST('/save-category', 'CategoryController@saveCategory');
@@ -140,6 +148,17 @@ Route::group(['prefix' => 'admin'],function(){
 
 	Route::post('settlement-period', 'AdminController@updateSettlementPeriod');
 	Route::get('settlement-period', 'AdminController@getSettlementPeriod');
+
+	// coupon Management
+	Route::get('/coupon','CouponController@index');
+	Route::get('/addCoupon','CouponController@addCoupon');
+	Route::get('/viewCoupon/{id}','CouponController@viewCoupon');
+	Route::post('/CouponSave','CouponController@CouponSave');
+	Route::post('/CouponUpdate','CouponController@CouponUpdate');
+	Route::get('/CouponEdit/{id}','CouponController@CouponEdit');
+	Route::get('/CouponDelete/{id}','CouponController@CouponDelete');
+	Route::get('/get_coupon_service/{id}','CouponController@get_coupon_service');
+	Route::get('/get_coupon_user/{id}','CouponController@get_coupon_user');
 });
 
 
