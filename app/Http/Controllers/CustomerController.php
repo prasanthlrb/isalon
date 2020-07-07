@@ -11,4 +11,10 @@ class CustomerController extends Controller
         $customer = customer::all();
         return view('admin.customer',compact('customer'));
     }
+
+    public function viewCustomerDetails($_id){
+         $customer_all = customer::all();
+         $customer = customer::find($_id);
+        return view('admin.customer_details',compact('customer','customer_all'));
+    }
 }

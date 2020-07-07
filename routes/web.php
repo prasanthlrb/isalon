@@ -124,6 +124,7 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::get('/user-delete/{id}', 'AdminController@deleteUser');
 
 	Route::get('/customer', 'CustomerController@Customer');
+	Route::get('/customer/{id}', 'CustomerController@viewCustomerDetails');
 
 	Route::get('/review', 'ReviewController@Review');
 
