@@ -72,7 +72,7 @@
                                       <a onclick="Delete({{$row->id}})" class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
                                       <a class="dropdown-item" href="#"><i class="bx bxs-chat mr-1"></i> Chat</a>
                                       <a class="dropdown-item" href="#"><i class="bx bx-lock-alt mr-1"></i> Block</a>
-                                      <a class="dropdown-item" href="#"><i class="bx bx-show-alt mr-1"></i> See Profile</a>
+                                      <a class="dropdown-item" href="/admin/view-salon/{{$row->id}}"><i class="bx bx-show-alt mr-1"></i> See Profile</a>
                                     </div>
                                   </div>
                                 </td>

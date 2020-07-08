@@ -159,6 +159,21 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::get('/CouponDelete/{id}','CouponController@CouponDelete');
 	Route::get('/get_coupon_service/{id}','CouponController@get_coupon_service');
 	Route::get('/get_coupon_user/{id}','CouponController@get_coupon_user');
+
+
+	//slider
+	Route::POST('/save-slider', 'SettingsController@saveSlider');
+	Route::POST('/update-slider', 'SettingsController@updateSlider');
+	Route::get('/slider/{id}', 'SettingsController@editSlider');
+	Route::get('/slider', 'SettingsController@Slider');
+	Route::get('/slider-delete/{id}', 'SettingsController@deleteSlider');
+
+	//promotion banner
+	Route::POST('/save-banner', 'SettingsController@saveBanner');
+	Route::POST('/update-banner', 'SettingsController@updateBanner');
+	Route::get('/banner/{id}', 'SettingsController@editBanner');
+	Route::get('/banner', 'SettingsController@Banner');
+	Route::get('/banner-delete/{id}', 'SettingsController@deleteBanner');
 });
 
 

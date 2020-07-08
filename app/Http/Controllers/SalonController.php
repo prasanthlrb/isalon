@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\review;
 use App\User;
 use App\service;
 use App\service_time;
@@ -16,10 +17,11 @@ class SalonController extends Controller
         $salon_id = $id;
         $salon = User::find($id);
         $all_salon = User::all();
+        $review = review::all();
         $service = service::all();
         $service_time = service_time::where('salon_id',$id)->get();
         $salon_service = salon_service::where('salon_id',$id)->get();
-        return view('admin.view_salon',compact('salon','all_salon','service_time','salon_service','service','salon_id'));
+        return view('admin.view_salon',compact('salon','all_salon','service_time','salon_service','service','salon_id','review'));
     }
 
     public function saveSalon(Request $request){

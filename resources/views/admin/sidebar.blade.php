@@ -69,6 +69,10 @@
                 
                 <li class=" nav-item"><a href="app-chat.html"><i class="menu-livicon" data-icon="wrench"></i><span class="menu-title" data-i18n="Chat">Application Setting</span></a>
                 </li>
+
+                <li class="slider nav-item"><a href="/admin/slider"><i class="menu-livicon" data-icon="wrench"></i><span class="menu-title" data-i18n="Chat">Slider</span></a></li>
+
+                <li class="banner nav-item"><a href="/admin/banner"><i class="menu-livicon" data-icon="wrench"></i><span class="menu-title" data-i18n="Chat">Promotion Banner</span></a></li>
                 
                 <li class="settlement-period nav-item"><a href="/admin/settlement-period"><i class="menu-livicon" data-icon="save"></i><span class="menu-title" data-i18n="File Manager">Settlement Period</span></a>
                 </li>

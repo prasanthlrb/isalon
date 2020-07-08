@@ -32,6 +32,8 @@ class CreateUsersTable extends Migration
             $table->string('member_license')->nullable();
             $table->string('salon_commission')->nullable();
             $table->string('trade_license')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->string('status')->default('0');
             $table->timestamps();
         });

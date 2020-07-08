@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\customer;
+use App\order;
+use App\service;
 
 class CustomerController extends Controller
 {
@@ -12,9 +14,13 @@ class CustomerController extends Controller
         return view('admin.customer',compact('customer'));
     }
 
-    public function viewCustomerDetails($_id){
+    public function viewCustomerDetails($id){
          $customer_all = customer::all();
-         $customer = customer::find($_id);
-        return view('admin.customer_details',compact('customer','customer_all'));
+         $order = order::all();
+         $service = service::all();
+         $customer = customer::find($id);
+        return view('admin.customer_details',compact('customer','customer_all','order','service'));
     }
+
+
 }

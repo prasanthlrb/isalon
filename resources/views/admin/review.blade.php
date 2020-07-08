@@ -84,7 +84,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                      <th>Invoice ID</th>
+                        <th>Invoice ID</th>
                         <th>Salon Name</th>
                         <th>Customer Name</th>
                         <th>Comments</th>

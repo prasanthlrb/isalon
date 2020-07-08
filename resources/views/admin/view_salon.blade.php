@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="/app-assets/css/pages/app-chat.css">
     <!-- END: Page CSS-->
     <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/tables/datatable/datatables.min.css">
-
 </head>
 <!-- END: Head-->
 
@@ -118,7 +117,7 @@
                     <!-- app chat sidebar ends -->
                 </div>
             </div>
-            <div class="content-right">
+            <div style="max-height: 900px;overflow: scroll;" class="content-right">
                 <div class="content-overlay"></div>
                 <div class="content-wrapper">
                     <div class="content-header row">
@@ -126,127 +125,383 @@
                     <div class="content-body">
                         <!-- app chat overlay -->
                         <div class="chat-overlay"></div>
- <section id="vertical-wizard" style="position: relative;
-    left: 2px;">
+ <section id="vertical-wizard" >
   <div class="card">
     <div class="card-header">
-      <h4 class="card-title">Prasanth@</h4>
+      <h4 class="card-title">{{$salon->salon_name}}</h4>
     </div>
     <div class="card-content">
       <div class="card-body">
         
-<div class="row">
-    <div class="col-sm-12">
-      <div class="card bg-transparent shadow-none border">
-        <div class="card-content">
-          <div class="card-body">
-            <div class="row pills-stacked">
-              <div class="col-md-2 col-sm-12">
-                <ul class="nav nav-pills flex-column text-center text-md-left">
-                  <li class="nav-item">
-                    <a class="nav-link active" id="stacked-pill-1" data-toggle="pill" href="#vertical-pill-1"
-                      aria-expanded="true">
-                      View Details
-                    </a>
-                  </li>
+<section id="basic-tabs-components">
+  <div class="card">
+    <div class="card-content">
+      <div class="card-body">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" aria-controls="profile" role="tab"
+              aria-selected="true">
+              <i class="bx bx-home align-middle"></i>
+              <span class="align-middle">View Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="service-tab" data-toggle="tab" href="#service" aria-controls="service" role="tab"
+              aria-selected="false">
+              <i class="bx bx-user align-middle"></i>
+              <span class="align-middle">Service</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="working-hours-tab" data-toggle="tab" href="#working-hours" aria-controls="working-hours" role="tab"
+              aria-selected="false">
+              <i class="bx bx-message-square align-middle"></i>
+              <span class="align-middle">Working Hours</span>
+            </a>
+          </li>
 
-                  <li class="nav-item">
-                    <a class="nav-link" id="stacked-pill-2" data-toggle="pill" href="#vertical-pill-2"
-                      aria-expanded="false">
-                      Add Service
-                    </a>
-                  </li>
+          <li class="nav-item">
+            <a class="nav-link" id="location-tab" data-toggle="tab" href="#location" aria-controls="location" role="tab"
+              aria-selected="false">
+              <i class="bx bx-message-square align-middle"></i>
+              <span class="align-middle">Location</span>
+            </a>
+          </li>
 
-                  <li class="nav-item">
-                    <a href="#" class="nav-link" id="add_hours" aria-expanded="false">
-                      Add Hours
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-md-10 col-sm-12">
-                <div class="tab-content">
-                    
-                  <div role="tabpanel" class="tab-pane active" id="vertical-pill-1" aria-labelledby="stacked-pill-1"    aria-expanded="true">
-                    
-                        <div class="chat-user-profile-content">
-                            <div class="chat-user-profile-scroll">
-                                <h6>PERSONAL INFORAMTION</h6>
-                                <ul class="list-unstyled mb-2">
-                                    <li class="mb-25">Email : {{$salon->email}}</li>
-                                    <li>Phone : {{$salon->phone}}</li>
-                                    <li>Salon Name : {{$salon->salon_name}}</li>
-                                    <li>Salon ID : {{$salon->salon_id}}</li>
-                                    <li>Emirated ID : {{$salon->emirates_id}}</li>
-                                    <li>Passsport Number : {{$salon->passport_number}}</li>
-                                </ul>
-                            </div>
-                        </div>
-                  </div>
+          <li class="nav-item">
+            <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" aria-controls="reviews" role="tab"
+              aria-selected="false">
+              <i class="bx bx-message-square align-middle"></i>
+              <span class="align-middle">Reviews & Rating</span>
+            </a>
+          </li>
 
-                <div class="tab-pane" id="vertical-pill-2" role="tabpanel" aria-labelledby="stacked-pill-2" aria-expanded="false">
-                    
-        <button id="add_new" style="width: 200px;" type="button" class="btn btn-primary add-task-btn btn-block my-1">
-          <i class="bx bx-plus"></i>
-          <span>New Service</span>
-        </button>
-                    <div class="table-responsive">
-                   
-                    <table class="table zero-configuration">
-                        <thead>
-                            <tr>
-                                <th>Service</th>
-                                <th>Price</th>
-                                <th>Duration</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($salon_service as $row)
-                            <tr>
-                                <td>{{$row->service_id}}</td>
-                                <td>{{$row->price}}</td>
-                                <td>{{$row->duration}}</td>
-                                <td><div class="dropdown">
-                                    <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
-                                    </span>
-                                    <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; transform: translate3d(-125px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                      <a onclick="Edit({{$row->id}})" class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
-                                      <a onclick="Delete({{$row->id}})" class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
-                                    </div>
-                                  </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Service</th>
-                                <th>Price</th>
-                                <th>Duration</th>
-                                <th>Action</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
+          <li class="nav-item">
+            <a class="nav-link" id="appointment-tab" data-toggle="tab" href="#appointment" aria-controls="appointment" role="tab"
+              aria-selected="false">
+              <i class="bx bx-message-square align-middle"></i>
+              <span class="align-middle">Appointment</span>
+            </a>
+          </li>
 
-
-                </div>
-
-                  <div class="tab-pane" id="vertical-pill-3" role="tabpanel" aria-labelledby="stacked-pill-3" aria-expanded="false">
-                    
-
-
-                  </div>
-
-                </div>
-              </div>
-            </div>
+          <li class="nav-item">
+            <a class="nav-link" id="gallery-tab" data-toggle="tab" href="#gallery" aria-controls="gallery" role="tab"
+              aria-selected="false">
+              <i class="bx bx-message-square align-middle"></i>
+              <span class="align-middle">Gallery</span>
+            </a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="profile" aria-labelledby="profile-tab" role="tabpanel">
+            <h6>PERSONAL INFORAMTION</h6>
+            <ul class="list-unstyled mb-2">
+                <li class="mb-25">Email : {{$salon->email}}</li>
+                <li>Phone : {{$salon->phone}}</li>
+                <li>Salon Name : {{$salon->salon_name}}</li>
+                <li>Salon ID : {{$salon->salon_id}}</li>
+                <li>Emirated ID : {{$salon->emirates_id}}</li>
+                <li>Passsport Number : {{$salon->passport_number}}</li>
+            </ul>
           </div>
+
+          <div class="tab-pane" id="service" aria-labelledby="service-tab" role="tabpanel">
+            <button id="add_new" style="width: 200px;" type="button" class="btn btn-primary add-task-btn btn-block my-1">
+              <i class="bx bx-plus"></i>
+              <span>New Service</span>
+            </button>
+
+            <div class="table-responsive">
+                <table class="table zero-configuration">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Price</th>
+                            <th>Duration</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($salon_service as $row)
+                        <tr>
+                            <td>{{$row->service_id}}</td>
+                            <td>{{$row->price}}</td>
+                            <td>{{$row->duration}}</td>
+                            <td><div class="dropdown">
+                                <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+                                </span>
+                                <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; transform: translate3d(-125px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                  <a onclick="Edit({{$row->id}})" class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
+                                  <a onclick="Delete({{$row->id}})" class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
+                                </div>
+                              </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Service</th>
+                            <th>Price</th>
+                            <th>Duration</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+          </div>
+
+          <div class="tab-pane" id="working-hours" aria-labelledby="working-hours-tab" role="tabpanel">
+            <button id="add_hours" style="width: 200px;" type="button" class="btn btn-primary add-task-btn btn-block my-1">
+              <i class="bx bx-plus"></i>
+              <span>Working Hours</span>
+            </button>
+            <div class="table-responsive">
+                <table class="table working-hours-table">
+                    <thead>
+                        <tr>
+                            <th>Days</th>
+                            <th>Open/Closed</th>
+                            <th>Opening Time</th>
+                            <th>Closing Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($service_time as $row)
+                        <tr>
+                            <td>{{$row->days}}</td>
+                            <td>
+                                @if($row->status == 1)
+                                Open
+                                @else
+                                Closed
+                                @endif
+                            </td>
+                            <td>{{$row->open_time}}</td>
+                            <td>{{$row->close_time}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+          </div>
+
+          <div class="tab-pane" id="location" aria-labelledby="location-tab" role="tabpanel">
+            <h6>Location Details</h6>
+            <div id="googleMap" style="width:100%;height:400px;"></div>
+          </div>
+
+
+          <div class="tab-pane" id="reviews" aria-labelledby="reviews-tab" role="tabpanel">
+
+            <div class="table-responsive">
+                <table class="table zero-configuration">
+                    <thead>
+                        <tr>
+                            <th>Invoice ID</th>
+                            <th>Salon Name</th>
+                            <th>Customer Name</th>
+                            <th>Comments</th>
+                            <th>Reviews</th>
+                            <th>Date & Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($review as $row)
+                    <tr>
+                        <td>#{{$row->invoice_id}}</td>
+                        <td>{{$row->salon_name}}</td>
+                        <td>{{$row->customer_name}}</td>
+                        <td>{{$row->comments}}</td>
+                        <td>
+                            <div class="mb-1 font-small-2">
+                              <i class="cursor-pointer bx bxs-star text-warning"></i>
+                              <i class="cursor-pointer bx bxs-star text-warning"></i>
+                              <i class="cursor-pointer bx bxs-star text-warning"></i>
+                              <i class="cursor-pointer bx bxs-star text-warning"></i>
+                              <i class="cursor-pointer bx bx-star text-muted"></i>
+                            </div>
+                        </td>
+                        <td>{{$row->created_at}}</td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                          <th>Invoice ID</th>
+                            <th>Salon Name</th>
+                            <th>Customer Name</th>
+                            <th>Comments</th>
+                            <th>Reviews</th>
+                            <th>Date & Time</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+          </div>
+
+
+          <div class="tab-pane" id="appointment" aria-labelledby="appointment-tab" role="tabpanel">
+
+            <div class="table-responsive">
+                <table class="table zero-configuration">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer Name</th>
+                            <th>Appoinment DateTime</th>
+                            <th>Services</th>
+                            <th>Payment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>#001</td>
+                        <td>Aravind</td>
+                        <td>08-07-2020</td>
+                        <td></td>
+                        <td>100 AED</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer Name</th>
+                            <th>Appoinment DateTime</th>
+                            <th>Services</th>
+                            <th>Payment</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+          </div>
+
+
+          <div class="tab-pane" id="gallery" aria-labelledby="gallery-tab" role="tabpanel">
+
+            <div class="row">
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+                   data-image="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                   data-target="#image-gallery">
+                    <img class="img-thumbnail"
+                         src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         alt="Another alt text">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+                   data-image="https://images.pexels.com/photos/158971/pexels-photo-158971.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                   data-target="#image-gallery">
+                    <img class="img-thumbnail"
+                         src="https://images.pexels.com/photos/158971/pexels-photo-158971.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         alt="Another alt text">
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+                   data-image="https://images.pexels.com/photos/305070/pexels-photo-305070.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                   data-target="#image-gallery">
+                    <img class="img-thumbnail"
+                         src="https://images.pexels.com/photos/305070/pexels-photo-305070.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         alt="Another alt text">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="Test1"
+                   data-image="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                   data-target="#image-gallery">
+                    <img class="img-thumbnail"
+                         src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         alt="Another alt text">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="Im so nice"
+                   data-image="https://images.pexels.com/photos/158971/pexels-photo-158971.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                   data-target="#image-gallery">
+                    <img class="img-thumbnail"
+                         src="https://images.pexels.com/photos/158971/pexels-photo-158971.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         alt="Another alt text">
+                </a>
+            </div>
+
+
+
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="Im so nice"
+                   data-image="https://images.pexels.com/photos/305070/pexels-photo-305070.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                   data-target="#image-gallery">
+                    <img class="img-thumbnail"
+                         src="https://images.pexels.com/photos/305070/pexels-photo-305070.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         alt="Another alt text">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="Im so nice"
+                   data-image="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                   data-target="#image-gallery">
+                    <img class="img-thumbnail"
+                         src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         alt="Another alt text">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="Im so nice"
+                   data-image="https://images.pexels.com/photos/158971/pexels-photo-158971.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                   data-target="#image-gallery">
+                    <img class="img-thumbnail"
+                         src="https://images.pexels.com/photos/158971/pexels-photo-158971.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         alt="Another alt text">
+                </a>
+            </div>
+
+
+
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="Im so nice"
+                   data-image="https://images.pexels.com/photos/305070/pexels-photo-305070.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                   data-target="#image-gallery">
+                    <img class="img-thumbnail"
+                         src="https://images.pexels.com/photos/305070/pexels-photo-305070.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         alt="Another alt text">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="Im so nice"
+                   data-image="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                   data-target="#image-gallery">
+                    <img class="img-thumbnail"
+                         src="https://images.pexels.com/photos/853168/pexels-photo-853168.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         alt="Another alt text">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="Im so nice"
+                   data-image="https://images.pexels.com/photos/158971/pexels-photo-158971.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                   data-target="#image-gallery">
+                    <img class="img-thumbnail"
+                         src="https://images.pexels.com/photos/158971/pexels-photo-158971.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                         alt="Another alt text">
+                </a>
+            </div>
+        </div>
+
+          </div>
+
+
         </div>
       </div>
     </div>
-</div>
+  </div>
+</section>
+
+
 
       </div>
     </div>
@@ -413,6 +668,7 @@ $time = array('12:00 AM','12:30 AM','01:00 AM','01:30 AM','02:00 AM','02:30 AM',
     <script src="/app-assets/js/scripts/datatables/datatable.js"></script>
     
     <script src="/app-assets/js/scripts/pages/app-chat.js"></script>
+    
 
 <script type="text/javascript">
 $('.salon').addClass('active');
@@ -540,3 +796,15 @@ function Delete(id){
 }
 
 </script>
+
+<script>
+function myMap() {
+var mapProp= {
+  center:new google.maps.LatLng(51.508742,-0.120850),
+  zoom:5,
+};
+var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
