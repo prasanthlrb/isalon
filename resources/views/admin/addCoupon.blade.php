@@ -203,7 +203,7 @@
     <!-- END: Page Vendor JS-->
     <script src="/app-assets/js/scripts/datatables/datatable.js"></script>
 
-    <script src="/app-assets/js/scripts/forms/select/form-select2.js"></script>
+    
     <script src="/app-assets/vendors/js/forms/select/select2.full.min.js"></script>
 
 <script src="/app-assets/vendors/js/pickers/pickadate/picker.js"></script>
@@ -214,9 +214,17 @@
 <script src="/app-assets/vendors/js/pickers/daterange/daterangepicker.js"></script>
 
     <script src="/app-assets/js/scripts/pickers/dateTime/pick-a-datetime.js"></script>
+    <script src="/app-assets/js/scripts/forms/select/form-select2.js"></script>
 
 <script type="text/javascript">
 $('.coupon').addClass('active');
+
+
+$(".select2").select2({
+    dropdownAutoWidth: true,
+    width: '100%'
+});
+
 
 $("#serviceshow").hide();
 $("#usershow").hide();
@@ -378,7 +386,7 @@ function get_coupon_user(id)
   }
 
 
-  $('.singledate').daterangepicker({
+$('.singledate').daterangepicker({
   singleDatePicker: true,
   showDropdowns: true
 });

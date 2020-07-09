@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\coupon;
-use App\User;
+use App\customer;
 use App\service;
 use Illuminate\Http\Request;
 use Hash;
@@ -22,7 +22,7 @@ class CouponController extends Controller
 
     public function addCoupon(){
         $service = service::all();
-        $user = User::all();
+        $user = customer::all();
         return view('admin.addCoupon',compact('user','service'));
     }
 
@@ -55,6 +55,7 @@ class CouponController extends Controller
         }
 
         $coupon = new coupon;
+        $coupon->salon_id = 'admin';
         $coupon->coupon_code = $request->coupon_code;
         $coupon->description = $request->description;
         $coupon->start_date = date('Y-m-d',strtotime($request->start_date));
@@ -78,7 +79,7 @@ class CouponController extends Controller
 
     public function viewCoupon($id){ 
         $service = service::all();
-        $user = User::all();
+        $user = customer::all();
         return view('admin.addCoupon',compact('id','service','user'));
     }
 
@@ -147,10 +148,10 @@ class CouponController extends Controller
         foreach ($service as $value){
             if(in_array($value->id , $arraydata))
             {
-                $output .='<option selected="true" value="'.$value->id.'">'.$value->service_name.'</option>'; 
+                $output .='<option selected="true" value="'.$value->id.'">'.$value->service_name_english.'</option>'; 
             }
             else{
-                $output .='<option value="'.$value->id.'">'.$value->service_name.'</option>'; 
+                $output .='<option value="'.$value->id.'">'.$value->service_name_english.'</option>'; 
             }
         }
       $output .='</optgroup>';
@@ -163,7 +164,7 @@ class CouponController extends Controller
         //$data = newsletter::find($id);
         $data  = coupon::find($id);
 
-        $user = User::all();
+        $user = customer::all();
 
       $arraydata=array();
       foreach(explode(',',$data->user_id) as $user1){

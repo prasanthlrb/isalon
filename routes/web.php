@@ -182,6 +182,42 @@ Route::group(['prefix' => 'vendor'],function(){
 	Route::get('/dashboard', function () {
     	return view('vendor.dashboard');
 	});
+
+	Route::get('/appointment', function () {
+    	return view('vendor.appointment');
+	});
+
+	//notification
+	Route::POST('/save-notification', 'Vendor\NotificationController@saveNotification');
+	Route::POST('/update-notification', 'Vendor\NotificationController@updateNotification');
+	Route::get('/notification/{id}', 'Vendor\NotificationController@editNotification');
+	Route::get('/push-notification', 'Vendor\NotificationController@Notification');
+	Route::get('/notification-delete/{id}', 'Vendor\NotificationController@deleteNotification');
+	Route::get('/get_notification_customer/{id}', 'Vendor\NotificationController@getNotificationCustomer');
+
+	//service
+	Route::POST('/save-service', 'Vendor\ServiceController@saveService');
+	Route::POST('/update-service', 'Vendor\ServiceController@updateService');
+	Route::get('/service/{id}', 'Vendor\ServiceController@editService');
+	Route::get('/new-service', 'Vendor\ServiceController@Service');
+	Route::get('/service-delete/{id}', 'Vendor\ServiceController@deleteService');
+
+
+	// coupon Management
+	Route::get('/coupon','Vendor\CouponController@index');
+	Route::get('/addCoupon','Vendor\CouponController@addCoupon');
+	Route::get('/viewCoupon/{id}','Vendor\CouponController@viewCoupon');
+	Route::post('/CouponSave','Vendor\CouponController@CouponSave');
+	Route::post('/CouponUpdate','Vendor\CouponController@CouponUpdate');
+	Route::get('/CouponEdit/{id}','Vendor\CouponController@CouponEdit');
+	Route::get('/CouponDelete/{id}','Vendor\CouponController@CouponDelete');
+	Route::get('/get_coupon_service/{id}','Vendor\CouponController@get_coupon_service');
+	Route::get('/get_coupon_user/{id}','Vendor\CouponController@get_coupon_user');
+
+
+	Route::get('/review', 'Vendor\ReviewController@Review');
+	Route::get('/report', 'Vendor\ReportController@Report');
+
 });
 
 Auth::routes();
