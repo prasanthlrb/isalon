@@ -71,6 +71,9 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::POST('/update-addservice', 'SalonController@updateAddService');
 	Route::get('/addservice/{id}', 'SalonController@editAddService');
 	Route::get('/addservice-delete/{id}', 'SalonController@deleteAddService');
+	
+	Route::get('/salon-notification', 'SalonController@salonNotification');
+	Route::get('/update-salon-notification/{id}', 'SalonController@updateSalonNotification');
 
 	Route::POST('/update-time', 'SalonController@updateTime');
 
@@ -109,6 +112,8 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::get('/service/{id}', 'ServiceController@editService');
 	Route::get('/service', 'ServiceController@Service');
 	Route::get('/service-delete/{id}', 'ServiceController@deleteService');
+	Route::get('/new-service', 'ServiceController@newService');
+	Route::get('/update-new-service/{id}', 'ServiceController@updateNewService');
 
 	//city
 	Route::POST('/save-city', 'AreaController@saveCity');
@@ -160,6 +165,9 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::get('/get_coupon_service/{id}','CouponController@get_coupon_service');
 	Route::get('/get_coupon_user/{id}','CouponController@get_coupon_user');
 
+	Route::get('/new-coupon', 'CouponController@newCoupon');
+	Route::get('/update-new-coupon/{id}', 'CouponController@updateNewCoupon');
+
 
 	//slider
 	Route::POST('/save-slider', 'SettingsController@saveSlider');
@@ -174,6 +182,15 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::get('/banner/{id}', 'SettingsController@editBanner');
 	Route::get('/banner', 'SettingsController@Banner');
 	Route::get('/banner-delete/{id}', 'SettingsController@deleteBanner');
+
+
+	Route::get('/chat-to-customer', function () {
+    	return view('admin.chat_to_customer');
+	});
+
+	Route::get('/chat-to-salon', function () {
+    	return view('admin.chat_to_salon');
+	});
 });
 
 
@@ -217,6 +234,10 @@ Route::group(['prefix' => 'vendor'],function(){
 
 	Route::get('/review', 'Vendor\ReviewController@Review');
 	Route::get('/report', 'Vendor\ReportController@Report');
+
+	Route::get('/calendar', function () {
+    	return view('vendor.calendar');
+	});
 
 });
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\coupon;
+use App\User;
 use App\customer;
 use App\service;
 use Illuminate\Http\Request;
@@ -68,6 +69,7 @@ class CouponController extends Controller
         $coupon->limit_per_coupon = $request->limit_per_coupon;
         $coupon->user_type = $request->user_type;
         $coupon->user_id = $user_id;
+        $coupon->status = 1;
         $coupon->save();
         return response()->json($coupon); 
     }
@@ -184,6 +186,20 @@ class CouponController extends Controller
       
       echo $output;
       
+    }
+
+
+    public function newCoupon(){
+        $coupon = coupon::where('salon_id','!=','admin')->get();
+        $user = User::all();
+        return view('admin.new_coupon',compact('coupon','user'));
+    }
+
+    public function updateNewCoupon($id){
+        $coupon = coupon::find($id);
+        $coupon->status = 1;
+        $coupon->save();
+        return response()->json(['message'=>'Successfully Update'],200); 
     }
 
 }

@@ -8,6 +8,11 @@ use App\new_service;
 
 class ServiceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function saveService(Request $request){
         $request->validate([
             'service_name'=>'required',

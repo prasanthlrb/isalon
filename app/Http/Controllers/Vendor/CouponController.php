@@ -13,6 +13,11 @@ use DB;
 
 class CouponController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(){
         $coupon = coupon::where('salon_id',Auth::user()->id)->get();
         return view('vendor.couponList',compact('coupon'));

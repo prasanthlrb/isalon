@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\service;
 use App\category;
+use App\new_service;
 
 class ServiceController extends Controller
 {
@@ -76,6 +77,18 @@ class ServiceController extends Controller
         }
         $service->delete();
         return response()->json(['message'=>'Successfully Delete'],200); 
+    }
+
+    public function newService(){
+        $service = new_service::all();
+        return view('admin.new_service',compact('service'));
+    }
+
+    public function updateNewService($id){
+        $new_service = new_service::find($id);
+        $new_service->status = 1;
+        $new_service->save();
+        return response()->json(['message'=>'Successfully Update'],200); 
     }
 
 

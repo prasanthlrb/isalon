@@ -31,9 +31,9 @@
 
             <li class="apps dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="menu-livicon" data-icon="comments"></i><span>Apps</span></a>
                 <ul class="dropdown-menu">
-                    <li data-menu=""><a class="dropdown-item align-items-center" href="app-chat.html" data-toggle="dropdown"><i class="bx bx-right-arrow-alt"></i>Chat</a>
-                    </li>
-                    <li data-menu=""><a class="dropdown-item align-items-center" href="app-calendar.html" data-toggle="dropdown"><i class="bx bx-right-arrow-alt"></i>Calendar</a>
+                    <!-- <li data-menu=""><a class="dropdown-item align-items-center" href="app-chat.html" data-toggle="dropdown"><i class="bx bx-right-arrow-alt"></i>Chat</a>
+                    </li> -->
+                    <li data-menu=""><a class="calendar dropdown-item align-items-center" href="/vendor/calendar" data-toggle="dropdown"><i class="bx bx-right-arrow-alt"></i>Calendar</a>
                     </li>
                 </ul>
             </li>

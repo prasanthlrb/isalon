@@ -125,7 +125,7 @@
 
                     <div class="form-group">
                         <label>Send To</label>
-                        <select id="send_to" name="send_to" class="form-control">
+                        <select onchange="customertype()" id="send_to" name="send_to" class="form-control">
                             <option value="">SELECT</option>
                             <option value="1">All Customer</option>
                             <option value="2">Selected Customer</option>
@@ -133,7 +133,7 @@
                         </select>
                     </div>
 
-                    <div class="form-group customer">
+                    <div class="form-group customershow">
                         <label>Select Customer</label>
                         <select id="customer_ids" name="customer_ids[]" class="form-control select2" multiple="multiple">
                         	<option value="">SELECT</option>
@@ -178,6 +178,8 @@ $(".select2").select2({
     width: '100%'
 });
 
+$(".customershow").hide();
+
 var action_type;
 $('#add_new').click(function(){
     $('#popup_modal').modal('show');
@@ -187,6 +189,16 @@ $('#add_new').click(function(){
     $('#saveButton').text('Save');
     $('#modal-title').text('Add Push Notification');
 });
+
+function customertype(){
+  var send_to = $("#send_to").val();
+  if(send_to == '2'){
+    $(".customershow").show();
+  }
+  else{
+    $(".customershow").hide();
+  }
+}
 
 function Save(){
   var formData = new FormData($('#form')[0]);
@@ -249,7 +261,15 @@ function Edit(id){
       $('textarea[name=description]').val(data.description);
       $('select[name=send_to]').val(data.send_to);
       $('input[name=id]').val(id);
-      get_notification_customer(data.id);
+      
+        if(data.send_to == 2){
+            $(".customershow").show();
+            get_notification_customer(data.id);
+        }
+        else{
+            $(".customershow").hide();
+        }
+
       $('#popup_modal').modal('show');
       action_type = 2;
     }

@@ -49,6 +49,7 @@
 									                    <th>End Date</th>
 									                    <th>Discount Type</th>
 									                    <th>Amount</th>
+                                                        <th>Status</th>
 									                    <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -79,6 +80,13 @@
 								                      @endif
 								                    </td>
 								                    <td>{{$row->amount}}</td>
+                                                    <td>
+                                                        @if($row->status == 1)
+                                                        Verified
+                                                        @else
+                                                        Pending
+                                                        @endif
+                                                    </td>
 								                    <td><div class="dropdown">
 								                        <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
 								                        </span>
@@ -99,6 +107,7 @@
 									                    <th>End Date</th>
 									                    <th>Discount Type</th>
 									                    <th>Amount</th>
+                                                        <th>Status</th>
 									                    <th>Action</th>
                                                     </tr>
                                                 </tfoot>

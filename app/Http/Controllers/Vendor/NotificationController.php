@@ -12,22 +12,31 @@ use Auth;
 
 class NotificationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function saveNotification(Request $request){
         $request->validate([
             'title'=>'required',
+            'send_to'=> 'required',
         ]);
 
-        $customer_id;
-        foreach($request->customer_ids as $row){
-            $customer_id[]=$row;
+         $customer_ids = '';
+        if($request->send_to == '2'){
+            foreach($request->customer_ids as $row){
+                $customer_id[]=$row;
+            }
+            $customer_ids = collect($customer_id)->implode(',');
         }
-        $customer_ids = collect($customer_id)->implode(',');
 
         $salon_push_notification = new salon_push_notification;
         $salon_push_notification->date = date('Y-m-d');
         $salon_push_notification->salon_id = Auth::user()->id;
         $salon_push_notification->title = $request->title;
         $salon_push_notification->description = $request->description;
+        $salon_push_notification->send_to = $request->send_to;
         $salon_push_notification->customer_ids = $customer_ids;
         $salon_push_notification->save();
         return response()->json('successfully save'); 
@@ -36,18 +45,22 @@ class NotificationController extends Controller
     public function updateNotification(Request $request){
         $request->validate([
             'title'=> 'required',
+            'send_to'=> 'required',
         ]);
         
-        $customer_id;
-        foreach($request->customer_ids as $row){
-            $customer_id[]=$row;
+        $customer_ids = '';
+        if($request->send_to == '2'){
+            foreach($request->customer_ids as $row){
+                $customer_id[]=$row;
+            }
+            $customer_ids = collect($customer_id)->implode(',');
         }
-        $customer_ids = collect($customer_id)->implode(',');
 
         $salon_push_notification = salon_push_notification::find($request->id);
         $salon_push_notification->title = $request->title;
         $salon_push_notification->description = $request->description;
         $salon_push_notification->customer_ids = $customer_ids;
+        $salon_push_notification->send_to = $request->send_to;
         $salon_push_notification->save();
         return response()->json('successfully update'); 
     }
