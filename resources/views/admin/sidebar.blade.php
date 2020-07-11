@@ -64,9 +64,11 @@
                         <i class="menu-livicon" data-icon="shoppingcart"></i>
                         <span class="menu-title" data-i18n="Email">Services</span>
                     </a>
+                </li>
+                <li class="new-service nav-item">
                     <a href="/admin/new-service">
                         <i class="menu-livicon" data-icon="shoppingcart"></i>
-                        <span class="menu-title" data-i18n="Email">New Services</span>
+                        <span class="menu-title" data-i18n="Email">Service Request</span>
                     </a>
                 </li>
 
@@ -83,7 +85,7 @@
                 <li class="salon-notification nav-item">
                     <a href="/admin/salon-notification">
                         <i class="menu-livicon" data-icon="globe"></i>
-                        <span class="menu-title" data-i18n="Email">Salon Request</span>
+                        <span class="menu-title" data-i18n="Email">Notification Request</span>
                     </a>
                 </li>
 
@@ -99,7 +101,7 @@
                 <li class="new-coupon nav-item">
                     <a href="/admin/new-coupon">
                         <i class="menu-livicon" data-icon="globe"></i>
-                        <span class="menu-title" data-i18n="Email">New Coupon</span>
+                        <span class="menu-title" data-i18n="Email">Coupon Request</span>
                     </a>
                 </li>
 

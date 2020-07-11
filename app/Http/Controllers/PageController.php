@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\area;
 use App\User;
+use App\salon_password;
 use Hash;
 
 class PageController extends Controller
@@ -36,7 +37,7 @@ class PageController extends Controller
         $salon->owner_name = $request->owner_name;
         $salon->email = $request->email;
         $salon->phone = $request->phone;
-        $salon->password = Hash::make($request->password);
+        // $salon->password = Hash::make($request->password);
         $salon->salon_name = $request->salon_name;
         $salon->salon_id = $request->salon_id;
         $salon->emirates_id = $request->emirates_id;
@@ -48,6 +49,28 @@ class PageController extends Controller
         $salon->address = $request->address;
         $salon->trade_license = $fileName;
         $salon->save();
+        return response()->json('successfully save'); 
+    }
+
+    public function salonCreatePassword($id){
+        $salon = salon_password::find($id);
+        return view('pages.new_password',compact('salon','id'));
+    }
+
+    public function salonUpdatePassword(Request $request){
+        $request->validate([
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:6'
+        ]);
+
+        $salon = User::find($request->salon_id);
+        $salon->password = Hash::make($request->password);
+        $salon->save();
+
+        $salon_password = salon_password::find($request->id);
+        $salon_password->status = 1;
+        $salon_password->save();
+        
         return response()->json('successfully save'); 
     }
 

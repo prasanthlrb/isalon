@@ -42,6 +42,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PageController@SalonRegister');
 Route::get('/salon-register', 'PageController@SalonRegister');
 Route::POST('/save-salon-register', 'PageController@saveSalonRegister');
+Route::get('/salon-create-password/{id}', 'PageController@salonCreatePassword');
+Route::POST('/salon-update-password', 'PageController@salonUpdatePassword');
 
 Route::group(['prefix' => 'admin'],function(){
 
@@ -76,6 +78,10 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::get('/update-salon-notification/{id}', 'SalonController@updateSalonNotification');
 
 	Route::POST('/update-time', 'SalonController@updateTime');
+
+	Route::POST('/salon-send-email', 'SalonController@salonSendEmail');
+	Route::POST('/salon-add-password', 'SalonController@salonAddPassword');
+
 
 	//category
 	Route::POST('/save-category', 'CategoryController@saveCategory');

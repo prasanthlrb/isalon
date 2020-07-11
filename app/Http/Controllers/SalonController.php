@@ -9,7 +9,10 @@ use App\service;
 use App\service_time;
 use App\salon_service;
 use App\salon_push_notification;
+use App\salon_password;
 use Hash;
+use DB;
+use Mail;
 
 class SalonController extends Controller
 {
@@ -46,7 +49,7 @@ class SalonController extends Controller
         $salon->owner_name = $request->owner_name;
         $salon->email = $request->email;
         $salon->phone = $request->phone;
-        $salon->password = Hash::make($request->password);
+        // $salon->password = Hash::make($request->password);
         $salon->salon_name = $request->salon_name;
         $salon->salon_id = $request->salon_id;
         $salon->emirates_id = $request->emirates_id;
@@ -63,6 +66,21 @@ class SalonController extends Controller
                 $service_time->days = $days[$i];
                 $service_time->save();
             }
+
+        $salon_password = new salon_password;
+        $salon_password->date = date('Y-m-d');
+        $salon_password->end_date = date('Y-m-d', strtotime("+30 days"));
+        $salon_password->salon_id = $salon->id;
+        $salon_password->salon_name = $salon->salon_name;
+        $salon_password->owner_name = $salon->owner_name;
+        $salon_password->email = $salon->email;
+        $salon_password->save();
+
+        $all = $salon_password::find($salon_password->id);
+        Mail::send('admin.salon_send_mail',compact('all'),function($message) use($all){
+            $message->to($all['email'])->subject('Create your Own Password');
+            $message->from('aravind.0216@gmail.com','I-Salon Website');
+        });
 
         return response()->json('successfully save'); 
     }
@@ -98,9 +116,9 @@ class SalonController extends Controller
         $salon->owner_name = $request->owner_name;
         $salon->email = $request->email;
         $salon->phone = $request->phone;
-        if($request->password != ''){
-        $salon->password = Hash::make($request->password);
-    	}
+     //    if($request->password != ''){
+     //    $salon->password = Hash::make($request->password);
+    	// }
         $salon->salon_name = $request->salon_name;
         $salon->salon_id = $request->salon_id;
         $salon->emirates_id = $request->emirates_id;
