@@ -84,9 +84,9 @@ class ServiceController extends Controller
         return view('admin.new_service',compact('service'));
     }
 
-    public function updateNewService($id){
+    public function updateNewService($id,$status){
         $new_service = new_service::find($id);
-        $new_service->status = 1;
+        $new_service->status = $status;
         $new_service->save();
         return response()->json(['message'=>'Successfully Update'],200); 
     }

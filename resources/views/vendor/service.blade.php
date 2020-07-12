@@ -58,10 +58,12 @@
                                                         <td>{{$row->remark}}</td>
                                                         <td>
                                                         	@if($row->status == 1)
-                                                        	Verified
-                                                        	@else
-                                                        	Pending
-                                                        	@endif
+                                Approved
+                                @elseif($row->status == 2)
+                                Denied
+                                @else
+                                Pending
+                                @endif
                                                         </td>
                                                         <td>
             <div class="dropdown">

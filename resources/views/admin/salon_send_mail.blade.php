@@ -360,7 +360,7 @@
 											<tr>
 												<td class="spacer" width="15" style="font-size: 1px;line-height: 1px;">&nbsp;</td>
 												<td valign="middle" align="center" height="43" class="button-link" style="color: #151515;font-family: Helvetica, Arial, sans-serif;font-size: 15px;font-weight: bold;text-transform: uppercase;text-decoration: none;">
-													<a href="http://127.0.0.1:5600/salon-create-password/{{$all['id']}}" style="text-decoration: none;color: #fff;font-family: Helvetica, Arial, sans-serif;font-size: 15px;font-weight: bold;text-transform: uppercase;"><span style="color: #fff;font-family: Helvetica, Arial, sans-serif;font-size: 15px;font-weight: bold;text-transform: uppercase;text-decoration: none;">Create Password</span></a>
+													<a href="http://127.0.0.1:8000/salon-create-password/{{$all['id']}}" style="text-decoration: none;color: #fff;font-family: Helvetica, Arial, sans-serif;font-size: 15px;font-weight: bold;text-transform: uppercase;"><span style="color: #fff;font-family: Helvetica, Arial, sans-serif;font-size: 15px;font-weight: bold;text-transform: uppercase;text-decoration: none;">Create Password</span></a>
 												</td>
 												<td class="spacer" width="15" style="font-size: 1px;line-height: 1px;">&nbsp;</td>
 											</tr>

@@ -61,10 +61,11 @@
                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                 </span>
                 <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; transform: translate3d(-125px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
-                  <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
-                  <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
-                  <a class="dropdown-item" href="#"><i class="bx bxs-chat mr-1"></i> Chat</a>
+                  <!-- <a class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
+                  <a class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a> -->
+                  <a class="dropdown-item" href="/admin/chat-to-customer"><i class="bx bxs-chat mr-1"></i> Chat</a>
                   <a class="dropdown-item" href="#"><i class="bx bx-lock-alt mr-1"></i> Block</a>
+                  <a class="dropdown-item" href="/admin/customer/{{$row->id}}"><i class="bx bx-show-alt mr-1"></i> See Profile</a>
                 </div>
               </div></td>
 

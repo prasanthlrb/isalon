@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\settlement_period;
 use App\admin;
+use App\User;
+use App\customer;
 use Hash;
 use session;
 use Auth;
@@ -13,6 +15,16 @@ class AdminController extends Controller
 {
     public function dashboard(){
         return view('admin.dashboard');
+    }
+
+    public function chatToCustomer(){
+        $customer = customer::all();
+        return view('admin.chat_to_customer',compact('customer'));
+    }
+
+    public function chatToSalon(){
+        $salon = User::all();
+        return view('admin.chat_to_salon',compact('salon'));
     }
 
     public function viewUser($id){

@@ -15,9 +15,14 @@ class CreatePushNotificationsTable extends Migration
     {
         Schema::create('push_notifications', function (Blueprint $table) {
             $table->id();
+            $table->string('salon_id')->nullable();
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->string('send_to')->nullable();
+            $table->string('send_to')->nullable();
+            $table->string('salon_ids')->nullable();
+            $table->string('customer_ids')->nullable();
+            $table->string('area')->nullable();
             $table->string('status')->default('0');
             $table->timestamps();
         });

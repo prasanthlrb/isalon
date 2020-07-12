@@ -44,9 +44,9 @@
                 </li>
 
                 <li class="package nav-item">
-                    <a href="/admin/package">
+                    <a href="/admin/salon-package">
                         <i class="menu-livicon" data-icon="morph-folder"></i>
-                        <span class="menu-title" data-i18n="Email">Package</span>
+                        <span class="menu-title" data-i18n="Email">Salon Package</span>
                     </a>
                 </li>
 
@@ -169,10 +169,17 @@
                     </a>
                 </li>
                 
-                <li class=" nav-item">
-                    <a href="app-chat.html">
+                <li class="application-settings nav-item">
+                    <a href="/admin/application-settings">
                         <i class="menu-livicon" data-icon="wrench"></i>
-                        <span class="menu-title" data-i18n="Chat">Application Setting</span>
+                        <span class="menu-title" data-i18n="Chat">Application Settings</span>
+                    </a>
+                </li>
+
+                <li class="terms-and-condition nav-item">
+                    <a href="/admin/terms-and-condition">
+                        <i class="menu-livicon" data-icon="wrench"></i>
+                        <span class="menu-title" data-i18n="Chat">Terms and Condition</span>
                     </a>
                 </li>
 

@@ -195,9 +195,9 @@ class CouponController extends Controller
         return view('admin.new_coupon',compact('coupon','user'));
     }
 
-    public function updateNewCoupon($id){
+    public function updateNewCoupon($id,$status){
         $coupon = coupon::find($id);
-        $coupon->status = 1;
+        $coupon->status = $status;
         $coupon->save();
         return response()->json(['message'=>'Successfully Update'],200); 
     }

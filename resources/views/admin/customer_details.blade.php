@@ -166,10 +166,23 @@
         <div class="tab-content">
           <div class="tab-pane active" id="profile" aria-labelledby="profile-tab" role="tabpanel">
             <h6>PERSONAL INFORAMTION</h6>
-            <ul class="list-unstyled mb-2">
-                <li class="mb-25">Email : {{$customer->email}}</li>
-                <li>Phone : {{$customer->phone}}</li>
+            
+            <ul class="list-unstyled">
+              <!-- <li><i class="cursor-pointer bx bx-map mb-1 mr-50"></i>California</li> -->
+              <li><i class="cursor-pointer bx bx-phone-call mb-1 mr-50"></i>{{$customer->phone}}</li>
+              <!-- <li><i class="cursor-pointer bx bx-time mb-1 mr-50"></i>July 10</li> -->
+              <li><i class="cursor-pointer bx bx-envelope mb-1 mr-50"></i>{{$customer->email}}</li>
             </ul>
+
+                    <div class="row">
+                      
+                      <div class="col-12">
+                        <h6>Package Details</h6>
+                        <p>Package Name :</p>
+                        <p>Price :</p>
+                        <p>Validity :</p>
+                      </div>
+                    </div>
           </div>
 
           <div class="tab-pane" id="order" aria-labelledby="order-tab" role="tabpanel">

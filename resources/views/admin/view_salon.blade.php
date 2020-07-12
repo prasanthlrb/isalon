@@ -195,14 +195,38 @@
         <div class="tab-content">
           <div class="tab-pane active" id="profile" aria-labelledby="profile-tab" role="tabpanel">
             <h6>PERSONAL INFORAMTION</h6>
-            <ul class="list-unstyled mb-2">
-                <li class="mb-25">Email : {{$salon->email}}</li>
-                <li>Phone : {{$salon->phone}}</li>
-                <li>Salon Name : {{$salon->salon_name}}</li>
-                <li>Salon ID : {{$salon->salon_id}}</li>
-                <li>Emirated ID : {{$salon->emirates_id}}</li>
-                <li>Passsport Number : {{$salon->passport_number}}</li>
+
+            <ul class="list-unstyled">
+              <li><i class="cursor-pointer bx bx-phone-call mb-1 mr-50"></i>{{$salon->phone}}</li>
+              <li><i class="cursor-pointer bx bx-envelope mb-1 mr-50"></i>{{$salon->email}}</li>
             </ul>
+
+              <div class="row">
+
+                <div class="col-6">
+                  <h6><small class="text-muted">Salon Name</small></h6>
+                  <p>{{$salon->salon_name}}</p>
+                </div>
+                <div class="col-6">
+                  <h6><small class="text-muted">Salon ID</small></h6>
+                  <p>{{$salon->salon_id}}</p>
+                </div>
+                <div class="col-6">
+                  <h6><small class="text-muted">Emirates ID</small></h6>
+                  <p>{{$salon->emirates_id}}</p>
+                </div>
+                <div class="col-6">
+                  <h6><small class="text-muted">Passport Number</small></h6>
+                  <p>{{$salon->passport_number}}</p>
+                </div>
+                
+                <div class="col-12">
+                  <h6>Package Details</h6>
+                  <p>Package Name :</p>
+                  <p>Price :</p>
+                  <p>Validity :</p>
+                </div>
+              </div>
           </div>
 
           <div class="tab-pane" id="service" aria-labelledby="service-tab" role="tabpanel">

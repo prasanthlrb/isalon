@@ -84,7 +84,9 @@
 	                    <td>{{$row->amount}}</td>
                         <td>
                             @if($row->status == 1)
-                            Verified
+                            Approved
+                            @elseif($row->status == 2)
+                            Denied
                             @else
                             Pending
                             @endif
@@ -94,7 +96,8 @@
                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                 </span>
                 <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; transform: translate3d(-125px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
-                  <a onclick="Update({{$row->id}})" class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> Update</a>
+                  <a onclick="Update({{$row->id}},1)" class="dropdown-item" href="#">Approved</a>
+                  <a onclick="Update({{$row->id}},2)" class="dropdown-item" href="#">Denied</a>
                 </div>
               </div></td>
                             </tr>
@@ -145,11 +148,11 @@
 <script type="text/javascript">
 $('.new-coupon').addClass('active');
 
-function Update(id){
+function Update(id,id1){
     var r = confirm("Are you sure");
     if (r == true) {
       $.ajax({
-        url : '/admin/update-new-coupon/'+id,
+        url : '/admin/update-new-coupon/'+id+'/'+id1,
         type: "GET",
         dataType: "JSON",
         success: function(data)

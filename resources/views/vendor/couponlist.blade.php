@@ -82,7 +82,9 @@
 								                    <td>{{$row->amount}}</td>
                                                     <td>
                                                         @if($row->status == 1)
-                                                        Verified
+                                                        Approved
+                                                        @elseif($row->status == 2)
+                                                        Denied
                                                         @else
                                                         Pending
                                                         @endif

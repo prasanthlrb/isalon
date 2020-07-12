@@ -44,6 +44,7 @@ Route::get('/salon-register', 'PageController@SalonRegister');
 Route::POST('/save-salon-register', 'PageController@saveSalonRegister');
 Route::get('/salon-create-password/{id}', 'PageController@salonCreatePassword');
 Route::POST('/salon-update-password', 'PageController@salonUpdatePassword');
+Route::POST('/update-login', 'PageController@updateLogin');
 
 Route::group(['prefix' => 'admin'],function(){
 
@@ -75,7 +76,7 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::get('/addservice-delete/{id}', 'SalonController@deleteAddService');
 	
 	Route::get('/salon-notification', 'SalonController@salonNotification');
-	Route::get('/update-salon-notification/{id}', 'SalonController@updateSalonNotification');
+	Route::get('/update-salon-notification/{id}/{id1}', 'SalonController@updateSalonNotification');
 
 	Route::POST('/update-time', 'SalonController@updateTime');
 
@@ -98,18 +99,13 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::get('/sub-category-delete/{id}', 'CategoryController@deleteSubCategory');
 
 	//package
-	Route::POST('/save-package', 'PackageController@savePackage');
-	Route::POST('/update-package', 'PackageController@updatePackage');
-	Route::get('/package/{id}', 'PackageController@editPackage');
-	Route::get('/package', 'PackageController@Package');
-	Route::get('/package-delete/{id}', 'PackageController@deletePackage');
-
-	//sub package
-	Route::POST('/save-sub-package', 'PackageController@saveSubPackage');
-	Route::POST('/update-sub-package', 'PackageController@updateSubPackage');
-	Route::get('/edit-sub-package/{id}', 'PackageController@editSubPackage');
-	Route::get('/sub-package/{id}','PackageController@SubPackage');
-	Route::get('/sub-package-delete/{id}', 'PackageController@deleteSubPackage');
+	Route::POST('/save-salon-package', 'PackageController@saveSalonPackage');
+	Route::POST('/update-salon-package', 'PackageController@updateSalonPackage');
+	Route::get('/salon-package/{id}', 'PackageController@editSalonPackage');
+	Route::get('/salon-package', 'PackageController@SalonPackage');
+	Route::get('/salon-package-delete/{id}', 'PackageController@deleteSalonPackage');
+	
+	Route::get('/get-salon-package-item/{id}', 'PackageController@getSalonPackageItem');
 
 
 	//service
@@ -119,7 +115,7 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::get('/service', 'ServiceController@Service');
 	Route::get('/service-delete/{id}', 'ServiceController@deleteService');
 	Route::get('/new-service', 'ServiceController@newService');
-	Route::get('/update-new-service/{id}', 'ServiceController@updateNewService');
+	Route::get('/update-new-service/{id}/{id1}', 'ServiceController@updateNewService');
 
 	//city
 	Route::POST('/save-city', 'AreaController@saveCity');
@@ -172,7 +168,7 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::get('/get_coupon_user/{id}','CouponController@get_coupon_user');
 
 	Route::get('/new-coupon', 'CouponController@newCoupon');
-	Route::get('/update-new-coupon/{id}', 'CouponController@updateNewCoupon');
+	Route::get('/update-new-coupon/{id}/{id1}', 'CouponController@updateNewCoupon');
 
 
 	//slider
@@ -189,26 +185,35 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::get('/banner', 'SettingsController@Banner');
 	Route::get('/banner-delete/{id}', 'SettingsController@deleteBanner');
 
+	//application settings
+	Route::get('/application-settings', 'SettingsController@applicationSettings');
+	Route::POST('/update-application-settings', 'SettingsController@updateApplicationSettings');
+
+	//application settings
+	Route::get('/terms-and-condition', 'SettingsController@termsAndCondition');
+	Route::POST('/update-terms-and-condition', 'SettingsController@updateTermsAndCondition');
+
 
 	Route::get('/chat-to-customer', function () {
     	return view('admin.chat_to_customer');
 	});
 
-	Route::get('/chat-to-salon', function () {
-    	return view('admin.chat_to_salon');
-	});
+	Route::get('/chat-to-customer', 'AdminController@chatToCustomer');
+	Route::get('/chat-to-salon', 'AdminController@chatToSalon');
+
+
 });
 
 
 Route::group(['prefix' => 'vendor'],function(){
 
-	Route::get('/dashboard', function () {
-    	return view('vendor.dashboard');
-	});
 
 	Route::get('/appointment', function () {
     	return view('vendor.appointment');
 	});
+
+
+	Route::get('/dashboard', 'Vendor\HomeController@dashboard');
 
 	//notification
 	Route::POST('/save-notification', 'Vendor\NotificationController@saveNotification');

@@ -34,6 +34,8 @@ class CreateUsersTable extends Migration
             $table->string('trade_license')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
+            $table->TEXT('signature_data',30000)->nullable();
+            $table->string('login_status')->default('0');
             $table->string('status')->default('0');
             $table->timestamps();
         });

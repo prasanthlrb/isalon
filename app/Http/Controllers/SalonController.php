@@ -200,9 +200,9 @@ class SalonController extends Controller
         return view('admin.salon_notification',compact('salon_push_notification'));
     }
 
-    public function updateSalonNotification($id){
+    public function updateSalonNotification($id,$status){
         $salon_push_notification = salon_push_notification::find($id);
-        $salon_push_notification->status = 1;
+        $salon_push_notification->status = $status;
         $salon_push_notification->save();
         return response()->json(['message'=>'Successfully Update'],200); 
     }

@@ -56,10 +56,12 @@
                                                         <td>{{$row->description}}</td>
                                                         <td>
                                                         	@if($row->status == 1)
-                                                        	Verified
-                                                        	@else
-                                                        	Pending
-                                                        	@endif
+                                Approved
+                                @elseif($row->status == 2)
+                                Denied
+                                @else
+                                Pending
+                                @endif
                                                         </td>
                                                         <td>
             <div class="dropdown">
@@ -128,12 +130,12 @@
                         <select onchange="customertype()" id="send_to" name="send_to" class="form-control">
                             <option value="">SELECT</option>
                             <option value="1">All Customer</option>
-                            <option value="2">Selected Customer</option>
+                            <!-- <option value="2">Selected Customer</option> -->
                             <!-- <option value="3">Particular Area</option> -->
                         </select>
                     </div>
 
-                    <div class="form-group customershow">
+                    <!-- <div class="form-group customershow">
                         <label>Select Customer</label>
                         <select id="customer_ids" name="customer_ids[]" class="form-control select2" multiple="multiple">
                         	<option value="">SELECT</option>
@@ -141,7 +143,7 @@
                         	<option value="{{$row->id}}">{{$row->email}}</option>
                         	@endforeach
                         </select>
-                    </div>
+                    </div> -->
                     
                     <div class="form-group">
                         <button onclick="Save()" id="saveButton" class="btn btn-primary btn-block mr-10" type="button">Save</button>

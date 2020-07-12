@@ -3,97 +3,98 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\package;
-use App\addpackage;
+use App\salon_package;
+use App\salon_package_item;
 
 
 class PackageController extends Controller
 {
 
-    public function savePackage(Request $request){
+    public function saveSalonPackage(Request $request){
         $request->validate([
             'package_name'=>'required',
-            'package_status'=>'required',
+            'price'=>'required',
         ]);
 
-        $package = new package;
-        $package->package_name = $request->package_name;
-        $package->package_status = $request->package_status;
-        $package->description = $request->description;
-        $package->save();
+        $salon_package = new salon_package;
+        $salon_package->package_name = $request->package_name;
+        $salon_package->price = $request->price;
+        $salon_package->validity = $request->validity;
+        $salon_package->next_renewal_discount = $request->next_renewal_discount;
+        $salon_package->save();
+
+        for ($x=0; $x<count($_POST['package_item']); $x++) 
+        {
+            $salon_package_item = new salon_package_item;
+            $salon_package_item->package_id = $salon_package->id;
+            $salon_package_item->package_item = $_POST['package_item'][$x];   
+            $salon_package_item->save();
+        }
+
         return response()->json('successfully save'); 
     }
-    public function updatePackage(Request $request){
+    public function updateSalonPackage(Request $request){
         $request->validate([
             'package_name'=>'required',
-            'package_status'=>'required',
+            'price'=>'required',
         ]);
         
-        $package = package::find($request->id);
-        $package->package_name = $request->package_name;
-        $package->package_status = $request->package_status;
-        $package->description = $request->description;
-        $package->save();
+        $salon_package = salon_package::find($request->id);
+        $salon_package->package_name = $request->package_name;
+        $salon_package->price = $request->price;
+        $salon_package->validity = $request->validity;
+        $salon_package->next_renewal_discount = $request->next_renewal_discount;
+        $salon_package->save();
+
+        $salon_package_item = salon_package_item::where('package_id',$request->id)->delete();
+
+        for ($x=0; $x<count($_POST['package_item']); $x++) 
+        {
+            $salon_package_item = new salon_package_item;
+            $salon_package_item->package_id = $salon_package->id;
+            $salon_package_item->package_item = $_POST['package_item'][$x];   
+            $salon_package_item->save();
+        }
         return response()->json('successfully update'); 
     }
 
-    public function Package(){
-        $package = package::all();
-        return view('admin.package',compact('package'));
+    public function SalonPackage(){
+        $salon_package = salon_package::all();
+        return view('admin.salon_package',compact('salon_package'));
     }
-    public function editPackage($id){
-        $package = package::find($id);
-        return response()->json($package); 
+    public function editSalonPackage($id){
+        $salon_package = salon_package::find($id);
+        return response()->json($salon_package); 
     }
     
-    public function deletePackage($id){
-        $package = package::find($id);
-        $package->delete();
+    public function deleteSalonPackage($id){
+        $salon_package = salon_package::find($id);
+        $salon_package->delete();
         return response()->json(['message'=>'Successfully Delete'],200); 
     }
 
 
-
-
-    public function saveSubPackage(Request $request){
-        $request->validate([
-            'package_name'=>'required',
-        ]);  
-
-        $addpackage = new addpackage;
-        $addpackage->package_name = $request->package_name;
-        $addpackage->description = $request->description;
-        $addpackage->parent_id = $request->parent_id;
-        $addpackage->save();
-        return response()->json('successfully save'); 
-    }
-
-    public function updateSubPackage(Request $request){
-        $request->validate([
-            'package_name'=> 'required',
-        ]);
-        
-        $addpackage = addpackage::find($request->id);
-        $addpackage->package_name = $request->package_name;
-        $addpackage->description = $request->description;
-        $addpackage->parent_id = $request->parent_id;
-        $addpackage->save();
-        return response()->json('successfully update'); 
-    }
-
-    public function SubPackage($id){
-        $package = addpackage::where('parent_id',$id)->get();
-        return view('admin.sub_package',compact('package','id'));
-    }
-    public function editSubPackage($id){
-        $addpackage = addpackage::find($id);
-        return response()->json($addpackage); 
-    }
+    public function getSalonPackageItem($id){ 
     
-    public function deleteSubPackage($id){
-        $addpackage = addpackage::find($id);
-        $addpackage->delete();
-        return response()->json(['message'=>'Successfully Delete'],200); 
+    $data = salon_package_item::where('package_id',$id)->get();
+
+$count = 1;
+$output ='';
+foreach ($data as $key => $value) {
+    
+$output .= '<tr style="padding:20px;" value="'.$count.'" class="all_row" id="row'.$count.'">
+    <td style="width:80%">
+        <input class="form-control" type="text" name="package_item[]" value="'.$value->package_item.'" id="package_item'.$count.'" autocomplete="off"  />
+    </td>
+    <td style="width:20%" align="center">
+        <button onclick="removeProductRow('.$count.')" id="removeProductRowBtn'.$count.'" class="btn btn-icon btn-danger rounded-circle" type="button" data-repeater-delete><i class="bx bx-x"></i></button>
+    </td>
+</tr>';
+$count++;
+}
+      
+      echo $output;
+      
     }
 
 
