@@ -38,6 +38,8 @@
                 <table class="table zero-configuration">
                     <thead>
                         <tr>
+                            <th>#</th>
+                            <th>Salon</th>
                             <th>Title</th>
                             <th>Description</th>
                             <th>Status</th>
@@ -45,8 +47,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($salon_push_notification as $row)
+                    @foreach($salon_push_notification as $key => $row)
                         <tr>
+                            <td>{{$key + 1}}</td>
+                            <td>
+                                @foreach($salon as $user1)
+                                @if($user1->id == $row->salon_id)
+                                {{$user1->salon_name}}
+                                @endif
+                                @endforeach
+                            </td>
                             <td>{{$row->title}}</td>
                             <td>{{$row->description}}</td>
                             <td>
@@ -73,10 +83,12 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th>#</th>
+                                <th>Salon</th>
                                 <th>Title</th>
-                            	<th>Description</th>
-                            	<th>Status</th>
-                            	<th>Action</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </tfoot>
                     </table>

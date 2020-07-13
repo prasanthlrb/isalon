@@ -22,7 +22,8 @@ class PageController extends Controller
 	public function SalonRegister(){
 		$city = area::where('parent_id',0)->get();
         $area = area::where('parent_id','!=',0)->get();
-        return view('pages.salon_register',compact('city','area'));
+        $terms = terms_and_condition::first();
+        return view('pages.salon_register',compact('city','area','terms'));
 	}
     public function saveSalonRegister(Request $request){
         $request->validate([
@@ -56,6 +57,7 @@ class PageController extends Controller
         $salon->area = $request->area;
         $salon->address = $request->address;
         $salon->trade_license = $fileName;
+        $salon->signature_data = $request->imgData;
         $salon->save();
 
         $days = array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
@@ -84,19 +86,19 @@ class PageController extends Controller
         return response()->json('successfully save'); 
     }
 
+    public function SalonValidate(Request $request){
+        $request->validate([
+            'email'=> 'required|unique:users',
+            'owner_name'=>'required',
+        ]);
+        
+        return response()->json('Successfully Save'); 
+        //return response()->json(['error' => false, 'success' => true]);
+    }
+
     public function salonCreatePassword($id){
         $salon = salon_password::find($id);
-
-        $user = User::where('id',$salon->salon_id)->first();
-        $terms = terms_and_condition::first();
-
-        if($user->login_status == '1'){
-            return view('pages.new_password',compact('salon','id'));
-        }
-        else{
-            return view('pages.login_terms_and_condition',compact('terms','salon'));
-        }
-        
+        return view('pages.new_password',compact('salon','id'));
     }
 
     public function salonUpdatePassword(Request $request){

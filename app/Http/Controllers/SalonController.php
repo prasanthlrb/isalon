@@ -8,7 +8,7 @@ use App\User;
 use App\service;
 use App\service_time;
 use App\salon_service;
-use App\salon_push_notification;
+use App\push_notification;
 use App\salon_password;
 use Hash;
 use DB;
@@ -196,14 +196,15 @@ class SalonController extends Controller
     }
 
     public function salonNotification(){
-        $salon_push_notification = salon_push_notification::all();
-        return view('admin.salon_notification',compact('salon_push_notification'));
+        $salon_push_notification = push_notification::all();
+        $salon = User::all();
+        return view('admin.salon_notification',compact('salon_push_notification','salon'));
     }
 
     public function updateSalonNotification($id,$status){
-        $salon_push_notification = salon_push_notification::find($id);
-        $salon_push_notification->status = $status;
-        $salon_push_notification->save();
+        $push_notification = push_notification::find($id);
+        $push_notification->status = $status;
+        $push_notification->save();
         return response()->json(['message'=>'Successfully Update'],200); 
     }
 

@@ -15,9 +15,11 @@ class NotificationController extends Controller
         ]);
 
         $push_notification = new push_notification;
+        $push_notification->salon_id = 'admin';
         $push_notification->title = $request->title;
         $push_notification->description = $request->description;
         $push_notification->send_to = $request->send_to;
+        $push_notification->status = 1;
         $push_notification->save();
         return response()->json('successfully save'); 
     }

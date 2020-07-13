@@ -45,6 +45,7 @@
                 <table class="table zero-configuration">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Category Name English</th>
                             <th>Category Name Arabic</th>
                             <th>Icon</th>
@@ -53,8 +54,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($category as $row)
+                    @foreach($category as $key => $row)
                         <tr>
+                            <td>{{$key + 1}}</td>
                             <td>
                                 <a href="/admin/sub-category/{{$row->id}}">{{$row->category_name_english}}</a>
                             </td>
@@ -79,7 +81,8 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                              <th>Category Name English</th>
+                                <th>#</th>
+                                <th>Category Name English</th>
                                 <th>Category Name Arabic</th>
                                 <th>Icon</th>
                                 <th>Image</th>

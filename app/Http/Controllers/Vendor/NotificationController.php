@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\salon_push_notification;
+use App\push_notification;
 use App\customer;
 use App\city;
 use App\area;
@@ -23,22 +23,20 @@ class NotificationController extends Controller
             'send_to'=> 'required',
         ]);
 
-         $customer_ids = '';
-        if($request->send_to == '2'){
-            foreach($request->customer_ids as $row){
-                $customer_id[]=$row;
-            }
-            $customer_ids = collect($customer_id)->implode(',');
-        }
+        //  $customer_ids = '';
+        // if($request->send_to == '2'){
+        //     foreach($request->customer_ids as $row){
+        //         $customer_id[]=$row;
+        //     }
+        //     $customer_ids = collect($customer_id)->implode(',');
+        // }
 
-        $salon_push_notification = new salon_push_notification;
-        $salon_push_notification->date = date('Y-m-d');
-        $salon_push_notification->salon_id = Auth::user()->id;
-        $salon_push_notification->title = $request->title;
-        $salon_push_notification->description = $request->description;
-        $salon_push_notification->send_to = $request->send_to;
-        $salon_push_notification->customer_ids = $customer_ids;
-        $salon_push_notification->save();
+        $push_notification = new push_notification;
+        $push_notification->salon_id = Auth::user()->id;
+        $push_notification->title = $request->title;
+        $push_notification->description = $request->description;
+        $push_notification->send_to = $request->send_to;
+        $push_notification->save();
         return response()->json('successfully save'); 
     }
 
@@ -48,44 +46,43 @@ class NotificationController extends Controller
             'send_to'=> 'required',
         ]);
         
-        $customer_ids = '';
-        if($request->send_to == '2'){
-            foreach($request->customer_ids as $row){
-                $customer_id[]=$row;
-            }
-            $customer_ids = collect($customer_id)->implode(',');
-        }
+        // $customer_ids = '';
+        // if($request->send_to == '2'){
+        //     foreach($request->customer_ids as $row){
+        //         $customer_id[]=$row;
+        //     }
+        //     $customer_ids = collect($customer_id)->implode(',');
+        // }
 
-        $salon_push_notification = salon_push_notification::find($request->id);
-        $salon_push_notification->title = $request->title;
-        $salon_push_notification->description = $request->description;
-        $salon_push_notification->customer_ids = $customer_ids;
-        $salon_push_notification->send_to = $request->send_to;
-        $salon_push_notification->save();
+        $push_notification = push_notification::find($request->id);
+        $push_notification->title = $request->title;
+        $push_notification->description = $request->description;
+        $push_notification->send_to = $request->send_to;
+        $push_notification->save();
         return response()->json('successfully update'); 
     }
 
     public function Notification(){
-        $notification = salon_push_notification::all();
+        $notification = push_notification::all();
         $customer = customer::all();
         $area = area::all();
         return view('vendor.push_notification',compact('notification','customer','area'));
     }
 
     public function editNotification($id){
-        $salon_push_notification = salon_push_notification::find($id);
-        return response()->json($salon_push_notification); 
+        $push_notification = push_notification::find($id);
+        return response()->json($push_notification); 
     }
     
     public function deleteNotification($id){
-        $salon_push_notification = salon_push_notification::find($id);
-        $salon_push_notification->delete();
+        $push_notification = push_notification::find($id);
+        $push_notification->delete();
         return response()->json(['message'=>'Successfully Delete'],200); 
     }
 
 
     public function getNotificationCustomer($id){ 
-        $data  = salon_push_notification::find($id);
+        $data  = push_notification::find($id);
 
         $customer = customer::all();
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\service;
 use App\category;
 use App\new_service;
+use App\User;
 
 class ServiceController extends Controller
 {
@@ -81,7 +82,8 @@ class ServiceController extends Controller
 
     public function newService(){
         $service = new_service::all();
-        return view('admin.new_service',compact('service'));
+        $salon = User::all();
+        return view('admin.new_service',compact('service','salon'));
     }
 
     public function updateNewService($id,$status){

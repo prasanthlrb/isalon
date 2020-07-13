@@ -45,13 +45,15 @@
                 <table class="table zero-configuration">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Areas</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($area as $row)
+                    @foreach($area as $key => $row)
                         <tr>
+                            <td>{{$key + 1}}</td>
                             <td>
                                 <a href="/admin/area/{{$row->id}}">{{$row->area}}</a>
                             </td>
@@ -69,6 +71,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th>#</th>
                                 <th>Areas</th>
                                 <th>Action</th>
                             </tr>

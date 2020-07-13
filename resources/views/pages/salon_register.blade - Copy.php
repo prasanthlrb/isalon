@@ -9,7 +9,7 @@
     <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>I-Salon Create Your Own Password</title>
+    <title>I-Salon</title>
     <link rel="apple-touch-icon" href="/app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
@@ -35,7 +35,6 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
     <!-- END: Custom CSS-->
-
      <link rel="stylesheet" type="text/css" href="{{ asset('toastr/toastr.css')}}">
 
 </head>
@@ -59,14 +58,9 @@
                 <!-- register section left -->
                 <div class="col-md-12 col-12 px-0">
                     <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
-                    <?php
-                    $today = date('Y-m-d');
-                    ?>
-                    @if($salon->status == '0')
-                    @if($salon->end_date >= $today)
                         <div class="card-header pb-1">
                             <div class="card-title">
-                                <h4 class="text-center mb-2">Create Password</h4>
+                                <h4 class="text-center mb-2">Salon Register</h4>
                             </div>
                         </div>
                         <!-- <div class="text-center">
@@ -76,32 +70,106 @@
                         <div class="card-content">
                             <div class="card-body">
                                 <form id="form" method="POST" enctype="multipart/form-data">
-                                	{{ csrf_field() }}
-                                <input type="hidden" name="id" id="id" value="{{$id}}">
-                                <input type="hidden" name="salon_id" id="salon_id" value="{{$salon->salon_id}}">
-				                <div class="form-row">
-				                    <div class="form-group col-md-12 mb-50">
-				                        <label>New Password</label>
-				                        <input class="form-control" type="password" name="password" id="password">
-				                	</div>
-				                </div>
-				                <div class="form-row">
-				                    <div class="form-group col-md-12 mb-50">
-				                        <label>Confirm Password</label>
-				                        <input class="form-control" type="password" name="password_confirmation" id="password_confirmation">
-				                	</div>
-				                </div>
+                                    {{ csrf_field() }}
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-50">
+                        <label>Busisness Type</label>
+                        <select id="busisness_type" name="busisness_type" class="form-control">
+                            <option value="">SELECT</option>
+                            <option value="1">Indivigual</option>
+                            <option value="2">Shop</option>
+                        </select>
+                	</div>
+                    <div class="form-group col-md-6 mb-50">
+                        <label>Owner Name</label>
+                        <input autocomplete="off" type="text" id="owner_name" name="owner_name" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-50">
+                        <label>Email ID</label>
+                        <input autocomplete="off" type="email" id="email" name="email" class="form-control">
+                	</div>
+                    <div class="form-group col-md-6 mb-50">
+                        <label>Phone Number</label>
+                        <input autocomplete="off" type="text" id="phone" name="phone" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row salon-view">
+                    <div class="form-group col-md-6 mb-50">
+                        <label>Salon Name</label>
+                        <input type="text" id="salon_name" name="salon_name" class="form-control">
+                	</div>
+                    <div class="form-group col-md-6 mb-50">
+                        <label>Salon ID</label>
+                        <input type="text" id="salon_id" name="salon_id" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-50">
+                        <label>Emirates ID</label>
+                        <input type="text" id="emirates_id" name="emirates_id" class="form-control">
+                	</div>
+                    <div class="form-group col-md-6 mb-50">
+                        <label>Passport Number</label>
+                        <input type="text" id="passport_number" name="passport_number" class="form-control">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-50">
+                        <label>City</label>
+                        <select id="city" name="city" class="form-control">
+                            <option value="">SELECT</option>
+                           	@foreach($city as $row)
+                            <option value="{{$row->id}}">{{$row->area}}</option>
+                            @endforeach
+                        </select>
+                	</div>
+                    <div class="form-group col-md-6 mb-50">
+                        <label>Area</label>
+                        <select id="area" name="area" class="form-control">
+                            <option value="">SELECT</option>
+                           	@foreach($area as $row)
+                            <option value="{{$row->id}}">{{$row->area}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12 mb-50">
+                        <label>Address</label>
+                        <textarea id="address" name="address" class="form-control">                  	
+                        </textarea>
+                	</div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12 mb-50">
+                        <label>Member License</label>
+                        <select id="member_license" name="member_license" class="form-control">
+                            <option value="">SELECT</option>
+                            <option value="1">Trial</option>
+                            <option value="1">Plan 1</option>
+                            <option value="2">Plan 2</option>
+                        </select>
+                	</div>
+                    <!-- <div class="form-group col-md-6 mb-50">
+                        <label>Salon Comission (%)</label>
+                        <input type="text" id="salon_commission" name="salon_commission" class="form-control">
+                    </div> -->
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12 mb-50">
+                        <label>Trade License Copy</label>
+                        <input type="file" id="trade_license" name="trade_license" class="form-control">
+                	</div>
+                </div>
                                 </form> 
-                                    <button onclick="Save()" type="button" class="btn btn-primary glow position-relative w-100">Save<i id="icon-arrow" class="bx bx-right-arrow-alt"></i></button>
+                                    <button onclick="Save()" type="button" class="btn btn-primary glow position-relative w-100">SIGN UP<i id="icon-arrow" class="bx bx-right-arrow-alt"></i></button>
                                 
+                                <hr>
+                                <div class="text-center"><small class="mr-25">Already have an account?</small><a href="/login"><small>Sign in</small> </a></div>
                             </div>
                         </div>
-                    @else
-                    <center>Your Link has Expired</center>
-                    @endif
-                    @else
-                    <center>Already Register Your Password</center>
-                    @endif
                     </div>
                 </div>
                 <!-- image section right -->
@@ -136,7 +204,9 @@
     <script src="/app-assets/js/scripts/components.js"></script>
     <script src="/app-assets/js/scripts/footer.js"></script>
     <!-- END: Theme JS-->
-<script src="{{ asset('toastr/toastr.min.js')}}"></script>
+
+    <script src="{{ asset('toastr/toastr.min.js')}}"></script>
+
     <!-- BEGIN: Page JS-->
     <!-- END: Page JS-->
 
@@ -145,11 +215,21 @@
 <script type="text/javascript">
 // $('.salon').addClass('active');
 
+$(".salon-view").hide();
+$('#busisness_type').change(function(){
+    var busisness_type = $('#busisness_type').val();
+    if(busisness_type == '1'){
+        $(".salon-view").hide();
+    }
+    else{
+        $(".salon-view").show();
+    }
+});
 
 function Save(){
   var formData = new FormData($('#form')[0]);
     $.ajax({
-        url : '/salon-update-password',
+        url : '/save-salon-register',
         type: "POST",
         data: formData,
         contentType: false,
@@ -160,7 +240,7 @@ function Save(){
             $("#form")[0].reset();
             // $('#popup_modal').modal('hide');
             // $('.zero-configuration').load(location.href+' .zero-configuration');
-            toastr.success(data, 'Successfully Update');
+            toastr.success(data, 'Successfully Save');
             window.location.href="/login";
         },error: function (data) {
             var errorData = data.responseJSON.errors;

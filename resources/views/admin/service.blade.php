@@ -45,6 +45,7 @@
                 <table class="table zero-configuration">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Service Name English</th>
                             <th>Service Name Arabic</th>
                             <th>Image</th>
@@ -52,8 +53,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($service as $row)
+                    @foreach($service as $key => $row)
                         <tr>
+                            <td>{{$key + 1}}</td>
                             <td>{{$row->service_name_english}}</td>
                             <td>{{$row->service_name_arabic}}</td>
                             
@@ -74,6 +76,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th>#</th>
                                 <th>Service Name English</th>
                                 <th>Service Name Arabic</th>
                                 <th>Image</th>

@@ -45,16 +45,16 @@
                 <table class="table zero-configuration">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Areas</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($area as $row)
+                    @foreach($area as $key => $row)
                         <tr>
-                            <td>
-                                {{$row->area}}
-                            </td>
+                            <td>{{$key + 1}}</td>
+                            <td>{{$row->area}}</td>
                 <td><div class="dropdown">
                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                 </span>
@@ -69,6 +69,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th>#</th>
                                 <th>Areas</th>
                                 <th>Action</th>
                             </tr>

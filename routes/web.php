@@ -42,6 +42,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PageController@SalonRegister');
 Route::get('/salon-register', 'PageController@SalonRegister');
 Route::POST('/save-salon-register', 'PageController@saveSalonRegister');
+Route::POST('/salon-validate', 'PageController@SalonValidate');
 Route::get('/salon-create-password/{id}', 'PageController@salonCreatePassword');
 Route::POST('/salon-update-password', 'PageController@salonUpdatePassword');
 Route::POST('/update-login', 'PageController@updateLogin');

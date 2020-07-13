@@ -38,6 +38,8 @@
                 <table class="table zero-configuration">
                     <thead>
                         <tr>
+                            <th>#</th>
+                            <th>Salon</th>
                             <th>Service</th>
                             <th>Category</th>
                             <th>Remark</th>
@@ -46,8 +48,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($service as $row)
+                    @foreach($service as $key => $row)
                         <tr>
+                            <td>{{$key + 1}}</td>
+                            <td>
+                                @foreach($salon as $user1)
+                            @if($user1->id == $row->salon_id)
+                            {{$user1->salon_name}}
+                            @endif
+                            @endforeach
                             <td>{{$row->service_name}}</td>
                             <td>{{$row->category}}</td>
                             <td>{{$row->remark}}</td>
@@ -75,6 +84,8 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th>#</th>
+                                <th>Salon</th>
                                 <th>Service</th>
 	                            <th>Category</th>
 	                            <th>Remark</th>

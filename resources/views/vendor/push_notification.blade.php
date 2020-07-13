@@ -129,7 +129,7 @@
                         <label>Send To</label>
                         <select onchange="customertype()" id="send_to" name="send_to" class="form-control">
                             <option value="">SELECT</option>
-                            <option value="1">All Customer</option>
+                            <option value="2">All Customer</option>
                             <!-- <option value="2">Selected Customer</option> -->
                             <!-- <option value="3">Particular Area</option> -->
                         </select>

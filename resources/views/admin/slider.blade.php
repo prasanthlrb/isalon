@@ -45,6 +45,7 @@
                 <table class="table zero-configuration">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Title</th>
                             <th>Description</th>
                             <th>Image</th>
@@ -52,8 +53,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($slider as $row)
+                    @foreach($slider as $key => $row)
                         <tr>
+                            <td>{{$key + 1}}</td>
                             <td>{{$row->title}}</td>
                             <td>{{$row->description}}</td>
                             
@@ -74,7 +76,8 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Title</th>
+                              <th>#</th>
+                              <th>Title</th>
 	                            <th>Description</th>
 	                            <th>Image</th>
 	                            <th>Action</th>

@@ -299,7 +299,7 @@
 							<table cellpadding="0" cellspacing="0" width="100%" border="0">
 								<tr>
 									<td valign="middle" align="left" class="logo mobile-block">
-										<img src="/images/logo/logo.png">
+									<img src="{{ asset('images/logo/logo.png')}}">
 									</td>
 								</tr>
 							</table>

@@ -243,7 +243,9 @@ $.ajaxSetup({
                 alert("Choose Terms and Conditions"); 
             }
 		}
-		refresh_pad();
+$(document).ready(function(){
+  $('#popupTrigger').trigger('click');
+});
 		function refresh_pad() {
 			$('#before').removeClass('hidden_now');
 			$('#show_after').addClass('hidden_now');
@@ -261,13 +263,13 @@ $.ajaxSetup({
 		<div id="page" data-role="content">
 			<a href="#divPopUpSignContract" data-rel="popup" data-position-to="window" data-role="button"
 				data-inline="true" style="display: none;" id="popupTrigger"></a>
-			<a href="javascript:void(null)" data-rel="popup" data-position-to="window" data-role="button"
-				data-inline="true" onclick="refresh_pad()">Open Sign Pad</a>
+			<!-- <a href="javascript:void(null)" data-rel="popup" data-position-to="window" data-role="button"
+				data-inline="true" onclick="refresh_pad()">Open Sign Pad</a> -->
 		</div>
 		<div data-role="popup" id="divPopUpSignContract" style="width: 70%;left: 14%">
 			<div data-role="header" data-theme="b">
-				<a data-role="button" data-rel="back" data-transition="slide" class="ui-btn-right"
-					onclick="closePopUp()"> Close </a>
+				<!-- <a data-role="button" data-rel="back" data-transition="slide" class="ui-btn-right"
+					onclick="closePopUp()"> Close </a> -->
 				<p class="popupHeader">Terms and Conditions</p>
 			</div>
 			<div class="ui-content popUpHeight">
@@ -285,11 +287,11 @@ $.ajaxSetup({
 						</tbody>
 					</table>
 					<div class="row">
-						<div class="col-md-2">
+						<!-- <div class="col-md-2">
 							<input id="btnSubmitSign" type="button" data-inline="true" data-mini="true" data-theme="b"
 								value="Cancel" onclick="closePopUp()" />
-						</div>
-						<div class="col-md-9" style="margin-top: -13px;">
+						</div> -->
+						<div class="col-md-10" style="margin-top: -13px;">
 							<div class="form-check">
 								<input type="checkbox" class="form-check-input" name="terms_and_condition" id="exampleCheck1">
 								<label class="form-check-label" for="exampleCheck1">I have read and agree to the full
@@ -298,10 +300,8 @@ $.ajaxSetup({
 							</div>
 
 						</div>
-						<div class="col-md-1">
-
-							<input style="float: right;" id="btnClearSign" type="button" data-inline="true"
-								data-mini="true" data-theme="b" value="Next" onclick="show_after()" />
+						<div class="col-md-2">
+							<input style="float: right;" id="btnClearSign" type="button" data-inline="true"	data-mini="true" data-theme="b" value="Next" onclick="show_after()" />
 						</div>
 
 					</div>

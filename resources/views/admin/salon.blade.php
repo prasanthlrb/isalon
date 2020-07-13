@@ -45,6 +45,7 @@
                     <table class="table zero-configuration">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Salon Name</th>
                                 <th>Owner / Person Name</th>
                                 <th>Phone Number</th>
@@ -55,8 +56,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($salon as $row)
+                        @foreach($salon as $key => $row)
                             <tr>
+                                <td>{{$key + 1}}</td>
                                 <td>{{$row->salon_name}}</td>
                                 <td>{{$row->owner_name}}</td>
                                 <td>{{$row->phone}}</td>
@@ -81,7 +83,8 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                              <th>Salon Name</th>
+                                <th>#</th>
+                                <th>Salon Name</th>
                                 <th>Owner / Person Name</th>
                                 <th>Phone Number</th>
                                 <th>Total Booking</th>

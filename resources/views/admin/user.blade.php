@@ -45,6 +45,7 @@
                     <table class="table zero-configuration">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
@@ -52,8 +53,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($user as $row)
+                        @foreach($user as $key => $row)
                             <tr>
+                                <td>{{$key + 1}}</td>
                                 <td>{{$row->name}}</td>
                                 <td>{{$row->phone}}</td>
                                 <td>{{$row->email}}</td>
@@ -72,6 +74,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th>#</th>
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>

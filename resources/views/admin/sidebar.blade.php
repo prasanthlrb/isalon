@@ -93,14 +93,14 @@
 
                 <li class="coupon nav-item">
                     <a href="/admin/coupon">
-                        <i class="menu-livicon" data-icon="globe"></i>
+                        <i class="menu-livicon" data-icon="gift"></i>
                         <span class="menu-title" data-i18n="Email">Coupon</span>
                     </a>
                 </li>
 
                 <li class="new-coupon nav-item">
                     <a href="/admin/new-coupon">
-                        <i class="menu-livicon" data-icon="globe"></i>
+                        <i class="menu-livicon" data-icon="gift"></i>
                         <span class="menu-title" data-i18n="Email">Coupon Request</span>
                     </a>
                 </li>
@@ -171,7 +171,7 @@
                 
                 <li class="application-settings nav-item">
                     <a href="/admin/application-settings">
-                        <i class="menu-livicon" data-icon="wrench"></i>
+                        <i class="menu-livicon" data-icon="settings"></i>
                         <span class="menu-title" data-i18n="Chat">Application Settings</span>
                     </a>
                 </li>
@@ -185,14 +185,14 @@
 
                 <li class="slider nav-item">
                     <a href="/admin/slider">
-                        <i class="menu-livicon" data-icon="wrench"></i>
+                        <i class="menu-livicon" data-icon="magic"></i>
                         <span class="menu-title" data-i18n="Chat">Slider</span>
                     </a>
                 </li>
 
                 <li class="banner nav-item">
                     <a href="/admin/banner">
-                        <i class="menu-livicon" data-icon="wrench"></i>
+                        <i class="menu-livicon" data-icon="magic"></i>
                         <span class="menu-title" data-i18n="Chat">Promotion Banner</span>
                     </a>
                 </li>

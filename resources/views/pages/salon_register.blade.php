@@ -1,15 +1,15 @@
+
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
-<!-- BEGIN: Head-->
-
-<head>
+  <!-- BEGIN: Head-->
+  <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Register Page - Frest - Bootstrap HTML admin template</title>
+    <title>Register Page - I-Salon</title>
     <link rel="apple-touch-icon" href="/app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="/app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
@@ -19,204 +19,295 @@
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/bootstrap-extended.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/components.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/themes/dark-layout.css">
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/themes/semi-dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/bootstrap-extended.min.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/colors.min.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/components.min.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/themes/dark-layout.min.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/themes/semi-dark-layout.min.css">
     <!-- END: Theme CSS-->
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="/app-assets/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/core/menu/menu-types/vertical-menu.min.css">
     <link rel="stylesheet" type="text/css" href="/app-assets/css/pages/authentication.css">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
     <!-- END: Custom CSS-->
-     <link rel="stylesheet" type="text/css" href="{{ asset('toastr/toastr.css')}}">
 
-</head>
-<!-- END: Head-->
+    <link rel="stylesheet" type="text/css" href="/app-assets/css/plugins/forms/wizard.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('toastr/toastr.css')}}">
+    <meta name="_token" content="{{ csrf_token() }}"/>
 
-<!-- BEGIN: Body-->
+  </head>
+  <!-- END: Head-->
 
-<body class="vertical-layout vertical-menu-modern dark-layout 1-column  navbar-sticky footer-static bg-full-screen-image  blank-page blank-page" data-open="click" data-menu="vertical-menu-modern" data-col="1-column" data-layout="dark-layout">
+  <!-- BEGIN: Body-->
+  <body class="vertical-layout vertical-menu-modern 1-column  navbar-sticky footer-static bg-full-screen-image  blank-page blank-page" data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
     <!-- BEGIN: Content-->
     <div class="app-content content">
-        <div class="content-overlay"></div>
-        <div class="content-wrapper">
-            <div class="content-header row">
-            </div>
-            <div class="content-body">
-<!-- register section starts -->
+      <div class="content-overlay"></div>
+      <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body"><!-- register section starts -->
 <section class="row flexbox-container">
     <div class="col-xl-8 col-10">
         <div class="card bg-authentication mb-0">
             <div class="row m-0">
                 <!-- register section left -->
-                <div class="col-md-12 col-12 px-0">
-                    <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
-                        <div class="card-header pb-1">
-                            <div class="card-title">
-                                <h4 class="text-center mb-2">Salon Register</h4>
-                            </div>
-                        </div>
-                        <!-- <div class="text-center">
-                            <p> <small> Please enter your details to sign up and be part of our great community</small>
-                            </p>
-                        </div> -->
-                        <div class="card-content">
-                            <div class="card-body">
-                                <form id="form" method="POST" enctype="multipart/form-data">
-                                    {{ csrf_field() }}
-                <div class="form-row">
-                    <div class="form-group col-md-6 mb-50">
+
+
+<section id="info-tabs-">
+  <div class="row">
+    <div class="col-12">
+      <div class="card icon-tab">
+        <div class="card-header">
+          <h4 class="card-title">Salon Register</h4>
+        </div>
+        <div class="card-content mt-2">
+          <div class="card-body">
+            <form class="wizard-horizontal" id="form" method="POST" enctype="multipart/form-data">
+            {{ csrf_field() }}
+              <!-- Step 1 -->
+              <h6>
+                <i class="step-icon"></i>
+                <span class="fonticon-wrap">
+                  <i class="livicon-evo" data-options="name:user.svg; size: 50px; style:lines; strokeColor:#adb5bd;"></i>
+                </span>
+                <span>Basic Details</span>
+              </h6>
+              <!-- Step 1 end-->
+              <!-- body content of step 1 -->
+              <fieldset>
+                <div class="row">
+                  <div class="col-12">
+                    <h6 class="py-50">Basic Details</h6>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
                         <label>Busisness Type</label>
-                        <select id="busisness_type" name="busisness_type" class="form-control">
+                        <select onchange="busisnessType()" id="busisness_type" name="busisness_type" class="form-control">
                             <option value="">SELECT</option>
                             <option value="1">Indivigual</option>
-                            <option value="2">Shop</option>
+                            <option value="2">Salon</option>
                         </select>
-                	</div>
-                    <div class="form-group col-md-6 mb-50">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
                         <label>Owner Name</label>
                         <input autocomplete="off" type="text" id="owner_name" name="owner_name" class="form-control">
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6 mb-50">
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
                         <label>Email ID</label>
                         <input autocomplete="off" type="email" id="email" name="email" class="form-control">
-                	</div>
-                    <div class="form-group col-md-6 mb-50">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
                         <label>Phone Number</label>
                         <input autocomplete="off" type="text" id="phone" name="phone" class="form-control">
                     </div>
-                </div>
-                <div class="form-row salon-view">
-                    <div class="form-group col-md-6 mb-50">
+                  </div>
+
+                  <div class="col-sm-6 salon-view">
+                    <div class="form-group">
                         <label>Salon Name</label>
                         <input type="text" id="salon_name" name="salon_name" class="form-control">
-                	</div>
-                    <div class="form-group col-md-6 mb-50">
+                    </div>
+                  </div>
+                  <div class="col-sm-6 salon-view">
+                    <div class="form-group">
                         <label>Salon ID</label>
                         <input type="text" id="salon_id" name="salon_id" class="form-control">
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6 mb-50">
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="form-group">
                         <label>Emirates ID</label>
                         <input type="text" id="emirates_id" name="emirates_id" class="form-control">
-                	</div>
-                    <div class="form-group col-md-6 mb-50">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
                         <label>Passport Number</label>
                         <input type="text" id="passport_number" name="passport_number" class="form-control">
                     </div>
+                  </div>
+
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6 mb-50">
+
+                <hr>
+
+                <div class="row">
+                  <div class="col-12">
+                    <h6 class="py-50">Contact Details</h6>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="form-group">
                         <label>City</label>
                         <select id="city" name="city" class="form-control">
                             <option value="">SELECT</option>
-                           	@foreach($city as $row)
+                            @foreach($city as $row)
                             <option value="{{$row->id}}">{{$row->area}}</option>
                             @endforeach
                         </select>
-                	</div>
-                    <div class="form-group col-md-6 mb-50">
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="form-group">
                         <label>Area</label>
                         <select id="area" name="area" class="form-control">
                             <option value="">SELECT</option>
-                           	@foreach($area as $row)
+                            @foreach($area as $row)
                             <option value="{{$row->id}}">{{$row->area}}</option>
                             @endforeach
                         </select>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12 mb-50">
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
                         <label>Address</label>
-                        <textarea id="address" name="address" class="form-control">                  	
-                        </textarea>
-                	</div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6 mb-50">
-                        <label>Member License</label>
-                        <select id="member_license" name="member_license" class="form-control">
-                            <option value="">SELECT</option>
-                            <option value="1">Trial</option>
-                            <option value="1">Plan 1</option>
-                            <option value="2">Plan 2</option>
-                        </select>
-                	</div>
-                    <div class="form-group col-md-6 mb-50">
-                        <label>Salon Comission (%)</label>
-                        <input type="text" id="salon_commission" name="salon_commission" class="form-control">
+                        <textarea id="address" name="address" class="form-control"></textarea>
                     </div>
+                  </div>
+
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12 mb-50">
-                        <label>Trade License Copy</label>
-                        <input type="file" id="trade_license" name="trade_license" class="form-control">
-                	</div>
-                </div>
-                                </form> 
-                                    <button onclick="Save()" type="button" class="btn btn-primary glow position-relative w-100">SIGN UP<i id="icon-arrow" class="bx bx-right-arrow-alt"></i></button>
-                                
-                                <hr>
-                                <div class="text-center"><small class="mr-25">Already have an account?</small><a href="/login"><small>Sign in</small> </a></div>
-                            </div>
-                        </div>
+                <hr>
+                <div class="row">
+                  <div class="col-12">
+                    <h6 class="py-50">Id Proof</h6>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Trade License Copy</label>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="trade_license" name="trade_license">
+                        <label class="custom-file-label">Choose file</label>
+                      </div>
                     </div>
+                  </div>
                 </div>
-                <!-- image section right -->
-                <!-- <div class="col-md-6 d-md-block d-none text-center align-self-center p-3">
-                    <img class="img-fluid" src="/app-assets/images/pages/register.png" alt="branding logo">
-                </div> -->
+              </fieldset>
+              <!-- body content of step 1 end-->
+              <!-- Step 2-->
+              <h6>
+                <i class="step-icon"></i>
+                <span class="fonticon-wrap">
+                  <i class="livicon-evo" data-options="name:briefcase.svg; size: 50px; style:lines; strokeColor:#adb5bd;"></i>
+                </span>
+                <span>Terms and Conditions</span>
+              </h6>
+              <!-- Step 2 end-->
+              <!-- body content of step 2 -->
+              <fieldset>
+                <div class="row">
+                  <div class="col-12">
+                    <h6 class="py-50">Terms and Conditions</h6>
+                  </div>
+                  <div style="display: block;height: 300px;overflow-y: scroll;" class="col-12">
+                    <?php echo html_entity_decode($terms->terms_and_condition); ?>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <div class="radio">
+                        <input type="radio" name="bsradio" id="agree">
+                        <label for="agree" class="text-success">I read all term and conditions and i Agree.</label>
+                      </div>
+                      <div class="radio">
+                        <input type="radio" name="bsradio" id="disagree">
+                        <label for="disagree" class="text-danger">I am not Agree with it.</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+              <!-- body content of step 2 end-->
+              <!-- Step 3-->
+              <h6>
+                <i class="step-icon"></i>
+                <span class="fonticon-wrap">
+                  <i class="livicon-evo"
+                    data-options="name:users.svg; size: 50px; style:lines; strokeColor:#adb5bd;"></i>
+                </span>
+                <span>Signature</span>
+              </h6>
+              <!-- Step 3 end-->
+              <!-- body content of step 3 -->
+              <fieldset>
+                <div class="row">
+                  <div class="col-12">
+                    <h6 class="py-50">Signature</h6>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                        <center>
+                            <canvas id="canvas">Canvas is not supported</canvas>
+                        </center>
+                    </div>
+                  </div>
+
+                </div>
+              </fieldset>
+              <!-- body content of step 3 end-->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
             </div>
         </div>
     </div>
 </section>
 <!-- register section endss -->
-            </div>
         </div>
+      </div>
     </div>
     <!-- END: Content-->
 
 
     <!-- BEGIN: Vendor JS-->
     <script src="/app-assets/vendors/js/vendors.min.js"></script>
-    <script src="/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.js"></script>
-    <script src="/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.js"></script>
+    <script src="/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.min.js"></script>
+    <script src="/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.min.js"></script>
     <script src="/app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js"></script>
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
+
+    <script src="/app-assets/vendors/js/extensions/jquery.steps.min.js"></script>
+    <script src="/app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
-    <script src="/app-assets/js/scripts/configs/vertical-menu-dark.js"></script>
-    <script src="/app-assets/js/core/app-menu.js"></script>
-    <script src="/app-assets/js/core/app.js"></script>
-    <script src="/app-assets/js/scripts/components.js"></script>
-    <script src="/app-assets/js/scripts/footer.js"></script>
-    <!-- END: Theme JS-->
+    <script src="/app-assets/js/scripts/configs/vertical-menu-light.min.js"></script>
+    <script src="/app-assets/js/core/app-menu.min.js"></script>
+    <script src="/app-assets/js/core/app.min.js"></script>
+    <script src="/app-assets/js/scripts/components.min.js"></script>
+    <script src="/app-assets/js/scripts/footer.min.js"></script>
+
+    <!-- <script src="/app-assets/js/scripts/forms/wizard-steps.min.js"></script> -->
 
     <script src="{{ asset('toastr/toastr.min.js')}}"></script>
 
-    <!-- BEGIN: Page JS-->
-    <!-- END: Page JS-->
 
-</body>
-<!-- END: Body-->
 <script type="text/javascript">
 // $('.salon').addClass('active');
 
 $(".salon-view").hide();
-$('#busisness_type').change(function(){
+function busisnessType(){
     var busisness_type = $('#busisness_type').val();
     if(busisness_type == '1'){
         $(".salon-view").hide();
@@ -224,10 +315,37 @@ $('#busisness_type').change(function(){
     else{
         $(".salon-view").show();
     }
+}
+
+
+</script>
+
+<script type="text/javascript">
+var isSign = false;
+var leftMButtonDown = false;
+
+jQuery(function () {
+    //Initialize sign pad
+    init_Sign_Canvas();
 });
 
-function Save(){
-  var formData = new FormData($('#form')[0]);
+function fun_submit() {
+    if (isSign) {
+        var canvas = $("#canvas").get(0);
+        var imgData = canvas.toDataURL();
+        jQuery('#page').find('p').remove();
+        jQuery('#page').find('img').remove();
+        // jQuery('#page').append(jQuery('<p>Your Sign:</p>'));
+        // jQuery('#page').append($('<img/>').attr('src', imgData));
+        Save(imgData);
+    } else {
+        alert('Please sign');
+    }
+}
+
+function Save(imgData){
+    var formData = new FormData($('#form')[0]);
+    formData.append("imgData", imgData);
     $.ajax({
         url : '/save-salon-register',
         type: "POST",
@@ -238,9 +356,8 @@ function Save(){
         success: function(data)
         {                
             $("#form")[0].reset();
-            // $('#popup_modal').modal('hide');
-            // $('.zero-configuration').load(location.href+' .zero-configuration');
             toastr.success(data, 'Successfully Save');
+            window.location.href="/login";
         },error: function (data) {
             var errorData = data.responseJSON.errors;
             $.each(errorData, function(i, obj) {
@@ -249,5 +366,206 @@ function Save(){
     }
     });
 }
+
+function SaveValidate(){
+    var formData = new FormData($('#form')[0]);
+    $.ajax({
+        url : '/salon-validate',
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        dataType: "JSON",
+        success: function(data)
+        {       
+            return true;    
+        },
+        error: function (data) 
+        {
+            var errorData = data.responseJSON.errors;
+            $.each(errorData, function(i, obj) {
+                toastr.error(obj[0]);
+            });
+            return false;   
+        }
+    });
+    return false;
+}
+
+function init_Sign_Canvas() {
+    isSign = false;
+    leftMButtonDown = false;
+
+    //Set Canvas width
+    var sizedWindowWidth = $(window).width();
+    if (sizedWindowWidth > 700)
+        sizedWindowWidth = $(window).width() / 2;
+    else if (sizedWindowWidth > 400)
+        sizedWindowWidth = sizedWindowWidth - 100;
+    else
+        sizedWindowWidth = sizedWindowWidth - 50;
+
+    $("#canvas").width(sizedWindowWidth);
+    $("#canvas").height(200);
+    $("#canvas").css("border", "1px solid #000");
+
+    var canvas = $("#canvas").get(0);
+
+    canvasContext = canvas.getContext('2d');
+
+    if (canvasContext) {
+        canvasContext.canvas.width = sizedWindowWidth;
+        canvasContext.canvas.height = 200;
+
+        canvasContext.fillStyle = "#fff";
+        canvasContext.fillRect(0, 0, sizedWindowWidth, 200);
+
+        canvasContext.moveTo(50, 150);
+        canvasContext.lineTo(sizedWindowWidth - 50, 150);
+        canvasContext.stroke();
+
+        canvasContext.fillStyle = "#000";
+        canvasContext.font = "20px Arial";
+        canvasContext.fillText("x", 40, 155);
+    }
+    // Bind Mouse events
+    $(canvas).on('mousedown', function (e) {
+        if (e.which === 1) {
+            leftMButtonDown = true;
+            canvasContext.fillStyle = "#000";
+            var x = e.pageX - $(e.target).offset().left;
+            var y = e.pageY - $(e.target).offset().top;
+            canvasContext.moveTo(x, y);
+        }
+        e.preventDefault();
+        return false;
+    });
+
+    $(canvas).on('mouseup', function (e) {
+        if (leftMButtonDown && e.which === 1) {
+            leftMButtonDown = false;
+            isSign = true;
+        }
+        e.preventDefault();
+        return false;
+    });
+
+    // draw a line from the last point to this one
+    $(canvas).on('mousemove', function (e) {
+        if (leftMButtonDown == true) {
+            canvasContext.fillStyle = "#000";
+            var x = e.pageX - $(e.target).offset().left;
+            var y = e.pageY - $(e.target).offset().top;
+            canvasContext.lineTo(x, y);
+            canvasContext.stroke();
+        }
+        e.preventDefault();
+        return false;
+    });
+
+    //bind touch events
+    $(canvas).on('touchstart', function (e) {
+        leftMButtonDown = true;
+        canvasContext.fillStyle = "#000";
+        var t = e.originalEvent.touches[0];
+        var x = t.pageX - $(e.target).offset().left;
+        var y = t.pageY - $(e.target).offset().top;
+        canvasContext.moveTo(x, y);
+
+        e.preventDefault();
+        return false;
+    });
+
+    $(canvas).on('touchmove', function (e) {
+        canvasContext.fillStyle = "#000";
+        var t = e.originalEvent.touches[0];
+        var x = t.pageX - $(e.target).offset().left;
+        var y = t.pageY - $(e.target).offset().top;
+        canvasContext.lineTo(x, y);
+        canvasContext.stroke();
+
+        e.preventDefault();
+        return false;
+    });
+
+    $(canvas).on('touchend', function (e) {
+        if (leftMButtonDown) {
+            leftMButtonDown = false;
+            isSign = true;
+        }
+
+    });
+}
+
 </script>
+
+<script type="text/javascript">
+$(".wizard-horizontal").steps({
+    headerTag: "h6",
+    bodyTag: "fieldset",
+    transitionEffect: "fade",
+    titleTemplate: '<span class="step">#index#</span> #title#',
+    labels: {
+    finish: 'Submit'
+    },
+    onStepChanging: function (event, currentIndex, newIndex) {
+        if (SaveValidate()) {
+            return true;
+        }
+    },
+    onFinished: function (event, currentIndex) {
+        fun_submit();
+        // alert("Form submitted.");
+    }
+});
+
+// live Icon color change on state change
+$(document).ready(function () {
+    $(".current").find(".step-icon").addClass("bx bx-time-five");
+    $(".current").find(".fonticon-wrap .livicon-evo").updateLiviconEvo({
+        strokeColor: '#5A8DEE'
+    });
+});
+
+// Icon change on state
+// if click on next button icon change
+$(".actions [href='#next']").click(function () {
+    $(".done").find(".step-icon").removeClass("bx bx-time-five").addClass("bx bx-check-circle");
+    $(".current").find(".step-icon").removeClass("bx bx-check-circle").addClass("bx bx-time-five");
+    // live icon color change on next button's on click
+    $(".current").find(".fonticon-wrap .livicon-evo").updateLiviconEvo({
+        strokeColor: '#5A8DEE'
+    });
+    $(".current").prev("li").find(".fonticon-wrap .livicon-evo").updateLiviconEvo({
+        strokeColor: '#39DA8A'
+    });
+});
+
+$(".actions [href='#previous']").click(function () {
+    // live icon color change on next button's on click
+    $(".current").find(".fonticon-wrap .livicon-evo").updateLiviconEvo({
+        strokeColor: '#5A8DEE'
+    });
+    $(".current").next("li").find(".fonticon-wrap .livicon-evo").updateLiviconEvo({
+        strokeColor: '#adb5bd'
+    });
+});
+
+// if click on  submit   button icon change
+$(".actions [href='#finish']").click(function () {
+    $(".done").find(".step-icon").removeClass("bx-time-five").addClass("bx bx-check-circle");
+    $(".last.current.done").find(".fonticon-wrap .livicon-evo").updateLiviconEvo({
+        strokeColor: '#39DA8A'
+    });
+});
+
+// add primary btn class
+$('.actions a[role="menuitem"]').addClass("btn btn-primary");
+$('.icon-tab [role="menuitem"]').addClass("glow ");
+$('.wizard-vertical [role="menuitem"]').removeClass("btn-primary").addClass("btn-light-primary");
+
+</script>
+
+  </body>
+  <!-- END: Body-->
 </html>

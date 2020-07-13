@@ -45,6 +45,7 @@
                 <table class="table zero-configuration">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Package Name</th>
                             <th>Price</th>
                             <th>Validity</th>
@@ -53,11 +54,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($salon_package as $row)
+                    @foreach($salon_package as $key => $row)
                         <tr>
-                            <td>
-                                {{$row->package_name}}
-                            </td>
+                            <td>{{$key + 1}}</td>
+                            <td>{{$row->package_name}}</td>
                             <td>{{$row->price}}</td>
                             <td>{{$row->validity}}</td>
                             <td>{{$row->next_renewal_discount}}</td>
@@ -76,6 +76,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                            <th>#</th>
                             <th>Package Name</th>
                             <th>Price</th>
                             <th>Validity</th>
