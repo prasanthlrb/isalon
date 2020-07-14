@@ -46,6 +46,7 @@ Route::POST('/salon-validate', 'PageController@SalonValidate');
 Route::get('/salon-create-password/{id}', 'PageController@salonCreatePassword');
 Route::POST('/salon-update-password', 'PageController@salonUpdatePassword');
 Route::POST('/update-login', 'PageController@updateLogin');
+Route::get('/get-area/{id}', 'PageController@getArea');
 
 Route::group(['prefix' => 'admin'],function(){
 

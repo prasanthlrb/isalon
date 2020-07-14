@@ -149,10 +149,23 @@
                     <h6 class="py-50">Contact Details</h6>
                   </div>
 
-                  <div class="col-sm-6">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Nationality</label>
+                        <select id="nationality" name="nationality" class="form-control">
+                            <option value="">SELECT</option>
+                            <option value="1">United Arab Emirates</option>
+                            <option value="2">India</option>
+                            <option value="3">Russia</option>
+                            <option value="4">Pakistan</option>
+                        </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
                     <div class="form-group">
                         <label>City</label>
-                        <select id="city" name="city" class="form-control">
+                        <select onchange="getArea()" id="city" name="city" class="form-control">
                             <option value="">SELECT</option>
                             @foreach($city as $row)
                             <option value="{{$row->id}}">{{$row->area}}</option>
@@ -161,7 +174,7 @@
                     </div>
                   </div>
 
-                  <div class="col-sm-6">
+                  <div class="col-sm-4">
                     <div class="form-group">
                         <label>Area</label>
                         <select id="area" name="area" class="form-control">
@@ -216,17 +229,21 @@
                   <div style="display: block;height: 300px;overflow-y: scroll;" class="col-12">
                     <?php echo html_entity_decode($terms->terms_and_condition); ?>
                   </div>
-                  <div class="col-sm-12">
+                  <div class="col-sm-3">
+                  </div>
+                  <div class="col-sm-6">
                     <div class="form-group">
                       <div class="radio">
-                        <input type="radio" name="bsradio" id="agree">
-                        <label for="agree" class="text-success">I read all term and conditions and i Agree.</label>
+                        <center><input type="radio" name="bsradio" id="agree">
+                        <label for="agree" class="text-success">I read all term and conditions and i Agree.</label></center>
                       </div>
-                      <div class="radio">
+                      <!-- <div class="radio">
                         <input type="radio" name="bsradio" id="disagree">
                         <label for="disagree" class="text-danger">I am not Agree with it.</label>
-                      </div>
+                      </div> -->
                     </div>
+                  </div>
+                  <div class="col-sm-3">
                   </div>
                 </div>
               </fieldset>
@@ -252,6 +269,11 @@
                         <center>
                             <canvas id="canvas">Canvas is not supported</canvas>
                         </center>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                        <center><input class="btn btn-primary glow" id="btnClearSign" type="button" value="Clear" onclick="init_Sign_Canvas()" /></center>
                     </div>
                   </div>
 
@@ -317,6 +339,17 @@ function busisnessType(){
     }
 }
 
+function getArea(){
+  var id = $('#city').val();
+  $.ajax({
+    url : '/get-area/'+id,
+    type: "GET",
+    success: function(data)
+    {
+        $('#area').html(data);
+    }
+  });
+}
 
 </script>
 
@@ -377,8 +410,9 @@ function SaveValidate(){
         processData: false,
         dataType: "JSON",
         success: function(data)
-        {       
-            return true;    
+        {    
+            console.log(data);   
+            return true;  
         },
         error: function (data) 
         {
@@ -386,10 +420,11 @@ function SaveValidate(){
             $.each(errorData, function(i, obj) {
                 toastr.error(obj[0]);
             });
+            console.log(data);
             return false;   
         }
     });
-    return false;
+    //return false;
 }
 
 function init_Sign_Canvas() {
@@ -509,9 +544,10 @@ $(".wizard-horizontal").steps({
     finish: 'Submit'
     },
     onStepChanging: function (event, currentIndex, newIndex) {
-        if (SaveValidate()) {
+        // if (SaveValidate()) {
             return true;
-        }
+        //}
+
     },
     onFinished: function (event, currentIndex) {
         fun_submit();

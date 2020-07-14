@@ -49,6 +49,7 @@ class PageController extends Controller
         // $salon->password = Hash::make($request->password);
         $salon->salon_name = $request->salon_name;
         $salon->salon_id = $request->salon_id;
+        $salon->nationality = $request->nationality;
         $salon->emirates_id = $request->emirates_id;
         $salon->passport_number = $request->passport_number;
         $salon->member_license = $request->member_license;
@@ -92,7 +93,7 @@ class PageController extends Controller
             'owner_name'=>'required',
         ]);
         
-        return response()->json('Successfully Save'); 
+        return response()->json(true); 
         //return response()->json(['error' => false, 'success' => true]);
     }
 
@@ -125,6 +126,21 @@ class PageController extends Controller
         $salon->save();
 
         return response()->json(['message'=>'Successfully Update'],200); 
+    }
+
+
+    public function getArea($id){ 
+    
+    $data = area::where('parent_id',$id)->get();
+
+$output ='<option value="">SELECT</option>';
+foreach ($data as $key => $value) {
+    
+$output .= '<option value="'.$value->id.'">'.$value->area.'</option>';
+}
+      
+      echo $output;
+      
     }
 
 

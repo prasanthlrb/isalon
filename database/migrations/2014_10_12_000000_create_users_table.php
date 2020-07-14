@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('city')->nullable();
             $table->string('area')->nullable();
             $table->string('address',5000)->nullable();
+            $table->string('nationality')->nullable();
             $table->string('emirates_id')->nullable();
             $table->string('passport_number')->nullable();
             $table->string('member_license')->nullable();
