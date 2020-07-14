@@ -331,6 +331,7 @@ function Edit(id){
       $('input[name=salon_name]').val(data.salon_name);
       $('input[name=emirates_id]').val(data.emirates_id);
       $('input[name=passport_number]').val(data.passport_number);
+      $('select[name=nationality]').val(data.nationality);
       $('select[name=member_license]').val(data.member_license);
       $('input[name=salon_commission]').val(data.salon_commission);
       $('input[name=trade_license1]').val(data.image);
