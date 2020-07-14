@@ -121,6 +121,7 @@ class SalonController extends Controller
      //    $salon->password = Hash::make($request->password);
     	// }
         $salon->salon_name = $request->salon_name;
+        $salon->nationality = $request->nationality;
         $salon->salon_id = $request->salon_id;
         $salon->emirates_id = $request->emirates_id;
         $salon->passport_number = $request->passport_number;
