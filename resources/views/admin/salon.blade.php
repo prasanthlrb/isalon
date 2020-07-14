@@ -175,15 +175,24 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label>Emirates ID</label>
                         <input type="text" id="emirates_id" name="emirates_id" class="form-control">
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                         <label>Passport Number</label>
                         <input type="text" id="passport_number" name="passport_number" class="form-control">
                     </div>
-
+                    <div class="form-group col-md-4">
+                        <label>Nationality</label>
+                        <select id="nationality" name="nationality" class="form-control">
+                            <option value="">SELECT</option>
+                            <option value="1">United Arab Emirates</option>
+                            <option value="2">India</option>
+                            <option value="3">Russia</option>
+                            <option value="4">Pakistan</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
