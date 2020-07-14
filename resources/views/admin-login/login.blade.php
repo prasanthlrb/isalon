@@ -52,13 +52,16 @@
                 <!-- login page start -->
                 <section id="auth-login" class="row flexbox-container">
                     <div class="col-xl-8 col-11">
-                        <div class="card bg-authentication mb-0">
+                        <!-- <div class="card bg-authentication mb-0"> -->
+                        <div class="">
                             <div class="row m-0">
                                 <!-- left section-login -->
-                                <div class="col-md-6 col-12 px-0">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6 px-0">
                                     <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
                                         <div class="card-header pb-1">
                                             <div class="card-title">
+                                                <center><img style="width: 100px;height: 100px;" class="img-fluid" src="/images/logo/logo1.png" alt="branding logo"></center>
                                                 <h4 class="text-center mb-2" style="color: #f4a440">Admin Login</h4>
                                             </div>
                                         </div>
@@ -105,12 +108,15 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-3"></div>
                 <!-- right section image -->
-                <div class="col-md-6 d-md-block d-none text-center align-self-center p-3">
+                <!-- <div class="col-md-6 d-md-block d-none text-center align-self-center p-3">
                     <div class="card-content">
                         <img class="img-fluid" src="/images/logo/logo1.png" alt="branding logo">
                     </div>
-                </div>
+                </div> -->
+
+
             </div>
         </div>
     </div>
