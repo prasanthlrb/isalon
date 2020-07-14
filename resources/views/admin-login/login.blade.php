@@ -61,7 +61,7 @@
                                     <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
                                         <div class="card-header pb-1">
                                             <div class="card-title">
-                                                <center><img style="width: 100px;height: 100px;" class="img-fluid" src="/images/logo/logo1.png" alt="branding logo"></center>
+                                                <center><img style="width: 100px;height: 100px;margin-bottom: 20px;" class="img-fluid" src="/images/logo/logo1.png" alt="branding logo"></center>
                                                 <h4 class="text-center mb-2" style="color: #f4a440">Admin Login</h4>
                                             </div>
                                         </div>
@@ -97,13 +97,13 @@
             </div>
             </div>
             <div class="text-right">
-                <a href="{{ route('admin.password.request') }}" class="card-link"><small>Forgot Password?</small></a>
+                <!-- <a href="{{ route('admin.password.request') }}" class="card-link"><small>Forgot Password?</small></a> -->
             </div>
         </div>
         <button type="submit" class="btn btn-primary glow w-100 position-relative">Login<i id="icon-arrow" class="bx bx-right-arrow-alt"></i></button>
     </form>
-                                <hr>
-                                <div class="text-center"><small class="mr-25">Don't have an account?</small><a href="#"><small>Sign up</small></a></div>
+                                <!-- <hr> -->
+                                <!-- <div class="text-center"><small class="mr-25">Don't have an account?</small><a href="#"><small>Sign up</small></a></div> -->
                             </div>
                         </div>
                     </div>
