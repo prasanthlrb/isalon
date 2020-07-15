@@ -58,6 +58,20 @@ class SalonController extends Controller
         $salon->member_license = $request->member_license;
         $salon->salon_commission = $request->salon_commission;
         $salon->trade_license = $fileName;
+        if($request->file('passport_copy')!=""){
+            $fileName = null;
+            $image = $request->file('passport_copy');
+            $fileName = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('upload_files/'), $fileName);
+        $salon->passport_copy = $fileName;
+        }
+        if($request->file('emirated_id_copy')!=""){
+            $fileName = null;
+            $image = $request->file('emirated_id_copy');
+            $fileName = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('upload_files/'), $fileName);
+        $salon->emirated_id_copy = $fileName;
+        }
         $salon->save();
 
             $days = array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
@@ -94,24 +108,6 @@ class SalonController extends Controller
             // 'password_confirmation' => 'nullable|min:6'
         ]);
 
-        if($request->trade_license!=""){
-            $old_image = "upload_files/".$request->trade_license1;
-            if (file_exists($old_image)) {
-                @unlink($old_image);
-            }
-            //image upload
-            $fileName = null;
-            if($request->file('trade_license')!=""){
-            $image = $request->file('trade_license');
-            $fileName = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('upload_files/'), $fileName);
-            }
-        }
-        else
-        {
-            $fileName = $request->trade_license1;
-        }
-
         $salon = User::find($request->id);
         $salon->busisness_type = $request->busisness_type;
         $salon->owner_name = $request->owner_name;
@@ -127,7 +123,43 @@ class SalonController extends Controller
         $salon->passport_number = $request->passport_number;
         $salon->member_license = $request->member_license;
         $salon->salon_commission = $request->salon_commission;
+        
+        if($request->file('trade_license')!=""){
+            $old_image = "upload_files/".$request->trade_license;
+            if (file_exists($old_image)) {
+                @unlink($old_image);
+            }
+            $fileName = null;
+            $image = $request->file('trade_license');
+            $fileName = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('upload_files/'), $fileName);
         $salon->trade_license = $fileName;
+        }
+
+        if($request->file('passport_copy')!=""){
+            $old_image = "upload_files/".$request->passport_copy;
+            if (file_exists($old_image)) {
+                @unlink($old_image);
+            }
+            $fileName = null;
+            $image = $request->file('passport_copy');
+            $fileName = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('upload_files/'), $fileName);
+        $salon->passport_copy = $fileName;
+        }
+
+        if($request->file('emirated_id_copy')!=""){
+            $old_image = "upload_files/".$request->emirated_id_copy;
+            if (file_exists($old_image)) {
+                @unlink($old_image);
+            }
+            $fileName = null;
+            $image = $request->file('emirated_id_copy');
+            $fileName = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('upload_files/'), $fileName);
+        $salon->emirated_id_copy = $fileName;
+        }
+
         $salon->save();
         return response()->json('successfully update'); 
     }

@@ -65,6 +65,13 @@
             	</a>
             </li>
 
+            <li class="workers nav-item" data-menu="dropdown">
+                <a class="dropdown-toggle nav-link" href="/vendor/workers/">
+                    <i class="menu-livicon" data-icon="desktop"></i>
+                    <span data-i18n="Workers">Add Workers</span>
+                </a>
+            </li>
+
             <li class="report nav-item" data-menu="dropdown">
             	<a class="dropdown-toggle nav-link" href="/vendor/report/">
             		<i class="menu-livicon" data-icon="notebook"></i>

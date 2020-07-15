@@ -33,6 +33,8 @@ class CreateUsersTable extends Migration
             $table->string('member_license')->nullable();
             $table->string('salon_commission')->nullable();
             $table->string('trade_license')->nullable();
+            $table->string('passport_copy')->nullable();
+            $table->string('emirated_id_copy')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->TEXT('signature_data',30000)->nullable();

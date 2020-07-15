@@ -12,10 +12,20 @@ class HomeController extends Controller
 {
 	public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
     
     public function dashboard(){
 		return view('vendor.dashboard');
+    }
+
+    public function SalonLogin($id){
+    	$user = User::find($id);
+        if (!empty($user)) {
+
+    		Auth::loginUsingId($id);
+
+			return view('vendor.dashboard');
+    	}
     }
 }

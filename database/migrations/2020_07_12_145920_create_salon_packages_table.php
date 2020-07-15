@@ -18,7 +18,9 @@ class CreateSalonPackagesTable extends Migration
             $table->string('package_name')->nullable();
             $table->string('price')->nullable();
             $table->string('validity')->nullable();
+            $table->string('validity_count')->nullable();
             $table->string('next_renewal_discount')->nullable();
+            $table->string('package_renewal_remember_days')->nullable();
             $table->string('status')->default('0');
             $table->timestamps();
         });

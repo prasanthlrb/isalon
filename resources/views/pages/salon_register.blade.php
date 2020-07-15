@@ -90,8 +90,11 @@
                         <label>Busisness Type</label>
                         <select onchange="busisnessType()" id="busisness_type" name="busisness_type" class="form-control">
                             <option value="">SELECT</option>
-                            <option value="1">Indivigual</option>
-                            <option value="2">Salon</option>
+                            <option value="1">Salon</option>
+                            <option value="2">Spa</option>
+                            <option value="3">Makeup Artist</option>
+                            <option value="4">Beauty Clinic</option>
+                            <option value="5">Home Services</option>
                         </select>
                     </div>
                   </div>
@@ -199,7 +202,8 @@
                   <div class="col-12">
                     <h6 class="py-50">Id Proof</h6>
                   </div>
-                  <div class="col-sm-6">
+
+                  <div class="col-sm-4 trade-license">
                     <div class="form-group">
                       <label>Trade License Copy</label>
                       <div class="custom-file">
@@ -208,6 +212,27 @@
                       </div>
                     </div>
                   </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Passport Copy</label>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="passport_copy" name="passport_copy">
+                        <label class="custom-file-label">Choose file</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Emirated ID Copy</label>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="emirated_id_copy" name="emirated_id_copy">
+                        <label class="custom-file-label">Choose file</label>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </fieldset>
               <!-- body content of step 1 end-->
@@ -328,13 +353,16 @@
 <script type="text/javascript">
 // $('.salon').addClass('active');
 
+$(".trade-license").hide();
 $(".salon-view").hide();
 function busisnessType(){
     var busisness_type = $('#busisness_type').val();
-    if(busisness_type == '1'){
+    if(busisness_type == '5'){
+        $(".trade-license").hide();
         $(".salon-view").hide();
     }
     else{
+        $(".trade-license").show();
         $(".salon-view").show();
     }
 }

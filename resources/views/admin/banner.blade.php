@@ -46,9 +46,10 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Title</th>
-                            <th>Description</th>
-                            <th>Image</th>
+                            <th>Banner Title Name</th>
+                            <th>SubTitle</th>
+                            <th>Banner Position</th>
+                            <th>Banner Image</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -57,11 +58,10 @@
                         <tr>
                             <td>{{$key + 1}}</td>
                             <td>{{$row->title}}</td>
-                            <td>{{$row->description}}</td>
+                            <td>{{$row->sub_title}}</td>
+                            <td>{{$row->banner_position}}</td>
+                            <td><img src="{{ asset("upload_files/$row->banner_image")}}" alt="" style="width:80px"></td>
                             
-                            <td>
-                                <img style="width: 100px;height: 100px;" src="/upload_files/{{$row->image}}">
-                            </td>
                 <td><div class="dropdown">
                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
                 </span>
@@ -76,11 +76,12 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>#</th>
-                                <th>Title</th>
-	                            <th>Description</th>
-	                            <th>Image</th>
-	                            <th>Action</th>
+                              <th>#</th>
+                              <th>Banner Title Name</th>
+                              <th>SubTitle</th>
+                              <th>Banner Position</th>
+                              <th>Banner Image</th>
+                              <th>Action</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -103,7 +104,7 @@
  
 <!-- Bootstrap Modal -->
 <div class="modal fade" id="popup_modal" tabindex="-1" role="dialog" aria-labelledby="popup_modal" aria-hidden="true">
-    <div class="modal-dialog " role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-grey-dark-5">
                 <h6 class="modal-title text-white" id="modal-title">Add New</h6>
@@ -112,30 +113,122 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="form" method="POST" enctype="multipart/form-data">
+<form id="form" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                <input type="hidden" name="id" id="id">
+            <input type="hidden" name="id">
+        <div class="modal-body">
+          <div class="form-group row">
+                <div class="col-md-8">
+            <label class="label-control" for="projectinput1">Title</label>
 
-                    <div class="form-group">
-                        <label>Title</label>
-                        <input autocomplete="off" type="text" id="title" name="title" class="form-control">
-                    </div>
+              <input type="text" id="title" class="form-control" placeholder="Enter your banner Title"
+              name="title">
+            </div>
+                <div class="col-md-2">
+            <label class="label-control" for="projectinput1">Title Color</label>
 
-                    <div class="form-group">
-                        <label>Description</label>
-                        <textarea id="descripttion" name="descripttion" class="form-control"></textarea>
-                    </div>
+              <input type="text" id="title_color" class="form-control" placeholder="#000000"
+              name="title_color">
+            </div>
+                <div class="col-md-2">
+            <label class="label-control" for="projectinput1">Title Y Position</label>
 
-                    <div class="form-group">
-                        <label>Image</label>
-                        <input type="file" id="image" name="image" class="form-control">
-                        <input type="hidden" id="image1" name="image1">
-                    </div>
-                    
+              <input type="text" id="title_y" class="form-control" placeholder="100"
+              name="title_y">
+            </div>
+          </div>
+          <div class="form-group row">
+                <div class="col-md-8">
+            <label class="label-control" for="projectinput1">Sub Title</label>
+
+              <input type="text" id="sub_title" class="form-control" placeholder="Enter your banner sub title"
+              name="sub_title">
+            </div>
+                <div class="col-md-2">
+            <label class="label-control" for="projectinput1">Sub Title Color</label>
+
+              <input type="text" id="sub_color" class="form-control" placeholder="#000000"
+              name="sub_color">
+            </div>
+                <div class="col-md-2">
+            <label class="label-control" for="projectinput1">Y Position</label>
+
+              <input type="text" id="sub_y" class="form-control" placeholder="100"
+              name="sub_y">
+            </div>
+          </div>
+          <div class="form-group row">
+                <div class="col-md-8">
+            <label class="label-control" for="projectinput1">Description</label>
+
+              <input type="text" id="desc" class="form-control" placeholder="Enter your Banner Description"
+              name="desc">
+            </div>
+                <div class="col-md-2">
+            <label class="label-control" for="projectinput1">Description Color</label>
+
+              <input type="text" id="desc_color" class="form-control" placeholder="#000000"
+              name="desc_color">
+            </div>
+                <div class="col-md-2">
+            <label class="label-control" for="projectinput1">Y Position</label>
+
+              <input type="text" id="desc_y" class="form-control" placeholder="100"
+              name="desc_y">
+            </div>
+          </div>
+          <div class="form-group row">
+                <div class="col-md-8">
+            <label class="label-control" for="projectinput1">Button Text</label>
+
+              <input type="text" id="button_text" class="form-control" placeholder="Enter your button text"
+              name="button_text">
+            </div>
+                <div class="col-md-2">
+            <label class="label-control" for="projectinput1">Button Color</label>
+
+              <input type="text" id="button_color" class="form-control" placeholder="#000000"
+              name="button_color">
+            </div>
+                <div class="col-md-2">
+            <label class="label-control" for="projectinput1">Y Position</label>
+
+              <input type="text" id="button_y" class="form-control" placeholder="100"
+              name="button_y">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 label-control" for="projectinput1">Button URL</label>
+            <div class="col-md-9">
+              <input type="text" id="button_url" class="form-control" placeholder="http://" name="button_url">
+            </div>
+          </div>
+
+          <div class="form-group row">
+                <label class="col-md-3 label-control" for="projectinput6">Select Banner Position</label>
+                <div class="col-md-9">
+                  <select id="banner_position" name="banner_position" class="form-control">
+                    <option selected="" value="0" disabled>select</option>
+                    <option value="right">Right</option>
+                    <option value="left">Left</option>
+                    <option value="center">Center</option>
+                  </select>
+                </div>
+              </div>
+          <div class="form-group row">
+            <label class="col-md-3 label-control" for="projectinput1">Banner Image</label>
+            <div class="col-md-9">
+                <input id="banner_image" type="file" class="form-control" accept="image/*" name="banner_image" />
+              <div id="preview"><img id="prevImage" style="width: 240px;
+                padding-top: 20px;" src="" /></div><br>
+            </div>
+          </div>
+
+        </div>
+        </form>                    
                     <div class="form-group">
                         <button onclick="Save()" id="saveButton" class="btn btn-primary btn-block mr-10" type="button">Add</button>
                     </div>
-                </form>
             </div>
         </div>
     </div>
@@ -161,6 +254,7 @@ var action_type;
 $('#add_new').click(function(){
     $('#popup_modal').modal('show');
     $("#form")[0].reset();
+    $('#prevImage').attr('src', '');
     action_type = 1;
     $('#saveButton').text('Save');
     $('#modal-title').text('Add Banner');
@@ -178,14 +272,14 @@ function Save(){
         dataType: "JSON",
         success: function(data)
         {                
-            $("#form")[0].reset();
-            $('#popup_modal').modal('hide');
-            $('.zero-configuration').load(location.href+' .zero-configuration');
-            toastr.success(data, 'Successfully Save');
+          $("#form")[0].reset();
+          $('#popup_modal').modal('hide');
+          $('.zero-configuration').load(location.href+' .zero-configuration');
+          toastr.success(data, 'Successfully Save');
         },error: function (data) {
-            var errorData = data.responseJSON.errors;
-            $.each(errorData, function(i, obj) {
-            toastr.error(obj[0]);
+          var errorData = data.responseJSON.errors;
+          $.each(errorData, function(i, obj) {
+          toastr.error(obj[0]);
       });
     }
     });
@@ -200,10 +294,10 @@ function Save(){
       success: function(data)
       {
         console.log(data);
-          $("#form")[0].reset();
-           $('#popup_modal').modal('hide');
-           $('.zero-configuration').load(location.href+' .zero-configuration');
-           toastr.success(data, 'Successfully Update');
+        $("#form")[0].reset();
+        $('#popup_modal').modal('hide');
+        $('.zero-configuration').load(location.href+' .zero-configuration');
+        toastr.success(data, 'Successfully Update');
       },error: function (data) {
         var errorData = data.responseJSON.errors;
         $.each(errorData, function(i, obj) {
@@ -224,8 +318,21 @@ function Edit(id){
       $('#modal-title').text('Update Banner');
       $('#save').text('Save Change');
       $('input[name=title]').val(data.title);
-      $('input[name=description]').val(data.description);
-      $('input[name=image1]').val(data.image);
+      $('input[name=sub_title]').val(data.sub_title);
+      $('input[name=desc]').val(data.desc);
+      $('input[name=button_text]').val(data.button_text);
+      $('input[name=button_url  ]').val(data.button_url );
+      $('input[name=button_color]').val(data. button_color);
+      $('input[name=button_y]').val(data.button_y);
+      $('select[name=banner_position]').val(data.banner_position);
+      $('input[name=title_color]').val(data.title_color);
+      $('input[name=title_y]').val(data.title_y);
+      $('input[name=sub_color]').val(data.sub_color);
+      $('input[name=sub_y]').val(data.sub_y);
+      $('input[name=desc_color]').val(data.desc_color);
+      $('input[name=desc_y]').val(data.desc_y);
+      $('input[name=category_name]').val(data.category_name);
+      $('#prevImage').attr('src', '/upload_files/'+data.banner_image);
       $('input[name=id]').val(id);
       $('#popup_modal').modal('show');
       action_type = 2;

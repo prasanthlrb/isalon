@@ -11,47 +11,66 @@ use App\terms_and_condition;
 class SettingsController extends Controller
 {
     public function saveSlider(Request $request){
-        $request->validate([
-            'title'=>'required',
-        ]);
-        //image upload
-        $fileName = null;
-        if($request->file('image')!=""){
-            $image = $request->file('image');
-            $fileName = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('upload_files/'), $fileName);
-        }  
+    
+       $fileName = null;
+       if($request->file('slider_image')!=""){
+       $image = $request->file('slider_image');
+       $fileName = rand() . '.' . $image->getClientOriginalExtension();
+       $image->move(public_path('upload_files/'), $fileName);
+       }
+       $slider = new slider;
+       $slider->title = $request->title;
+       $slider->sub_title = $request->sub_title;
+       $slider->desc = $request->desc;
+       $slider->button_text = $request->button_text;
+       $slider->button_url = $request->button_url;
+       $slider->button_color = $request->button_color;
+       $slider->button_y = $request->button_y;
+       $slider->slider_position = $request->slider_position;
 
-        $slider = new slider;
-        $slider->title = $request->title;
-        $slider->description = $request->description;
-        $slider->image = $fileName;
+       $slider->slider_image = $fileName;
+       $slider->title_color = $request->title_color;
+       $slider->title_y = $request->title_y;
+       $slider->sub_color = $request->sub_color;
+       $slider->sub_y = $request->sub_y;
+       $slider->desc_color = $request->desc_color;
+       $slider->desc_y = $request->desc_y;
+       $position_count = count(slider::all());
+        if(empty($position_count)){
+            $position_count = 0;
+        }
+        $slider->position = $position_count;
         $slider->save();
+
         return response()->json('successfully save'); 
     }
     public function updateSlider(Request $request){
-        $request->validate([
-            'title'=> 'required',
-        ]);
-        
         $slider = slider::find($request->id);
         $slider->title = $request->title;
-        $slider->description = $request->description;
-        if($request->image!=""){
-            $old_image = "upload_files/".$request->image1;
-            if (file_exists($old_image)) {
-                @unlink($old_image);
-            }
-            //image upload
-            $fileName = null;
-            if($request->file('image')!=""){
-            $image = $request->file('image');
-            $fileName = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('upload_files/'), $fileName);
-            }
-        $slider->image = $fileName;
+        $slider->sub_title = $request->sub_title;
+        $slider->desc = $request->desc;
+        $slider->button_text = $request->button_text;
+        $slider->button_url = $request->button_url;
+        $slider->button_color = $request->button_color;
+        $slider->button_y = $request->button_y;
+        $slider->slider_position = $request->slider_position;
+        $slider->title_color = $request->title_color;
+        $slider->title_y = $request->title_y;
+        $slider->sub_color = $request->sub_color;
+        $slider->sub_y = $request->sub_y;
+        $slider->desc_color = $request->desc_color;
+        $slider->desc_y = $request->desc_y;
+        $fileName = null;
+       if($request->file('slider_image')!=""){
+        $old_image = "upload_files/".$request->slider_image;
+        if (file_exists($old_image)) {
+            @unlink($old_image);
         }
-
+       $image = $request->file('slider_image');
+       $fileName = rand() . '.' . $image->getClientOriginalExtension();
+       $image->move(public_path('upload_files/'), $fileName);
+       $slider->slider_image =  $fileName;
+       }
         $slider->save();
         return response()->json('successfully update'); 
     }
@@ -77,47 +96,64 @@ class SettingsController extends Controller
     }
 
     public function saveBanner(Request $request){
-        $request->validate([
-            'title'=>'required',
-        ]);
-        //image upload
         $fileName = null;
-        if($request->file('image')!=""){
-            $image = $request->file('image');
-            $fileName = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('upload_files/'), $fileName);
-        }  
+       if($request->file('banner_image')!=""){
+       $image = $request->file('banner_image');
+       $fileName = rand() . '.' . $image->getClientOriginalExtension();
+       $image->move(public_path('upload_files/'), $fileName);
+       }
+       $banner = new banner;
+       $banner->title = $request->title;
+       $banner->sub_title = $request->sub_title;
+       $banner->desc = $request->desc;
+       $banner->button_text = $request->button_text;
+       $banner->button_url = $request->button_url;
+       $banner->button_color = $request->button_color;
+       $banner->button_y = $request->button_y;
+       $banner->banner_position = $request->banner_position;
 
-        $banner = new banner;
-        $banner->title = $request->title;
-        $banner->description = $request->description;
-        $banner->image = $fileName;
+       $banner->banner_image = $fileName;
+       $banner->title_color = $request->title_color;
+       $banner->title_y = $request->title_y;
+       $banner->sub_color = $request->sub_color;
+       $banner->sub_y = $request->sub_y;
+       $banner->desc_color = $request->desc_color;
+       $banner->desc_y = $request->desc_y;
+       $position_count = count(banner::all());
+        if(empty($position_count)){
+            $position_count = 0;
+        }
+        $banner->position = $position_count;
         $banner->save();
         return response()->json('successfully save'); 
     }
     public function updateBanner(Request $request){
-        $request->validate([
-            'title'=> 'required',
-        ]);
-        
         $banner = banner::find($request->id);
         $banner->title = $request->title;
-        $banner->description = $request->description;
-        if($request->image!=""){
-            $old_image = "upload_files/".$request->image1;
-            if (file_exists($old_image)) {
-                @unlink($old_image);
-            }
-            //image upload
-            $fileName = null;
-            if($request->file('image')!=""){
-            $image = $request->file('image');
-            $fileName = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('upload_files/'), $fileName);
-            }
-        $banner->image = $fileName;
+        $banner->sub_title = $request->sub_title;
+        $banner->desc = $request->desc;
+        $banner->button_text = $request->button_text;
+        $banner->button_url = $request->button_url;
+        $banner->button_color = $request->button_color;
+        $banner->button_y = $request->button_y;
+        $banner->banner_position = $request->banner_position;
+        $banner->title_color = $request->title_color;
+        $banner->title_y = $request->title_y;
+        $banner->sub_color = $request->sub_color;
+        $banner->sub_y = $request->sub_y;
+        $banner->desc_color = $request->desc_color;
+        $banner->desc_y = $request->desc_y;
+        $fileName = null;
+       if($request->file('banner_image')!=""){
+        $old_image = "upload_files/".$request->banner_image;
+        if (file_exists($old_image)) {
+            @unlink($old_image);
         }
-
+       $image = $request->file('banner_image');
+       $fileName = rand() . '.' . $image->getClientOriginalExtension();
+       $image->move(public_path('upload_files/'), $fileName);
+       $banner->banner_image =  $fileName;
+       }
         $banner->save();
         return response()->json('successfully update'); 
     }

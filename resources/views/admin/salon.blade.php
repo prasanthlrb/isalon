@@ -72,6 +72,7 @@
                                     <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; transform: translate3d(-125px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
                                       <a onclick="Edit({{$row->id}})" class="dropdown-item" href="#"><i class="bx bx-edit-alt mr-1"></i> edit</a>
                                       <a onclick="Delete({{$row->id}})" class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
+                                      <a target="_blank" class="dropdown-item" href="/admin/salon-login/{{$row->id}}"><i class="bx bxs-chat mr-1"></i> Salon Login</a>
                                       <a class="dropdown-item" href="/admin/chat-to-salon"><i class="bx bxs-chat mr-1"></i> Chat</a>
                                       <a class="dropdown-item" href="#"><i class="bx bx-lock-alt mr-1"></i> Block</a>
                                       <a class="dropdown-item" href="/admin/view-salon/{{$row->id}}"><i class="bx bx-show-alt mr-1"></i> See Profile</a>
@@ -131,8 +132,11 @@
                         <label>Busisness Type</label>
                         <select id="busisness_type" name="busisness_type" class="form-control">
                             <option value="">SELECT</option>
-                            <option value="1">Indivigual</option>
-                            <option value="2">Shop</option>
+                            <option value="1">Salon</option>
+                            <option value="2">Spa</option>
+                            <option value="3">Makeup Artist</option>
+                            <option value="4">Beauty Clinic</option>
+                            <option value="5">Home Services</option>
                         </select>
                     </div>
 
@@ -210,10 +214,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-4 trade-license">
                         <label>Trade License Copy</label>
                         <input type="file" id="trade_license" name="trade_license" class="form-control">
-                        <input type="hidden" id="trade_license1" name="trade_license1">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Passport Copy</label>
+                        <input type="file" id="passport_copy" name="passport_copy" class="form-control">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Emirated ID Copy</label>
+                        <input type="file" id="emirated_id_copy" name="emirated_id_copy" class="form-control">
                     </div>
                 </div>
                     <div class="form-group">
@@ -249,14 +260,17 @@ $('#add_new').click(function(){
     $('#modal-title').text('Add Salon');
 });
 
+$(".trade-license").hide();
 $(".salon-view").hide();
 $('#busisness_type').change(function(){
     var busisness_type = $('#busisness_type').val();
-    if(busisness_type == '1'){
+    if(busisness_type == '5'){
         $(".salon-view").hide();
+        $(".trade-license").hide();
     }
     else{
         $(".salon-view").show();
+        $(".trade-license").show();
     }
 });
 
@@ -318,10 +332,12 @@ function Edit(id){
       $('#modal-title').text('Update Salon');
       $('#save').text('Save Change');
       $('select[name=busisness_type]').val(data.busisness_type);
-    if(data.busisness_type == '1'){
+    if(data.busisness_type == '5'){
         $(".salon-view").hide();
+        $(".trade-license").hide();
     }
     else{
+        $(".trade-license").show();
         $(".salon-view").show();
     }
       $('input[name=owner_name]').val(data.owner_name);
@@ -334,7 +350,6 @@ function Edit(id){
       $('select[name=nationality]').val(data.nationality);
       $('select[name=member_license]').val(data.member_license);
       $('input[name=salon_commission]').val(data.salon_commission);
-      $('input[name=trade_license1]').val(data.image);
       $('input[name=id]').val(id);
       $('#popup_modal').modal('show');
       action_type = 2;

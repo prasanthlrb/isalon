@@ -1,5 +1,7 @@
  @section('css')
      <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/tables/datatable/datatables.min.css">
+
+     <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/forms/spinner/jquery.bootstrap-touchspin.css">
  @endsection
  @extends('admin.layouts')
 @section('body-section')
@@ -131,16 +133,24 @@
                         <label>Validity</label>
                         <select class="form-control" name="validity" id="validity">
                         	<option value="">SELECT</option>
-                        	<option>1 Month</option>
-                        	<option>3 Month</option>
-                            <option>6 Month</option>
-                            <option>12 Month</option>
+                        	<option value="1">Days</option>
+                        	<option value="2">Months</option>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <div style="width: 100%;" class="d-inline-block mb-1 mr-1">
+                            <input id="validity_count" name="validity_count" type="number" class="touchspin" value="1">
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label>Next Renewal Discount</label>
                         <input autocomplete="off" type="text" id="next_renewal_discount" name="next_renewal_discount" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Package Renewal Remember Days</label>
+                        <input autocomplete="off" type="text" id="package_renewal_remember_days" name="package_renewal_remember_days" class="form-control">
                     </div>
 
                     <div class="col form-group p-0">
@@ -183,6 +193,9 @@
     <script src="../../../app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
     <!-- END: Page Vendor JS-->
     <script src="/app-assets/js/scripts/datatables/datatable.js"></script>
+
+    <script src="/app-assets/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js"></script>
+    <script src="/app-assets/js/scripts/forms/number-input.min.js"></script>
 <script type="text/javascript">
 $('.package').addClass('active');
 
@@ -259,6 +272,8 @@ function Edit(id){
       $('input[name=package_name]').val(data.package_name);
       $('input[name=price]').val(data.price);
       $('input[name=next_renewal_discount]').val(data.next_renewal_discount);
+      $('input[name=package_renewal_remember_days]').val(data.package_renewal_remember_days);
+      $('input[name=validity_count]').val(data.validity_count);
       $('select[name=validity]').val(data.validity);
       $('input[name=id]').val(id);
       $(".all_row").remove();

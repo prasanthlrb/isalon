@@ -58,6 +58,20 @@ class PageController extends Controller
         $salon->area = $request->area;
         $salon->address = $request->address;
         $salon->trade_license = $fileName;
+        if($request->file('passport_copy')!=""){
+            $fileName = null;
+            $image = $request->file('passport_copy');
+            $fileName = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('upload_files/'), $fileName);
+        $salon->passport_copy = $fileName;
+        }
+        if($request->file('emirated_id_copy')!=""){
+            $fileName = null;
+            $image = $request->file('emirated_id_copy');
+            $fileName = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('upload_files/'), $fileName);
+        $salon->emirated_id_copy = $fileName;
+        }
         $salon->signature_data = $request->imgData;
         $salon->save();
 

@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::get('/salon-delete/{id}', 'SalonController@deleteSalon');
 
 	Route::get('/view-salon/{id}', 'SalonController@viewSalon');
+	Route::get('/salon-login/{id}', 'Vendor\HomeController@SalonLogin');
 
 	//addservice
 	Route::POST('/save-addservice', 'SalonController@saveAddService');
@@ -142,6 +143,11 @@ Route::group(['prefix' => 'admin'],function(){
 
 	Route::get('/customer', 'CustomerController@Customer');
 	Route::get('/customer/{id}', 'CustomerController@viewCustomerDetails');
+
+	Route::POST('/save-customer', 'CustomerController@saveCustomer');
+	Route::POST('/update-customer', 'CustomerController@updateCustomer');
+	Route::get('/customer/{id}', 'CustomerController@editCustomer');
+	Route::get('/customer-delete/{id}', 'CustomerController@deleteCustomer');
 
 	Route::get('/review', 'ReviewController@Review');
 
@@ -244,6 +250,13 @@ Route::group(['prefix' => 'vendor'],function(){
 	Route::get('/get_coupon_service/{id}','Vendor\CouponController@get_coupon_service');
 	Route::get('/get_coupon_user/{id}','Vendor\CouponController@get_coupon_user');
 
+
+	Route::POST('/save-workers', 'Vendor\WorkersController@saveWorkers');
+	Route::POST('/update-workers', 'Vendor\WorkersController@updateWorkers');
+	Route::get('/workers/{id}', 'Vendor\WorkersController@editWorkers');
+	Route::get('/workers', 'Vendor\WorkersController@Workers');
+	Route::get('/workers-delete/{id}', 'Vendor\WorkersController@deleteWorkers');
+	Route::get('/get_workers_services/{id}', 'Vendor\WorkersController@getWorkersServices');
 
 	Route::get('/review', 'Vendor\ReviewController@Review');
 	Route::get('/report', 'Vendor\ReportController@Report');
