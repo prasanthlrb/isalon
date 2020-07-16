@@ -63,7 +63,7 @@ class NotificationController extends Controller
     }
 
     public function Notification(){
-        $notification = push_notification::all();
+        $notification = push_notification::where('salon_id',Auth::user()->user_id)->get();
         $customer = customer::all();
         $area = area::all();
         return view('vendor.push_notification',compact('notification','customer','area'));

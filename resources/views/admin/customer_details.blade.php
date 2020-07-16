@@ -98,7 +98,7 @@
                             <ul class="chat-sidebar-list">
                             @foreach($customer_all as $row)
                                 <li>
-                                    <a href="/admin/customer/{{$row->id}}">
+                                    <a href="/admin/view-customer/{{$row->id}}">
                                     <div class="d-flex align-items-center">
                                         <div class="avatar m-0 mr-50"><img src="/app-assets/images/portrait/small/avatar-s-8.jpg" height="36" width="36" alt="sidebar user image">
                                             <!-- <span class="avatar-status-offline"></span> -->
@@ -118,7 +118,7 @@
                     <!-- app chat sidebar ends -->
                 </div>
             </div>
-            <div class="content-right">
+            <div style="max-height: 900px;overflow: scroll;" class="content-right">
                 <div class="content-overlay"></div>
                 <div class="content-wrapper">
                     <div class="content-header row">
@@ -126,8 +126,7 @@
                     <div class="content-body">
                         <!-- app chat overlay -->
                         <div class="chat-overlay"></div>
- <section id="vertical-wizard" style="position: relative;
-    left: 2px;">
+ <section id="vertical-wizard" style="position: relative;left: 2px;">
   <div class="card">
     <div class="card-header">
       <h4 class="card-title">{{$customer->name}}</h4>

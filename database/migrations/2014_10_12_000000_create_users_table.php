@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->string('busisness_type')->nullable();
-            $table->string('owner_name')->nullable();
+            $table->string('name')->nullable();
             $table->string('phone')->nullable();
             $table->string('password')->nullable();
             $table->string('salon_name')->nullable();
@@ -40,6 +40,9 @@ class CreateUsersTable extends Migration
             $table->TEXT('signature_data',30000)->nullable();
             $table->string('login_status')->default('0');
             $table->string('status')->default('0');
+            $table->string('user_id')->nullable();
+            $table->string('role_id')->nullable();
+            $table->string('service_ids')->nullable();
             $table->timestamps();
         });
     }

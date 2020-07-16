@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Vendor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\salon_worker;
+use App\User;
 use App\service;
+use App\salon_role;
 use Hash;
-
+use Auth;
 class WorkersController extends Controller
 {
     public function __construct()
@@ -18,7 +19,8 @@ class WorkersController extends Controller
     public function saveWorkers(Request $request){
         $request->validate([
             'name'=> 'required',
-            'email'=> 'required',
+            'email'=> 'required|unique:users',
+            'role_id'=> 'required',
         ]);
 
         $service_ids='';
@@ -28,11 +30,13 @@ class WorkersController extends Controller
         }
         $service_ids = collect($service_id)->implode(',');
 
-        $salon_worker = new salon_worker;
+        $salon_worker = new User;
         $salon_worker->name = $request->name;
-        $salon_worker->mobile = $request->mobile;
+        $salon_worker->phone = $request->phone;
         $salon_worker->email = $request->email;
+        $salon_worker->role_id = $request->role_id;
         $salon_worker->service_ids = $service_ids;
+        $salon_worker->user_id = Auth::user()->user_id;
         $salon_worker->password = Hash::make($request->password);
         $salon_worker->save();
         return response()->json('successfully save'); 
@@ -40,7 +44,8 @@ class WorkersController extends Controller
     public function updateWorkers(Request $request){
         $request->validate([
             'name'=> 'required',
-            'email'=> 'required',
+            'email'=>'required|unique:users,email,'.$request->id,
+            'role_id'=> 'required',
         ]);
 
         $service_ids='';
@@ -50,9 +55,10 @@ class WorkersController extends Controller
         }
         $service_ids = collect($service_id)->implode(',');
         
-        $salon_worker = salon_worker::find($request->id);
+        $salon_worker = User::find($request->id);
         $salon_worker->name = $request->name;
-        $salon_worker->mobile = $request->mobile;
+        $salon_worker->phone = $request->phone;
+        $salon_worker->role_id = $request->role_id;
         $salon_worker->service_ids = $service_ids;
         $salon_worker->email = $request->email;
         if($request->password != ''){
@@ -63,25 +69,27 @@ class WorkersController extends Controller
     }
 
     public function Workers(){
-        $salon_worker = salon_worker::all();
+        $salon_worker = User::where('role_id', '!=' ,'admin')->where('user_id',Auth::user()->user_id)->get();
+
+        $salon_role = salon_role::where('salon_id',Auth::user()->user_id)->get();
         $service = service::all();
-        return view('vendor.workers',compact('salon_worker','service'));
+        return view('vendor.workers',compact('salon_worker','service','salon_role'));
     }
     
     public function editWorkers($id){
-        $salon_worker = salon_worker::find($id);
+        $salon_worker = User::find($id);
         return response()->json($salon_worker); 
     }
     
     public function deleteWorkers($id){
-        $salon_worker = salon_worker::find($id);
+        $salon_worker = User::find($id);
         $salon_worker->delete();
         return response()->json(['message'=>'Successfully Delete'],200); 
     }
 
 
     public function getWorkersServices($id){ 
-        $data  = salon_worker::find($id);
+        $data  = User::find($id);
 
         $service = service::all();
 

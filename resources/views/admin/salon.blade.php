@@ -60,7 +60,7 @@
                             <tr>
                                 <td>{{$key + 1}}</td>
                                 <td>{{$row->salon_name}}</td>
-                                <td>{{$row->owner_name}}</td>
+                                <td>{{$row->name}}</td>
                                 <td>{{$row->phone}}</td>
                                 <td>200</td>
 
@@ -142,7 +142,7 @@
 
                     <div class="form-group col-md-6">
                         <label>Owner Name</label>
-                        <input autocomplete="off" type="text" id="owner_name" name="owner_name" class="form-control">
+                        <input autocomplete="off" type="text" id="name" name="name" class="form-control">
                     </div>
                 </div>
 
@@ -340,7 +340,7 @@ function Edit(id){
         $(".trade-license").show();
         $(".salon-view").show();
     }
-      $('input[name=owner_name]').val(data.owner_name);
+      $('input[name=name]').val(data.name);
       $('input[name=phone]').val(data.phone);
       $('input[name=email]').val(data.email);
       $('input[name=salon_id]').val(data.salon_id);

@@ -14,6 +14,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/extensions/sweetalert2.min.css">
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="/app-assets/vendors/css/vendors.min.css">
     <!-- END: Vendor CSS-->
@@ -101,7 +102,7 @@
                   <div class="col-sm-6">
                     <div class="form-group">
                         <label>Owner Name</label>
-                        <input autocomplete="off" type="text" id="owner_name" name="owner_name" class="form-control">
+                        <input autocomplete="off" type="text" id="name" name="name" class="form-control">
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -349,6 +350,7 @@
 
     <script src="{{ asset('toastr/toastr.min.js')}}"></script>
 
+    <script src="/app-assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
 
 <script type="text/javascript">
 // $('.salon').addClass('active');
@@ -366,6 +368,8 @@ function busisnessType(){
         $(".salon-view").show();
     }
 }
+
+
 
 function getArea(){
   var id = $('#city').val();
@@ -417,14 +421,27 @@ function Save(imgData){
         success: function(data)
         {                
             $("#form")[0].reset();
-            toastr.success(data, 'Successfully Save');
-            window.location.href="/login";
+            // toastr.success(data, 'Successfully Save');
+            sweetAlert();
         },error: function (data) {
             var errorData = data.responseJSON.errors;
             $.each(errorData, function(i, obj) {
             toastr.error(obj[0]);
       });
     }
+    });
+}
+
+
+function sweetAlert(){
+    Swal.fire({
+      title: "Please Check Your Email",
+      text: "Successfully Save!",
+      type: "success",
+      confirmButtonClass: 'btn btn-primary',
+      buttonsStyling: false,
+    }).then(function() {
+    window.location.href="/login";
     });
 }
 

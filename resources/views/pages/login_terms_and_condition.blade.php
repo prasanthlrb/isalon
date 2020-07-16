@@ -234,8 +234,7 @@ $.ajaxSetup({
 		}
 
 		function show_after() {
-			if ($("input[name=terms_and_condition]").is( 
-                      ":checked")) { 
+			if ($("input[name=terms_and_condition]").is(":checked")) { 
                 $('#before').addClass('hidden_now');
 				$('#show_after').removeClass('hidden_now');
 				$('#divPopUpSignContract').css('width', '100%');

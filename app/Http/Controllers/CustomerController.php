@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\customer;
 use App\order;
 use App\service;
+use App\customer_password;
 use Hash;
+use DB;
+use Mail;
 
 
 class CustomerController extends Controller
@@ -36,11 +39,33 @@ class CustomerController extends Controller
         $customer->name = $request->name;
         $customer->phone = $request->phone;
         $customer->email = $request->email;
-        $customer->password = Hash::make($request->password);
         $customer->save();
+
+        if($request->password != ''){
+            $cus = customer::find($customer->id);
+            $cus->password = Hash::make($request->password);
+            $cus->save();
+        }
+        else{
+            $customer_password = new customer_password;
+            $customer_password->date = date('Y-m-d');
+            $customer_password->end_date = date('Y-m-d', strtotime("+14 days"));
+            $customer_password->customer_id = $customer->id;
+            $customer_password->name = $customer->name;
+            $customer_password->email = $customer->email;
+            $customer_password->save();
+
+            $all = $customer_password::find($customer_password->id);
+            Mail::send('mail.customer_send_mail',compact('all'),function($message) use($all){
+                $message->to($all['email'])->subject('Create your Own Password');
+                $message->from('aravind.0216@gmail.com','I-Salon Website');
+            });
+        }
 
         return response()->json('successfully save'); 
     }
+
+    
     public function updateCustomer(Request $request){
         $request->validate([
             'name'=>'required',

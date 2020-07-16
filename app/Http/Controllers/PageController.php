@@ -12,6 +12,8 @@ use App\service_time;
 use App\salon_service;
 use App\salon_push_notification;
 use App\salon_password;
+use App\customer_password;
+use App\customer;
 use Hash;
 use DB;
 use Mail;
@@ -28,7 +30,7 @@ class PageController extends Controller
     public function saveSalonRegister(Request $request){
         $request->validate([
             'email'=> 'required|unique:users',
-            'owner_name'=>'required',
+            'name'=>'required',
             // 'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
             // 'password_confirmation' => 'min:6'
         ]);
@@ -43,7 +45,7 @@ class PageController extends Controller
 
         $salon = new User;
         $salon->busisness_type = $request->busisness_type;
-        $salon->owner_name = $request->owner_name;
+        $salon->name = $request->name;
         $salon->email = $request->email;
         $salon->phone = $request->phone;
         // $salon->password = Hash::make($request->password);
@@ -75,6 +77,12 @@ class PageController extends Controller
         $salon->signature_data = $request->imgData;
         $salon->save();
 
+        $user = User::find($salon->id);
+        $user->role_id = 'admin';
+        $user->user_id = $salon->id;
+        $user->save();
+
+
         $days = array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
             for ($i = 0; $i < 7; $i++) {
                 $service_time = new service_time;
@@ -85,7 +93,7 @@ class PageController extends Controller
 
         $salon_password = new salon_password;
         $salon_password->date = date('Y-m-d');
-        $salon_password->end_date = date('Y-m-d', strtotime("+30 days"));
+        $salon_password->end_date = date('Y-m-d', strtotime("+14 days"));
         $salon_password->salon_id = $salon->id;
         $salon_password->salon_name = $salon->salon_name;
         $salon_password->owner_name = $salon->owner_name;
@@ -93,7 +101,7 @@ class PageController extends Controller
         $salon_password->save();
 
         $all = $salon_password::find($salon_password->id);
-        Mail::send('admin.salon_send_mail',compact('all'),function($message) use($all){
+        Mail::send('mail.salon_send_mail',compact('all'),function($message) use($all){
             $message->to($all['email'])->subject('Create your Own Password');
             $message->from('aravind.0216@gmail.com','I-Salon Website');
         });
@@ -113,7 +121,7 @@ class PageController extends Controller
 
     public function salonCreatePassword($id){
         $salon = salon_password::find($id);
-        return view('pages.new_password',compact('salon','id'));
+        return view('pages.salon_new_password',compact('salon','id'));
     }
 
     public function salonUpdatePassword(Request $request){
@@ -129,6 +137,29 @@ class PageController extends Controller
         $salon_password = salon_password::find($request->id);
         $salon_password->status = 1;
         $salon_password->save();
+        
+        return response()->json('successfully save'); 
+    }
+
+
+    public function customerCreatePassword($id){
+        $customer = customer_password::find($id);
+        return view('pages.customer_new_password',compact('customer','id'));
+    }
+
+    public function customerUpdatePassword(Request $request){
+        $request->validate([
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:6'
+        ]);
+
+        $customer = customer::find($request->customer_id);
+        $customer->password = Hash::make($request->password);
+        $customer->save();
+
+        $customer_password = customer_password::find($request->id);
+        $customer_password->status = 1;
+        $customer_password->save();
         
         return response()->json('successfully save'); 
     }

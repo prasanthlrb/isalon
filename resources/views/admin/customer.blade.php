@@ -70,7 +70,7 @@
                   <a onclick="Delete({{$row->id}})" class="dropdown-item" href="#"><i class="bx bx-trash mr-1"></i> delete</a>
                   <a class="dropdown-item" href="/admin/chat-to-customer"><i class="bx bxs-chat mr-1"></i> Chat</a>
                   <a class="dropdown-item" href="#"><i class="bx bx-lock-alt mr-1"></i> Block</a>
-                  <a class="dropdown-item" href="/admin/customer/{{$row->id}}"><i class="bx bx-show-alt mr-1"></i> See Profile</a>
+                  <a class="dropdown-item" href="/admin/view-customer/{{$row->id}}"><i class="bx bx-show-alt mr-1"></i> See Profile</a>
                 </div>
               </div></td>
 
@@ -129,8 +129,15 @@
                         <label>Email</label>
                         <input autocomplete="off" type="email" id="email" name="email" class="form-control">
                     </div>
-
-                    <div class="form-group">
+                  <div class="form-group">
+                    <fieldset>
+                      <div class="checkbox">
+                        <input type="checkbox" class="checkbox-input" id="customer_password" name="customer_password">
+                        <label for="customer_password">Customer Create Password</label>
+                      </div>
+                    </fieldset>
+                  </div>
+                    <div class="form-group show-password">
                         <label>Password</label>
                         <input autocomplete="off" type="password" id="password" name="password" class="form-control">
                     </div>
@@ -165,6 +172,19 @@
 
 $('.customer').addClass('active');
 
+
+// if ($("input[name=customer_password]").prop("checked") == true) { 
+//   $('.show-password').hide();
+// }
+
+$('input[type="checkbox"]').click(function(){
+  if($(this).prop("checked") == true){
+      $('.show-password').hide();
+  }
+  else if($(this).prop("checked") == false){
+      $('.show-password').show();
+  }
+});
 
 var action_type;
 $('#add_new').click(function(){

@@ -117,7 +117,7 @@
                         </li>
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                                 <div class="user-nav d-lg-flex d-none">
-                                    <span class="user-name">{{Auth::user()->owner_name}}</span>
+                                    <span class="user-name">{{Auth::user()->name}}</span>
                                     <span class="user-status">Available</span>
                                 </div>
                                 <span>
@@ -125,7 +125,10 @@
                                 </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right pb-0">
-                                <a class="dropdown-item" href="page-user-profile.html"><i class="bx bx-user mr-50"></i> Edit Profile</a>
+                                <!-- <a class="dropdown-item" href="page-user-profile.html"><i class="bx bx-user mr-50"></i> Edit Profile</a> -->
+
+                                <a class="dropdown-item" href="/vendor/role"><i class="bx bx-lock-open-alt mr-50"></i> Add Roles</a>
+
                                 <div class="dropdown-divider mb-0"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">     
                         <i class="bx bx-power-off mr-50"></i>Log out

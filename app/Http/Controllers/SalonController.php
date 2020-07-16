@@ -31,7 +31,7 @@ class SalonController extends Controller
     public function saveSalon(Request $request){
         $request->validate([
             'email'=> 'required|unique:users',
-            'owner_name'=>'required',
+            'name'=>'required',
             // 'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
             // 'password_confirmation' => 'min:6'
         ]);
@@ -46,7 +46,7 @@ class SalonController extends Controller
 
         $salon = new User;
         $salon->busisness_type = $request->busisness_type;
-        $salon->owner_name = $request->owner_name;
+        $salon->name = $request->name;
         $salon->email = $request->email;
         $salon->phone = $request->phone;
         // $salon->password = Hash::make($request->password);
@@ -58,6 +58,7 @@ class SalonController extends Controller
         $salon->member_license = $request->member_license;
         $salon->salon_commission = $request->salon_commission;
         $salon->trade_license = $fileName;
+
         if($request->file('passport_copy')!=""){
             $fileName = null;
             $image = $request->file('passport_copy');
@@ -74,6 +75,11 @@ class SalonController extends Controller
         }
         $salon->save();
 
+        $user = User::find($salon->id);
+        $user->role_id = 'admin';
+        $user->user_id = $salon->id;
+        $user->save();
+
             $days = array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
             for ($i = 0; $i < 7; $i++) {
                 $service_time = new service_time;
@@ -84,15 +90,15 @@ class SalonController extends Controller
 
         $salon_password = new salon_password;
         $salon_password->date = date('Y-m-d');
-        $salon_password->end_date = date('Y-m-d', strtotime("+30 days"));
+        $salon_password->end_date = date('Y-m-d', strtotime("+14 days"));
         $salon_password->salon_id = $salon->id;
         $salon_password->salon_name = $salon->salon_name;
-        $salon_password->owner_name = $salon->owner_name;
+        $salon_password->name = $salon->name;
         $salon_password->email = $salon->email;
         $salon_password->save();
 
         $all = $salon_password::find($salon_password->id);
-        Mail::send('admin.salon_send_mail',compact('all'),function($message) use($all){
+        Mail::send('mail.salon_send_mail',compact('all'),function($message) use($all){
             $message->to($all['email'])->subject('Create your Own Password');
             $message->from('aravind.0216@gmail.com','I-Salon Website');
         });
@@ -103,7 +109,7 @@ class SalonController extends Controller
     public function updateSalon(Request $request){
         $request->validate([
             'email'=>'required|unique:users,email,'.$request->id,
-            'owner_name'=> 'required',
+            'name'=> 'required',
             // 'password' => 'nullable|min:6|required_with:password_confirmation|same:password_confirmation',
             // 'password_confirmation' => 'nullable|min:6'
         ]);
@@ -123,6 +129,7 @@ class SalonController extends Controller
         $salon->passport_number = $request->passport_number;
         $salon->member_license = $request->member_license;
         $salon->salon_commission = $request->salon_commission;
+        
         
         if($request->file('trade_license')!=""){
             $old_image = "upload_files/".$request->trade_license;

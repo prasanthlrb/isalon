@@ -48,6 +48,9 @@ Route::POST('/salon-update-password', 'PageController@salonUpdatePassword');
 Route::POST('/update-login', 'PageController@updateLogin');
 Route::get('/get-area/{id}', 'PageController@getArea');
 
+Route::get('/customer-create-password/{id}', 'PageController@customerCreatePassword');
+Route::POST('/customer-update-password', 'PageController@customerUpdatePassword');
+
 Route::group(['prefix' => 'admin'],function(){
 
 	Route::get('/login', 'Admin\LoginController@showLoginForm')->name('admin.login');
@@ -142,12 +145,15 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::get('/user-delete/{id}', 'AdminController@deleteUser');
 
 	Route::get('/customer', 'CustomerController@Customer');
-	Route::get('/customer/{id}', 'CustomerController@viewCustomerDetails');
+	Route::get('/view-customer/{id}', 'CustomerController@viewCustomerDetails');
 
 	Route::POST('/save-customer', 'CustomerController@saveCustomer');
 	Route::POST('/update-customer', 'CustomerController@updateCustomer');
 	Route::get('/customer/{id}', 'CustomerController@editCustomer');
 	Route::get('/customer-delete/{id}', 'CustomerController@deleteCustomer');
+
+	Route::POST('/customer-password-send', 'CustomerController@customerPasswordSend');
+	Route::POST('/customer-update-password', 'CustomerController@customerUpdatePassword');
 
 	Route::get('/review', 'ReviewController@Review');
 
@@ -260,6 +266,13 @@ Route::group(['prefix' => 'vendor'],function(){
 
 	Route::get('/review', 'Vendor\ReviewController@Review');
 	Route::get('/report', 'Vendor\ReportController@Report');
+
+	//roles
+	Route::POST('/save-role', 'Vendor\RoleController@saveRole');
+	Route::POST('/update-role', 'Vendor\RoleController@updateRole');
+	Route::get('/role/{id}', 'Vendor\RoleController@editRole');
+	Route::get('/role', 'Vendor\RoleController@Role');
+	Route::get('/role-delete/{id}', 'Vendor\RoleController@deleteRole');
 
 	Route::get('/calendar', function () {
     	return view('vendor.calendar');
