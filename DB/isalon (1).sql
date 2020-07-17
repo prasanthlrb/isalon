@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2020 at 06:00 PM
+-- Generation Time: Jul 17, 2020 at 03:53 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.13
 
@@ -35,7 +35,7 @@ CREATE TABLE `admins` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `role_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -45,8 +45,8 @@ CREATE TABLE `admins` (
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `name`, `phone`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', '+971 000000', 'admin@gmail.com', NULL, '$2y$10$m/ihjfXukZ4F4UyUeF4wiOSkfYG9r3kxKq9b4HsODh4glv5Hak43S', '0', NULL, '2020-07-02 09:13:52', '2020-07-02 09:18:15');
+INSERT INTO `admins` (`id`, `name`, `phone`, `email`, `email_verified_at`, `password`, `role_id`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', '+971 000000', 'admin@gmail.com', NULL, '$2y$10$m/ihjfXukZ4F4UyUeF4wiOSkfYG9r3kxKq9b4HsODh4glv5Hak43S', '1', NULL, '2020-07-02 09:13:52', '2020-07-17 07:53:49');
 
 -- --------------------------------------------------------
 
@@ -132,11 +132,11 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `category_id`, `category_name_english`, `category_name_arabic`, `icon`, `image`, `category_status`, `status`, `created_at`, `updated_at`) VALUES
-(3, '0', 'Category name', 'Category name arabic', NULL, '275389116.jpg', '0', '0', '2020-07-02 06:25:45', '2020-07-02 07:34:04'),
-(4, '3', 'Second Category - 1', NULL, NULL, '419313909.jpg', '0', '0', '2020-07-02 08:24:21', '2020-07-02 08:24:21'),
-(5, '3', 'Second Category - 2', NULL, NULL, NULL, '0', '0', '2020-07-02 08:24:34', '2020-07-02 08:24:34'),
-(6, '5', 'Third Category - 1', NULL, NULL, NULL, '0', '0', '2020-07-02 08:24:54', '2020-07-02 08:24:54'),
-(7, '4', 'Third Category', NULL, NULL, NULL, '0', '0', '2020-07-02 08:25:56', '2020-07-02 08:25:56');
+(3, '0', 'Category name', 'Category name arabic', '161801249.png', '84180039.jpg', '0', '0', '2020-07-02 06:25:45', '2020-07-17 07:08:22'),
+(4, '3', 'Second Category - 1', NULL, '1965388214.png', '111355259.jpg', '0', '0', '2020-07-02 08:24:21', '2020-07-17 07:09:56'),
+(5, '3', 'Second Category - 2', NULL, '354665671.png', '1017557726.jpg', '0', '0', '2020-07-02 08:24:34', '2020-07-17 07:10:02'),
+(6, '5', 'Third Category - 1', NULL, '1295305854.png', '1332025959.jpg', '0', '0', '2020-07-02 08:24:54', '2020-07-17 07:10:32'),
+(7, '4', 'Third Category', NULL, '943217075.png', '1570791550.jpg', '0', '0', '2020-07-02 08:25:56', '2020-07-17 07:10:14');
 
 -- --------------------------------------------------------
 
@@ -293,7 +293,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (28, '2020_07_12_150019_create_salon_package_items_table', 14),
 (29, '2020_07_15_122057_create_salon_workers_table', 15),
 (30, '2020_07_16_085256_create_customer_passwords_table', 16),
-(31, '2020_07_16_112653_create_salon_roles_table', 17);
+(31, '2020_07_16_112653_create_salon_roles_table', 17),
+(32, '2020_07_17_100127_create_roles_table', 18);
 
 -- --------------------------------------------------------
 
@@ -405,6 +406,91 @@ INSERT INTO `reviews` (`id`, `invoice_id`, `salon_name`, `customer_name`, `comme
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `role_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dashboard` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_create` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_edit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_delete` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salon_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salon_create` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salon_edit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salon_delete` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `category_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `category_create` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `category_edit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `category_delete` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salon_package_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salon_package_create` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salon_package_edit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salon_package_delete` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `review_ratings_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `service_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `service_create` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `service_edit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `service_delete` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `service_request_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `service_request_update` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `push_notification_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `push_notification_create` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `push_notification_edit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `push_notification_delete` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `notification_request_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `notification_request_update` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `coupon_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `coupon_create` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `coupon_edit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `coupon_delete` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `coupon_request_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `coupon_request_update` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `booking_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `area_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `area_create` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `area_edit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `area_delete` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `chat_to_salon_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `chat_to_customer_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `revenue_reports_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `settlement_reports_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_create` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_edit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_delete` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `roles_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `roles_create` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `roles_edit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `roles_delete` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slider_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slider_create` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slider_edit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slider_delete` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `banner_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `banner_create` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `banner_edit` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `banner_delete` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `application_settings_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `terms_and_condition_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `settlement_period_read` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `role_name`, `dashboard`, `customer_read`, `customer_create`, `customer_edit`, `customer_delete`, `salon_read`, `salon_create`, `salon_edit`, `salon_delete`, `category_read`, `category_create`, `category_edit`, `category_delete`, `salon_package_read`, `salon_package_create`, `salon_package_edit`, `salon_package_delete`, `review_ratings_read`, `service_read`, `service_create`, `service_edit`, `service_delete`, `service_request_read`, `service_request_update`, `push_notification_read`, `push_notification_create`, `push_notification_edit`, `push_notification_delete`, `notification_request_read`, `notification_request_update`, `coupon_read`, `coupon_create`, `coupon_edit`, `coupon_delete`, `coupon_request_read`, `coupon_request_update`, `booking_read`, `area_read`, `area_create`, `area_edit`, `area_delete`, `chat_to_salon_read`, `chat_to_customer_read`, `revenue_reports_read`, `settlement_reports_read`, `user_read`, `user_create`, `user_edit`, `user_delete`, `roles_read`, `roles_create`, `roles_edit`, `roles_delete`, `slider_read`, `slider_create`, `slider_edit`, `slider_delete`, `banner_read`, `banner_create`, `banner_edit`, `banner_delete`, `application_settings_read`, `terms_and_condition_read`, `settlement_period_read`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', NULL, 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', NULL, 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', '0', '2020-07-17 05:51:35', '2020-07-17 08:22:20');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `salon_packages`
 --
 
@@ -426,10 +512,7 @@ CREATE TABLE `salon_packages` (
 --
 
 INSERT INTO `salon_packages` (`id`, `package_name`, `price`, `validity`, `validity_count`, `next_renewal_discount`, `package_renewal_remember_days`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Saloin', '120', '1', '5', NULL, NULL, '0', '2020-07-15 07:58:37', '2020-07-15 07:58:37'),
-(2, 'Saloin', '120', '1', '5', NULL, NULL, '0', '2020-07-15 07:58:44', '2020-07-15 07:58:44'),
-(3, 'Saloin', '120', '1', '5', NULL, NULL, '0', '2020-07-15 07:58:52', '2020-07-15 07:58:52'),
-(4, 'Saloin', '120', '2', '2', NULL, NULL, '0', '2020-07-15 07:59:45', '2020-07-15 07:59:55');
+(7, 'Package Name', '100', '2', '5', NULL, NULL, '0', '2020-07-17 06:49:53', '2020-07-17 07:02:08');
 
 -- --------------------------------------------------------
 
@@ -450,7 +533,8 @@ CREATE TABLE `salon_package_items` (
 --
 
 INSERT INTO `salon_package_items` (`id`, `package_id`, `package_item`, `created_at`, `updated_at`) VALUES
-(2, '4', '11', '2020-07-15 07:59:55', '2020-07-15 07:59:55');
+(2, '4', '11', '2020-07-15 07:59:55', '2020-07-15 07:59:55'),
+(5, '7', '', '2020-07-17 07:02:08', '2020-07-17 07:02:08');
 
 -- --------------------------------------------------------
 
@@ -503,7 +587,9 @@ INSERT INTO `salon_passwords` (`id`, `date`, `end_date`, `salon_id`, `owner_name
 (25, '2020-07-16', '2020-07-30', '29', NULL, 'Aravind Spa', 'aravind.0216@gmail.com', '0', '2020-07-16 07:58:23', '2020-07-16 07:58:23'),
 (26, '2020-07-16', '2020-07-30', '30', NULL, 'Aravind Spa', 'aravind.0216@gmail.com', '1', '2020-07-16 08:02:02', '2020-07-16 08:15:54'),
 (27, '2020-07-16', '2020-07-30', '33', NULL, NULL, 'aravind@gmail.com', '0', '2020-07-16 09:49:16', '2020-07-16 09:49:16'),
-(28, '2020-07-16', '2020-07-30', '34', NULL, NULL, 'kumar@gmail.com', '0', '2020-07-16 09:50:38', '2020-07-16 09:50:38');
+(28, '2020-07-16', '2020-07-30', '34', NULL, NULL, 'kumar@gmail.com', '0', '2020-07-16 09:50:38', '2020-07-16 09:50:38'),
+(29, '2020-07-17', '2020-07-31', '8', 'Aravind', NULL, 'aravind.0216@gmail.com', '1', '2020-07-17 06:26:08', '2020-07-17 06:57:16'),
+(30, '2020-07-17', '2020-07-31', '9', 'Inba', NULL, 'inbaraj129@gmail.com', '0', '2020-07-17 07:37:52', '2020-07-17 07:37:52');
 
 -- --------------------------------------------------------
 
@@ -613,7 +699,7 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `category_id`, `service_name_english`, `service_name_arabic`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(1, '3', 'Service name english', NULL, '1662521342.jpg', '0', '2020-07-02 06:27:25', '2020-07-02 06:27:40');
+(1, '3', 'Service name english', NULL, '1089783658.jpg', '0', '2020-07-02 06:27:25', '2020-07-17 07:08:13');
 
 -- --------------------------------------------------------
 
@@ -839,7 +925,42 @@ INSERT INTO `service_times` (`id`, `salon_id`, `days`, `open_time`, `close_time`
 (200, '34', 'Wednesday', NULL, NULL, '0', '2020-07-16 09:50:38', '2020-07-16 09:50:38'),
 (201, '34', 'Thursday', NULL, NULL, '0', '2020-07-16 09:50:38', '2020-07-16 09:50:38'),
 (202, '34', 'Friday', NULL, NULL, '0', '2020-07-16 09:50:38', '2020-07-16 09:50:38'),
-(203, '34', 'Saturday', NULL, NULL, '0', '2020-07-16 09:50:38', '2020-07-16 09:50:38');
+(203, '34', 'Saturday', NULL, NULL, '0', '2020-07-16 09:50:38', '2020-07-16 09:50:38'),
+(204, '5', 'Sunday', NULL, NULL, '0', '2020-07-17 06:19:49', '2020-07-17 06:19:49'),
+(205, '5', 'Monday', NULL, NULL, '0', '2020-07-17 06:19:49', '2020-07-17 06:19:49'),
+(206, '5', 'Tuesday', NULL, NULL, '0', '2020-07-17 06:19:49', '2020-07-17 06:19:49'),
+(207, '5', 'Wednesday', NULL, NULL, '0', '2020-07-17 06:19:49', '2020-07-17 06:19:49'),
+(208, '5', 'Thursday', NULL, NULL, '0', '2020-07-17 06:19:49', '2020-07-17 06:19:49'),
+(209, '5', 'Friday', NULL, NULL, '0', '2020-07-17 06:19:49', '2020-07-17 06:19:49'),
+(210, '5', 'Saturday', NULL, NULL, '0', '2020-07-17 06:19:49', '2020-07-17 06:19:49'),
+(211, '6', 'Sunday', NULL, NULL, '0', '2020-07-17 06:21:41', '2020-07-17 06:21:41'),
+(212, '6', 'Monday', NULL, NULL, '0', '2020-07-17 06:21:41', '2020-07-17 06:21:41'),
+(213, '6', 'Tuesday', NULL, NULL, '0', '2020-07-17 06:21:41', '2020-07-17 06:21:41'),
+(214, '6', 'Wednesday', NULL, NULL, '0', '2020-07-17 06:21:41', '2020-07-17 06:21:41'),
+(215, '6', 'Thursday', NULL, NULL, '0', '2020-07-17 06:21:41', '2020-07-17 06:21:41'),
+(216, '6', 'Friday', NULL, NULL, '0', '2020-07-17 06:21:41', '2020-07-17 06:21:41'),
+(217, '6', 'Saturday', NULL, NULL, '0', '2020-07-17 06:21:41', '2020-07-17 06:21:41'),
+(218, '7', 'Sunday', NULL, NULL, '0', '2020-07-17 06:24:10', '2020-07-17 06:24:10'),
+(219, '7', 'Monday', NULL, NULL, '0', '2020-07-17 06:24:10', '2020-07-17 06:24:10'),
+(220, '7', 'Tuesday', NULL, NULL, '0', '2020-07-17 06:24:10', '2020-07-17 06:24:10'),
+(221, '7', 'Wednesday', NULL, NULL, '0', '2020-07-17 06:24:10', '2020-07-17 06:24:10'),
+(222, '7', 'Thursday', NULL, NULL, '0', '2020-07-17 06:24:10', '2020-07-17 06:24:10'),
+(223, '7', 'Friday', NULL, NULL, '0', '2020-07-17 06:24:10', '2020-07-17 06:24:10'),
+(224, '7', 'Saturday', NULL, NULL, '0', '2020-07-17 06:24:10', '2020-07-17 06:24:10'),
+(225, '8', 'Sunday', NULL, NULL, '0', '2020-07-17 06:26:08', '2020-07-17 06:26:08'),
+(226, '8', 'Monday', NULL, NULL, '0', '2020-07-17 06:26:08', '2020-07-17 06:26:08'),
+(227, '8', 'Tuesday', NULL, NULL, '0', '2020-07-17 06:26:08', '2020-07-17 06:26:08'),
+(228, '8', 'Wednesday', NULL, NULL, '0', '2020-07-17 06:26:08', '2020-07-17 06:26:08'),
+(229, '8', 'Thursday', NULL, NULL, '0', '2020-07-17 06:26:08', '2020-07-17 06:26:08'),
+(230, '8', 'Friday', NULL, NULL, '0', '2020-07-17 06:26:08', '2020-07-17 06:26:08'),
+(231, '8', 'Saturday', NULL, NULL, '0', '2020-07-17 06:26:08', '2020-07-17 06:26:08'),
+(232, '9', 'Sunday', NULL, NULL, '0', '2020-07-17 07:37:52', '2020-07-17 07:37:52'),
+(233, '9', 'Monday', NULL, NULL, '0', '2020-07-17 07:37:52', '2020-07-17 07:37:52'),
+(234, '9', 'Tuesday', NULL, NULL, '0', '2020-07-17 07:37:52', '2020-07-17 07:37:52'),
+(235, '9', 'Wednesday', NULL, NULL, '0', '2020-07-17 07:37:52', '2020-07-17 07:37:52'),
+(236, '9', 'Thursday', NULL, NULL, '0', '2020-07-17 07:37:52', '2020-07-17 07:37:52'),
+(237, '9', 'Friday', NULL, NULL, '0', '2020-07-17 07:37:52', '2020-07-17 07:37:52'),
+(238, '9', 'Saturday', NULL, NULL, '0', '2020-07-17 07:37:52', '2020-07-17 07:37:52');
 
 -- --------------------------------------------------------
 
@@ -986,7 +1107,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `busisness_type`, `phone`, `salon_name`, `salon_id`, `city`, `area`, `address`, `nationality`, `emirates_id`, `passport_number`, `member_license`, `salon_commission`, `trade_license`, `emirated_id_copy`, `passport_copy`, `latitude`, `longitude`, `signature_data`, `login_status`, `status`, `user_id`, `service_ids`, `role_id`, `created_at`, `updated_at`) VALUES
-(4, 'Kumar', 'admin@gmail.com', NULL, '$2y$10$m/ihjfXukZ4F4UyUeF4wiOSkfYG9r3kxKq9b4HsODh4glv5Hak43S', NULL, '2', '8883191962', 'Aravind', '123456', NULL, NULL, NULL, '2', '123456', '123456', '1', '5', NULL, NULL, NULL, NULL, NULL, NULL, '0', '0', '4', NULL, 'admin', '2020-07-07 06:12:46', '2020-07-15 09:46:55');
+(8, 'Aravind', 'aravind.0216@gmail.com', NULL, '$2y$10$xKWVp/TVFHoj.FTngyReNu6cd3dpPPNoBzq7q3b6OyjuS2dhvOtym', NULL, '1', '8883191962', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '0', '8', NULL, 'admin', '2020-07-17 06:26:08', '2020-07-17 06:57:16'),
+(9, 'Inba', 'inbaraj129@gmail.com', NULL, NULL, NULL, '5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'data:image/png;base64,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7rorbN++Pbz66quht7c3LF26NFx11VXh8ccfD5MnT852QBojkJOAm6xymqZeCBAgMDoCtQirkaJ/O8DChQsbz2ns7u4OGzZsCHPnzh0dKWchQKBlgSVLloTNmzeHxYsXhy1btrR8PAcgQIAAgfwFahNWB24HmDp1amNLQNzL6kWAQL0EXF2t17xUS4AAgaoFahNWI9TOnTvDsmXLwrFjx/7vpqr4f4BeBAgQIECAAAECfwnEbZM5vGoTVuPd//fcc0/jK8T4uv7668PatWv/3q8qrOawHPVAgAABAgQItEtAWG2XZBPHiVsA4t3/q1atanz9H1/x6QDPPPOMJwE04ectBAgQIECAAIG6CtTiyuru3bsbd/8vWLCgcTU1vuJV1k8++SS8/PLLbrKq6+pTNwECBAgQIEBgCIHkw2r/1/8fffTRP/apDnw6wMDtACZOgAABAgQIECCQj0DSYbX/6//48P+nnnoq3H333X8//D/+3bp168Lq1av9MEA+61EnBAgQIECAAIF/CCQdVs2KAAECBAgQIECgbAFhtez5654AAQIECBAgkLSAsJr0eBRHgAABAgQIEChbQFgte/66J0CAAAECBAgkLSCsJj0exREgQIAAAQIEyhYQVsuev+4JECBAgAABAkkLCKtJj0dxBAgQIECAAIGyBYTVsuevewIECBAgQIBA0gLCatLjURwBAgQIECBAoGwBYbXs+eueAAECBAgQIJC0gLCa9HgUR4AAAQIECBAoW0BYLXv+uidAgAABAgQIJC0grCY9HsURIECAAAECBMoWEFbLnr/uCRAgQIAAAQJJCwirSY9HcQQIECBAgACBsgWE1bLnr3sCBAgQIECAQNICwmrS41EcAQIECBAgQKBsAWG17PnrngABAgQIECCQtICwmvR4FEeAAAECBAgQKFtAWC17/ronQIAAAQIECCQtIKwmPR7FESBAgAABAgTKFhBWy56/7gkQIECAAAECSQsIq0mPR3EECBAgQIAAgbIFhNWy5697AgQIECBAgEDSAsJq0uNRHAECBAgQIECgbAFhtez5654AAQIECBAgkLSAsJr0eBRHgAABAgQIEChbQFgte/66J0CAAAECBAgkLSCsJj0exREgQIAAAQIEyhYQVsuev+4JECBAgAABAkkLCKtJj0dxBAgQIECAAIGyBYTVsuevewIECBAgQIBA0gLCatLjURwBAgQIECBAoGwBYbXs+eueAAECBAgQIJC0gLCa9HgUR4AAAQIECBAoW0BYLXv+uidAgAABAgQIJC0grCY9HsURIECAAAECBMoWEFbLnr/uCRAgQIAAAQJJCwirSY9HcQQIECBAgACBsgWE1bLnr3sCBAgQIECAQNICwmrS41EcAQIECBAgQKBsAWG17PnrngABAgQIECCQtICwmvR4FEeAAAECBAgQKFtAWC17/ronQIAAAQIECCQtIKwmPR7FESBAgAABAgTKFvgP/xLUEnyYrXUAAAAASUVORK5CYII=', '0', '0', '9', NULL, 'admin', '2020-07-17 07:37:52', '2020-07-17 07:37:52');
 
 --
 -- Indexes for dumped tables
@@ -1068,6 +1190,12 @@ ALTER TABLE `push_notifications`
 -- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1186,7 +1314,7 @@ ALTER TABLE `coupons`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `customer_passwords`
@@ -1204,7 +1332,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `new_services`
@@ -1231,22 +1359,28 @@ ALTER TABLE `reviews`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `salon_packages`
 --
 ALTER TABLE `salon_packages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `salon_package_items`
 --
 ALTER TABLE `salon_package_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `salon_passwords`
 --
 ALTER TABLE `salon_passwords`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `salon_roles`
@@ -1276,7 +1410,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `service_times`
 --
 ALTER TABLE `service_times`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=204;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=239;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -1306,7 +1440,7 @@ ALTER TABLE `terms_and_conditions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

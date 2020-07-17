@@ -8,6 +8,8 @@ use DB;
 use Auth;
 use App\salon_role;
 use App\User;
+use App\role;
+use App\admin;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -29,10 +31,15 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         view()->composer('vendor.menu', function($view) {
-            $user = User::find(Auth::user()->id);
-            $role = salon_role::where('id',$user->role_id)->where('salon_id',$user->user_id)->first();
+            $role = salon_role::where('id',Auth::user()->role_id)->where('salon_id',$user->user_id)->first();
            
-            $view->with(compact('role','user'));
+            $view->with(compact('role'));
         });
-    }
+        
+        view()->composer('admin.sidebar', function($view) {
+            $role = role::where('id',Auth::guard('admin')->user()->role_id)->first();
+           
+            $view->with(compact('role'));
+        });
+    }   
 }

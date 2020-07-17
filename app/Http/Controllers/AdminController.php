@@ -7,6 +7,7 @@ use App\settlement_period;
 use App\admin;
 use App\User;
 use App\customer;
+use App\role;
 use Hash;
 use session;
 use Auth;
@@ -84,6 +85,7 @@ class AdminController extends Controller
     public function saveUser(Request $request){
         $request->validate([
             'name'=>'required',
+            'role_id'=> 'required',
             'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'min:6'
         ]);
@@ -92,6 +94,7 @@ class AdminController extends Controller
         $admin->name = $request->name;
         $admin->email = $request->email;
         $admin->phone = $request->phone;
+        $admin->role_id = $request->role_id;
         $admin->password = Hash::make($request->password);
         $admin->save();
         return response()->json('successfully save'); 
@@ -99,6 +102,7 @@ class AdminController extends Controller
     public function updateUser(Request $request){
         $request->validate([
             'name'=> 'required',
+            'role_id'=> 'required',
             'password' => 'min:6|nullable|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'nullable|min:6'
         ]);
@@ -107,6 +111,7 @@ class AdminController extends Controller
         $admin->name = $request->name;
         $admin->email = $request->email;
         $admin->phone = $request->phone;
+        $admin->role_id = $request->role_id;
         if($request->password != ''){
         $admin->password = Hash::make($request->password);
     	}
@@ -116,7 +121,8 @@ class AdminController extends Controller
 
     public function User(){
         $user = admin::all();
-        return view('admin.user',compact('user'));
+        $role = role::all();
+        return view('admin.user',compact('user','role'));
     }
 
     public function editUser($id){

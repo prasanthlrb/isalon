@@ -49,6 +49,7 @@
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
+                                <th>Role</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -59,6 +60,13 @@
                                 <td>{{$row->name}}</td>
                                 <td>{{$row->phone}}</td>
                                 <td>{{$row->email}}</td>
+                                <td>
+                                    @foreach($role as $role1)
+                                    @if($row->role_id == $role1->id)
+                                    {{$role1->role_name}}
+                                    @endif
+                                    @endforeach
+                                </td>
                                 
                                 <td><div class="dropdown">
                                     <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
@@ -78,6 +86,7 @@
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
+                                <th>Role</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -136,6 +145,16 @@
                     <div class="form-group">
                         <label>Confirm Password</label>
                         <input type="password" id="password_confirmation" name="password_confirmation" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Role</label>
+                        <select id="role_id" name="role_id" class="form-control">
+                            <option value="">SELECT</option>
+                            @foreach($role as $row)
+                            <option value="{{$row->id}}">{{$row->role_name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                 
                     <div class="form-group">
@@ -231,6 +250,7 @@ function Edit(id){
       $('input[name=name]').val(data.name);
       $('input[name=phone]').val(data.phone);
       $('input[name=email]').val(data.email);
+      $('select[name=role_id]').val(data.role_id);
       $('input[name=id]').val(id);
       $('#popup_modal').modal('show');
       action_type = 2;

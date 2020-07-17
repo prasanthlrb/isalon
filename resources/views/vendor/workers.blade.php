@@ -47,6 +47,7 @@
                                                         <th>Name</th>
                                                         <th>Mobile</th>
                                                         <th>Email</th>
+                                                        <th>Role</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -57,6 +58,13 @@
                                                         <td>{{$row->name}}</td>
                                                         <td>{{$row->phone}}</td>
                                                         <td>{{$row->email}}</td>
+                                                        <td>
+                                    @foreach($salon_role as $role1)
+                                    @if($row->role_id == $role1->id)
+                                    {{$role1->role_name}}
+                                    @endif
+                                    @endforeach
+                                </td>
                                                         <td>
             <div class="dropdown">
                 <span class="bx bx-dots-horizontal-rounded font-medium-3 dropdown-toggle nav-hide-arrow cursor-pointer" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
@@ -76,6 +84,7 @@
                                                         <th>Name</th>
                                                         <th>Mobile</th>
                                                         <th>Email</th>
+                                                        <th>Role</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </tfoot>
