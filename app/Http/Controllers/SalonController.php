@@ -93,7 +93,7 @@ class SalonController extends Controller
         $salon_password->end_date = date('Y-m-d', strtotime("+14 days"));
         $salon_password->salon_id = $salon->id;
         $salon_password->salon_name = $salon->salon_name;
-        $salon_password->name = $salon->name;
+        $salon_password->owner_name = $salon->name;
         $salon_password->email = $salon->email;
         $salon_password->save();
 

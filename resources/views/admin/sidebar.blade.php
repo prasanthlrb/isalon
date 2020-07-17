@@ -107,8 +107,8 @@
 
                 <li class=" navigation-header"><span>Booking</span></li>
 
-                 <li class=" nav-item">
-                    <a href="app-email.html">
+                 <li class="booking nav-item">
+                    <a href="#">
                         <i class="menu-livicon" data-icon="calendar"></i>
                         <span class="menu-title" data-i18n="Email">Booking</span>
                     </a>
@@ -141,13 +141,13 @@
                 <li class=" navigation-header"><span>Reports</span></li>
 
                 <li class=" nav-item">
-                    <a href="app-email.html">
+                    <a href="#">
                         <i class="menu-livicon" data-icon="pie-chart"></i>
                         <span class="menu-title" data-i18n="Email">Revenue Reports</span>
                     </a>
                 </li>
                 <li class=" nav-item">
-                    <a href="app-email.html">
+                    <a href="#">
                         <i class="menu-livicon" data-icon="notebook"></i>
                         <span class="menu-title" data-i18n="Email">Settlement Reports</span>
                     </a>
@@ -162,8 +162,8 @@
                     </a>
                 </li>
                 
-                <li class=" nav-item">
-                    <a href="app-email.html">
+                <li class="roles nav-item">
+                    <a href="/admin/role">
                         <i class="menu-livicon" data-icon="unlock"></i>
                         <span class="menu-title" data-i18n="Email">Roles</span>
                     </a>

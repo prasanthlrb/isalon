@@ -61,7 +61,13 @@
                             <td>{{$key + 1}}</td>
                             <td>{{$row->package_name}}</td>
                             <td>{{$row->price}}</td>
-                            <td>{{$row->validity}}</td>
+                            <td>
+                                @if($row->validity == 1)
+                                Days
+                                @else
+                                Months
+                                @endif
+                            </td>
                             <td>{{$row->next_renewal_discount}}</td>
                             
                 <td><div class="dropdown">
@@ -164,7 +170,14 @@
                         <table id="productTable">
                                     
                             <tbody id="productTabletbody">
-                                
+<tr style="padding:20px;width: 100%;" value="0" class="all" id="row0">
+    <td style="width:80%">
+        <input class="form-control" type="text" name="package_item[]" id="package_item0" autocomplete="off"  />
+    </td>
+    <td style="width:20%" align="center">
+        <button onclick="removeProductRow(0)" id="removeProductRowBtn0" class="btn btn-icon btn-danger rounded-circle" type="button" data-repeater-delete><i class="bx bx-x"></i></button>
+    </td>
+</tr>
                             </tbody>
                             
                         </table>
@@ -206,7 +219,6 @@ $('#add_new').click(function(){
     action_type = 1;
 
     $(".all_row").remove();
-
 
     $('#saveButton').text('Save');
     $('#modal-title').text('Add Package');
@@ -294,6 +306,7 @@ function getsalonpackageitem(id){
     }
   });
 }
+
 function Delete(id){
     var r = confirm("Are you sure");
     if (r == true) {

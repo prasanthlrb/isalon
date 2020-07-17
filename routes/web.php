@@ -216,6 +216,14 @@ Route::group(['prefix' => 'admin'],function(){
 	Route::get('/chat-to-salon', 'AdminController@chatToSalon');
 
 
+	//roles
+	Route::POST('/save-role', 'RoleController@saveRole');
+	Route::POST('/update-role', 'RoleController@updateRole');
+	Route::get('/role/{id}', 'RoleController@editRole');
+	Route::get('/role', 'RoleController@Role');
+	Route::get('/role-delete/{id}', 'RoleController@deleteRole');
+
+
 });
 
 
